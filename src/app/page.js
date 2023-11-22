@@ -1,11 +1,9 @@
-import Header from '../components/header/index'
-import Test from '../components/test'
+import Header from '@/components/header'
 
 export default function Home() {
   return (
     <main>
         <Header/>
-        {/* <Test/> */}
     </main>
   )
 }
