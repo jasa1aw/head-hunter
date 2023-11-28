@@ -1,7 +1,12 @@
 'use client'
 import Header from '@/components/header'
 import Input from '@/components/input'
+import { END_POINT } from '@/config/end-point'
+import axios from 'axios'
 export default function CreateResume() {
+  axios.get(`${END_POINT}/api/region/cities`).then(res => {
+    console.log(res);
+  })
 
   return (
     <main>
