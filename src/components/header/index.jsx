@@ -6,11 +6,11 @@ export default function Header () {
             <div className="container">
                 <div className="header-inner">
                     <div className="left-block">
-                        <Link href='/'>
+                        <Link href={'/'}>
                             <img src="/img/logo.svg" />
                         </Link>
                         
-                        <Link href='/resumes'>Мои резюме</Link>
+                        <Link href={'/resumes'}>Мои резюме</Link>
                         <Link href={''}>Помощь</Link>
                     </div>
                     <div className="rigth-block">
@@ -18,10 +18,10 @@ export default function Header () {
                             <img src="/img/search.svg" />
                             Поиск
                         </button>
-                        <button className="header-button header-button-green">
+                        <Link href={'/create-resume'} className="header-button header-button-green">
                             Создать резюме
-                        </button>
-                        <Link href='/login' className="header-button">
+                        </Link>
+                        <Link href={'/login'} className="header-button">
                             Войти
                         </Link>
                     </div>

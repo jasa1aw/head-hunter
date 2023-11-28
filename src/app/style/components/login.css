@@ -1,3 +1,4 @@
+
 .login-page {
     display: flex;
     flex-direction: column;
@@ -5,21 +6,18 @@
     padding: 20px;
 }
 
-.login-page .card{
+.login-page .card {
     max-width: 400px;
     width: 100%;
     margin: 20px 0;
 }
-.login-page h1, .login-page p{
-    margin-bottom: 20px;
-}
 
-.login-page form{
+.login-page form {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-.login-page button{
+.login-page button {
     width: 100%;
 }
