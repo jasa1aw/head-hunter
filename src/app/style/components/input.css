@@ -78,7 +78,17 @@
     border-color: #ddd;
 }
 
+.autocomplite{
+    position: relative;
+}
 
+.tag{
+    padding: 5px;
+    border-radius: 4px;
+    background-color: #eceff0;
+    display: inline-block;
+    margin-left: 300px;
+}
 .input-group .input:first-child {
     border-left: 1px solid #ddd;
     border-top-left-radius:4px;
