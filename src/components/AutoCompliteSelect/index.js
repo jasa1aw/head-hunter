@@ -28,13 +28,13 @@ export default function AutoCompliteSelect({label, placeholder, type, size, item
     }
 
     return(
-        <div className={"autocomplite" + size}>
+        <div className={"autocomplite " + size}>
             <Input placeholder={placeholder} type={type} onChange={onChange} label={label} size={size}/>
             {value.name !== "" && <div className="tag">
                 <span>{value.name}</span> <i onClick={() => {reset()}}>X</i>
             </div>}
             {filteredItems.length > 0 &&<div className="dropdown">
-                {filteredItems.map(item=> (<a onClick={() => onClick(item)}>{item.name}</a>))}
+                {filteredItems.map(item => (<a onClick={() => onClick(item)}>{item.name}</a>))}
             </div>}
         </div>
     )

@@ -1,0 +1,21 @@
+.selectdate{
+    display: flex;
+}
+.selectdate input:first-child{
+    border-bottom-right-radius: 0;
+    border-bottom-right-radius: 0;
+    width: 25%;
+}
+.selectdate input:last-child{
+    border-bottom-left-radius: 0;
+    border-bottom-left-radius: 0;
+    width: 30%;
+}
+
+.selectdate select{
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    width: 45%;
+}
+
