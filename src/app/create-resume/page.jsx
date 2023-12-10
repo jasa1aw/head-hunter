@@ -58,6 +58,22 @@ export default function CreateResume() {
 
             <AutoCompliteSelect placeholder={''} type='text' label="Гражданство" size="fieldset-md" items={countries} onSelect={onSelect}/>
 
+            <h3>Специальность</h3>
+            <Input placeholder="" type='text' label="Желаемая должность" size="fieldset-lg"/>
+
+            <fieldset className={"fieldset fieldset-lg"} >
+              <label>Зарплата</label>
+
+              <div className='salary'>
+                <input type="text" className='input'/>
+                <select name="" id="" className='input'>
+                  <option value="">KZT</option>
+                  <option value="">USD</option>
+                  <option value="">RUB</option>
+                </select>
+                на руки
+              </div>
+            </fieldset>
         </div>
     </main>
   )
