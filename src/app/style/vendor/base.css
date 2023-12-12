@@ -2,7 +2,7 @@ body {
     margin: 0;
 }
 
-body, div, input, a, li, ul, textarea, span, p, h1, h2, h3, ol, aside, main {
+body, div, input, a, li, ul, textarea, span, p, h1, h2, h3,h4 ol, aside, main, textarea {
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
     text-decoration: none;

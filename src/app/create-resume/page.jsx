@@ -5,11 +5,13 @@ import { END_POINT } from '@/config/end-point';
 import axios from 'axios';
 import AutoCompliteSelect from '@/components/AutoCompliteSelect';
 import SelectDate from '@/components/SelectDate';
+import ModalAddExp from './../../components/ModalAddExp/index';
 import { useEffect, useState } from 'react';
 
 export default function CreateResume() {
   const [cities, setCities] = useState([])
   const [countries, setCountries] = useState([])
+  const [modalExpIsOpen, setModalExpIsOpen] = useState(false)
   useEffect(() => {
       console.log('didMount');
       axios.get(`${END_POINT}/api/region/cities`).then(res => {
@@ -23,6 +25,10 @@ export default function CreateResume() {
   console.log('rerender');
   const onSelect = (data) =>{
     console.log('onselect', data)
+  }
+
+  const closeModalExp = () =>{
+    setModalExpIsOpen(false)
   }
 
   return (
@@ -72,6 +78,18 @@ export default function CreateResume() {
                   <option value="">RUB</option>
                 </select>
                 на руки
+              </div>
+            </fieldset>
+            <h3>Опыт работы</h3>
+            {modalExpIsOpen && <ModalAddExp close={closeModalExp}/>}
+            <fieldset className={"fieldset fieldset-lg"} >
+              <label>Места работы</label>
+
+              <div className='exp'>
+                <div>
+                  
+                </div>
+                <button className='button button-primary-bordered' onClick={() => setModalExpIsOpen(true)}>Добавить место работы</button>
               </div>
             </fieldset>
         </div>
