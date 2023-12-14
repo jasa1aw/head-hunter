@@ -6,11 +6,13 @@ import axios from 'axios';
 import AutoCompliteSelect from '@/components/AutoCompliteSelect';
 import SelectDate from '@/components/SelectDate';
 import ModalAddExp from './../../components/ModalAddExp/index';
+import WorkingHistory from '@/components/workingHistory';
 import { useEffect, useState } from 'react';
 
 export default function CreateResume() {
-  const [cities, setCities] = useState([])
-  const [countries, setCountries] = useState([])
+  const [cities, setCities] = useState([]);
+  const [countries, setCountries] = useState([]);
+  const [workingHistories, setWorkingHistories] = useState([])
   const [modalExpIsOpen, setModalExpIsOpen] = useState(false)
   useEffect(() => {
       console.log('didMount');
@@ -31,6 +33,16 @@ export default function CreateResume() {
     setModalExpIsOpen(false)
   }
 
+  const addWorkingHistory = (item) =>{
+    setWorkingHistories([...workingHistories, item]);
+    closeModalExp();
+  }
+  const removeWorkingHistory = (workingHistory) =>{
+    let wh = [...workingHistories];
+    let index = workingHistories.indexOf(workingHistory);
+    wh.splice(index, 1);
+    setWorkingHistories(wh);
+  }
   return (
     <main>
         <Header/>
@@ -81,14 +93,12 @@ export default function CreateResume() {
               </div>
             </fieldset>
             <h3>Опыт работы</h3>
-            {modalExpIsOpen && <ModalAddExp close={closeModalExp}/>}
+            {modalExpIsOpen && <ModalAddExp close={closeModalExp} addWorkingHistory={addWorkingHistory}/>}
             <fieldset className={"fieldset fieldset-lg"} >
               <label>Места работы</label>
 
               <div className='exp'>
-                <div>
-                  
-                </div>
+                {workingHistories.map((item, index) => (<WorkingHistory workingHistory={item} remove={removeWorkingHistory} key={index}/>))}
                 <button className='button button-primary-bordered' onClick={() => setModalExpIsOpen(true)}>Добавить место работы</button>
               </div>
             </fieldset>

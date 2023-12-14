@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-export default function ModalAddExp({close}){
+export default function ModalAddExp({close, addWorkingHistory}){
     const [start_date, setStartDate] = useState(Date.now())
     const [end_date, setEndDate] = useState(Date.now())
     
@@ -47,7 +47,7 @@ export default function ModalAddExp({close}){
             company_name,
             company_description
         }
-        console.log(workingHistory);
+        addWorkingHistory(workingHistory);
     }
     // let testdate = new Date(endDate)
     return(
