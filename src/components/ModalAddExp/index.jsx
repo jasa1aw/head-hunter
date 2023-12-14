@@ -59,7 +59,7 @@ export default function ModalAddExp({close, addWorkingHistory}){
                 {/* {testdate.toLocaleDateString()} Проверка Даты*/} 
                 <div className="selectdate selectdate-noday">
                     <select onChange={onChangeMonth} placeholder="Месяц" className="input">
-                        <option disable>Выберите месяц</option>
+                        <option disabled>Выберите месяц</option>
                         <option value={0}>январь</option>
                         <option value={1}>февраль</option>
                         <option value={2}>март</option>
@@ -78,7 +78,7 @@ export default function ModalAddExp({close, addWorkingHistory}){
                 <h4>Конец работы</h4>
                 <div className="selectdate selectdate-noday">
                     <select onChange={onChangeMonthEnd} placeholder="Месяц" className='input'>
-                        <option disable>Выберите месяц</option>
+                        <option disabled>Выберите месяц</option>
                         <option value={0}>январь</option>
                         <option value={1}>февраль</option>
                         <option value={2}>март</option>

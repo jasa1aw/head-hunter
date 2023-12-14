@@ -7,28 +7,34 @@ import AutoCompliteSelect from '@/components/AutoCompliteSelect';
 import SelectDate from '@/components/SelectDate';
 import ModalAddExp from './../../components/ModalAddExp/index';
 import WorkingHistory from '@/components/workingHistory';
+import AutoCompliteTags from '@/components/AutoCompliteTags';
 import { useEffect, useState } from 'react';
 
 export default function CreateResume() {
   const [cities, setCities] = useState([]);
   const [countries, setCountries] = useState([]);
+  const [allSkills, setSkills] = useState([]);
   const [workingHistories, setWorkingHistories] = useState([])
   const [modalExpIsOpen, setModalExpIsOpen] = useState(false)
+  
   useEffect(() => {
-      console.log('didMount');
-      axios.get(`${END_POINT}/api/region/cities`).then(res => {
-        setCities(res.data);
-      })
-      axios.get(`${END_POINT}/api/region/countries`).then(res => {
-        setCountries(res.data);
-      })
-  }, [])
+    console.log("did mount");
+    axios.get(`${END_POINT}/api/region/cities`).then(res => {
+      setCities(res.data)
+  })
 
-  console.log('rerender');
+  axios.get(`${END_POINT}/api/region/countries`).then(res=>{
+    setCountries(res.data)
+  })
+
+  axios.get(`${END_POINT}/api/skills`).then(res =>{
+    setSkills(res.data)
+  })
+}, [])
+
   const onSelect = (data) =>{
-    console.log('onselect', data)
+    console.log(data);
   }
-
   const closeModalExp = () =>{
     setModalExpIsOpen(false)
   }
@@ -43,6 +49,7 @@ export default function CreateResume() {
     wh.splice(index, 1);
     setWorkingHistories(wh);
   }
+
   return (
     <main>
         <Header/>
@@ -53,7 +60,8 @@ export default function CreateResume() {
             <Input placeholder={'Введите имя'} type='text' label="Имя" size="fieldset-md"/>
             <Input placeholder={'Введите фамилию'} type='text' label="Фамилия" size="fieldset-md"/>
             <Input placeholder={'+7'} type='text' label="Мобильный телефон" size="fieldset-md"/>
-            <AutoCompliteSelect placeholder={''} type='text' label="Город проживание" size="fieldset-md" items={cities} onSelect={onSelect}/>
+            <AutoCompliteSelect placeholder="" type="text" label="Город проживания" size="fieldset-md" items={cities} onSelect={onSelect}/>
+
 
             <h3>Основная информация</h3>
 
@@ -74,7 +82,7 @@ export default function CreateResume() {
               </div>
             </fieldset>
 
-            <AutoCompliteSelect placeholder={''} type='text' label="Гражданство" size="fieldset-md" items={countries} onSelect={onSelect}/>
+            <AutoCompliteSelect placeholder="" type="text" label="Гражданство" size="fieldset-md" items={countries} onSelect={onSelect}/>
 
             <h3>Специальность</h3>
             <Input placeholder="" type='text' label="Желаемая должность" size="fieldset-lg"/>
@@ -96,12 +104,18 @@ export default function CreateResume() {
             {modalExpIsOpen && <ModalAddExp close={closeModalExp} addWorkingHistory={addWorkingHistory}/>}
             <fieldset className={"fieldset fieldset-lg"} >
               <label>Места работы</label>
-
               <div className='exp'>
                 {workingHistories.map((item, index) => (<WorkingHistory workingHistory={item} remove={removeWorkingHistory} key={index}/>))}
                 <button className='button button-primary-bordered' onClick={() => setModalExpIsOpen(true)}>Добавить место работы</button>
               </div>
             </fieldset>
+            
+            <fieldset className={"fieldset fieldset-lg"} >
+              <label>О себе</label>
+              <textarea className='textarea' placeholder="Расскажите о себе"></textarea>
+            </fieldset>
+
+            <AutoCompliteTags placeholder={''} type='text' label="Ключевые навыки" size="fieldset-md" items={allSkills} onSelect={onSelect} />
         </div>
     </main>
   )
