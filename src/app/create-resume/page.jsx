@@ -8,6 +8,7 @@ import SelectDate from '@/components/SelectDate';
 import ModalAddExp from './../../components/ModalAddExp/index';
 import WorkingHistory from '@/components/workingHistory';
 import AutoCompliteTags from '@/components/AutoCompliteTags';
+import AddEducation from '@/components/AddEducation';
 import { useEffect, useState } from 'react';
 
 export default function CreateResume() {
@@ -116,6 +117,9 @@ export default function CreateResume() {
             </fieldset>
 
             <AutoCompliteTags placeholder={''} type='text' label="Ключевые навыки" size="fieldset-md" items={allSkills} onSelect={onSelect} />
+
+            <h3>Образование</h3>
+            <AddEducation onChange={() => {}}/>
         </div>
     </main>
   )

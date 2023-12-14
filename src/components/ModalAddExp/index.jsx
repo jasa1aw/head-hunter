@@ -3,7 +3,6 @@ import { useState } from "react"
 export default function ModalAddExp({close, addWorkingHistory}){
     const [start_date, setStartDate] = useState(Date.now())
     const [end_date, setEndDate] = useState(Date.now())
-    
     const [company_name, setCompany_name] = useState("");
     const [company_description, setCompany_description] = useState("");
     const [responsibilities, setResponsibilities] = useState("");

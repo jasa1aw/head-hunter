@@ -9,7 +9,6 @@ export default function Header () {
                         <Link href={'/'}>
                             <img src="/img/logo.svg" />
                         </Link>
-                        
                         <Link href={'/resumes'}>Мои резюме</Link>
                         <Link href={''}>Помощь</Link>
                     </div>
