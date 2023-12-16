@@ -43,12 +43,12 @@
     padding-top: 10px;
 }
 
-.lns {
+.langs {
     margin-bottom: 20px;
     position: relative;
 }
 
-.lns select:last-child{
+.langs select:last-child{
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     border-right: 1px solid #ddd;
@@ -56,7 +56,7 @@
     border-bottom-right-radius: 4px;
 }
 
-.lns .remove {
+.langs .remove {
     position: absolute;
     right: -10px;
     top: 10px;
@@ -82,13 +82,6 @@
     position: relative;
 }
 
-/* .tag{
-    padding: 5px;
-    border-radius: 4px;
-    background-color: #eceff0;
-    display: inline-block;
-    margin-left: 300px;
-} */
 .input-group .input:first-child {
     border-left: 1px solid #ddd;
     border-top-left-radius:4px;

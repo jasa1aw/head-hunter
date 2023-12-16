@@ -9,6 +9,7 @@ import ModalAddExp from './../../components/ModalAddExp/index';
 import WorkingHistory from '@/components/workingHistory';
 import AutoCompliteTags from '@/components/AutoCompliteTags';
 import AddEducation from '@/components/AddEducation';
+import AddLang from '@/components/AddLang';
 import { useEffect, useState } from 'react';
 
 export default function CreateResume() {
@@ -120,6 +121,10 @@ export default function CreateResume() {
 
             <h3>Образование</h3>
             <AddEducation onChange={() => {}}/>
+
+            <h3>Владение языками</h3>
+
+            <AddLang onChange={() => {}}/>
         </div>
     </main>
   )
