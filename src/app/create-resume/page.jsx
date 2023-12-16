@@ -10,14 +10,16 @@ import WorkingHistory from '@/components/workingHistory';
 import AutoCompliteTags from '@/components/AutoCompliteTags';
 import AddEducation from '@/components/AddEducation';
 import AddLang from '@/components/AddLang';
+import SelectEmploymentTypes from '@/components/SelectEmploymentTypes';
 import { useEffect, useState } from 'react';
 
 export default function CreateResume() {
   const [cities, setCities] = useState([]);
   const [countries, setCountries] = useState([]);
   const [allSkills, setSkills] = useState([]);
-  const [workingHistories, setWorkingHistories] = useState([])
-  const [modalExpIsOpen, setModalExpIsOpen] = useState(false)
+  const [employmentTypes, setEmploymentTypes] = useState([]);
+  const [workingHistories, setWorkingHistories] = useState([]);
+  const [modalExpIsOpen, setModalExpIsOpen] = useState(false);
   
   useEffect(() => {
     console.log("did mount");
@@ -31,6 +33,10 @@ export default function CreateResume() {
 
   axios.get(`${END_POINT}/api/skills`).then(res =>{
     setSkills(res.data)
+  })
+
+  axios.get(`${END_POINT}/api/employment-types`).then(res =>{
+    setEmploymentTypes(res.data)
   })
 }, [])
 
@@ -66,12 +72,9 @@ export default function CreateResume() {
 
 
             <h3>Основная информация</h3>
-
             <SelectDate size="fieldset-sm" label="Дата рождения"/>  
-
             <fieldset className={"fieldset fieldset-sm"} >
               <label>Пол</label>
-
               <div className='radio-group'>
                 <div className="radio">
                   <input  type="radio" name="gender" id="g1" value={"Мужской"}/>
@@ -123,8 +126,12 @@ export default function CreateResume() {
             <AddEducation onChange={() => {}}/>
 
             <h3>Владение языками</h3>
-
             <AddLang onChange={() => {}}/>
+
+            <h3>Другая важная информация</h3>
+            <SelectEmploymentTypes label="Занятость" employmentTypes={employmentTypes} size="fieldset-md"/>
+
+            <button className="button button-primary">Сохранить и опубликовать</button>
         </div>
     </main>
   )
