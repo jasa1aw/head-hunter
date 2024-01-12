@@ -5,9 +5,9 @@ export default function MyResume({item}) {
             <p>Создан {item.createdAt}</p>
             <h3>Статистика</h3>
             <div className="flex">
-                <a href="" className="p3">{item.stats.show} показов</a>
-                <a href="" className="p3">{item.stats.views} просмотров</a>
-                <a href="" className="p3">{item.stats.applies} приглашений</a>
+                <a href="" className="p3">{0} показов</a>
+                <a href="" className="p3">{0} просмотров</a>
+                <a href="" className="p3">{0} приглашений</a>
             </div>
         </div>
     )
