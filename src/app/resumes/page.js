@@ -1,5 +1,6 @@
-import Header from '@/components/header'
-import MyResumes from '@/components/myresumes'
+import Header from '@/components/header';
+import MyResumes from '@/components/myresumes';
+
 
 export default function ResumePage() {
   const resumes = [

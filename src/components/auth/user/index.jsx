@@ -44,7 +44,7 @@ export default function UserLogin () {
 
     return(
         <section className="login-page">
-            {isAuth ? 'True' : 'False'}
+            {/* {isAuth ? 'True' : 'False'} */}
             {step == 1 && <div className="card">
                 <h1>Поиск работы</h1>
                 <form>
@@ -58,7 +58,7 @@ export default function UserLogin () {
                 <button className="button button-primary-bordered">Я ищу сотрудников</button>
             </div>}
             {step == 2 && <div className="card">
-                <h1>Отправили код на ....</h1>
+                <h1>Отправили код на {email}</h1>
                 <p>
                     Напишите его, чтобы подтвердить, что это вы, а не кто-то другой входить в личный кабинет 
                 </p>
