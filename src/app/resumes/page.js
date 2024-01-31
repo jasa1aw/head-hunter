@@ -20,7 +20,7 @@ export default function ResumePage() {
     <main>
         <Header/>
         <div className='container'>
-            <div className='flex flex-ai-c flex-jc-sb ptb-7'>
+            <div className='flex flex-ai-c flex-jc-sb ptb7'>
                 <h1>Мои резюме</h1>
                 <Link href={'/create-resume'} className='button button-secondary-bordered'>Создать резюме</Link>
             </div>
