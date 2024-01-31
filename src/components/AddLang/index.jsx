@@ -1,19 +1,18 @@
+'use client'
 import { useEffect, useState } from "react"
 
-export default function AddLang({onChange}){
-    const[foreignLanguages,setForeignLanguages] = useState([])
+export default function AddLang({onChange, foreignLanguages}){
+    // const[foreignLanguages,setForeignLanguages] = useState([])
     
     const remove = (index) => {
         const lns = [...foreignLanguages];
         lns.splice(index, 1);
-        setForeignLanguages(lns);
+        onChange(lns);
     }
     const onSelect = (e) => {
         const [index, key] = e.target.name.split("-");
         const lns = [...foreignLanguages];
-        lns[index][key] = e.target.value;
-        setForeignLanguages(lns);
-        
+        lns[index][key] = e.target.value;        
         onChange(lns)
     }
 

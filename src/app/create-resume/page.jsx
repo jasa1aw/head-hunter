@@ -38,7 +38,7 @@ export default function CreateResume() {
   const [salary,setSalary] = useState();
   const [salary_type, setSalaryType] = useState('KZT')
   const [skills, setSelectedSkills] = useState('');
-  const [edication, setEdication] = useState([])
+  const [education, setEducation] = useState([])
   const [foreignLanguages, setForeignLanguages] = useState([]);
   const [employmentTypes, setSelectedEmpTypes] = useState([]);
   const [about, setAbout] = useState('')
@@ -106,12 +106,13 @@ export default function CreateResume() {
       cityId,
       citizenship,
       workingHistories,
-      edication,
+      education,
       foreignLanguages,
       employmentTypes
     }, router))
-    
   }
+
+  
   return (
     <main>
         <Header/>
@@ -171,19 +172,19 @@ export default function CreateResume() {
             
             <fieldset className={"fieldset fieldset-lg"} >
               <label>О себе</label>
-              <textarea className='textarea' placeholder="Расскажите о себе" onChange={(e) => setAbout(e.target.value)}>{about}</textarea>
+              <textarea className='textarea' placeholder="Расскажите о себе" onChange={(e) => setAbout(e.target.value)}  value={about}></textarea>
             </fieldset>
 
-            <AutoCompliteTags placeholder={''} type='text' label="Ключевые навыки" size="fieldset-md" items={allSkills} onSelect={onSkillsChange} />
+            <AutoCompliteTags placeholder={''} type='text' label="Ключевые навыки" size="fieldset-md" items={allSkills} onSelect={onSkillsChange} selected={[]}/>
 
             <h3>Образование</h3>
-            <AddEducation onChange={(eds) => setEdication(eds)}/>
+            <AddEducation onChange={(eds) => setEducation(eds)} education={[]}/>
 
             <h3>Владение языками</h3>
-            <AddLang onChange={(lns) => setForeignLanguages(lns)}/>
+            <AddLang onChange={(lns) => setForeignLanguages(lns)} foreignLanguages={[]} />
 
             <h3>Другая важная информация</h3>
-            <SelectEmploymentTypes label="Занятость" employmentTypes={allEmploymentTypes} size="fieldset-md" onChange={(tps) => setSelectedEmpTypes(tps)}/>
+            <SelectEmploymentTypes label="Занятость" allEmploymentTypes={allEmploymentTypes} size="fieldset-md" onChange={(tps) => setSelectedEmpTypes(tps)} employmentTypes={[]}/>
 
             <button type='button' className="button button-primary" onClick={handleSave}>Сохранить и опубликовать</button>
         </div>

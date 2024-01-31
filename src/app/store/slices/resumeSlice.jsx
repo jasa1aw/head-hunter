@@ -56,6 +56,15 @@ export const createResume = (sendData, router) => async(dispatch) => {
         console.log(e)
     }   
 } 
+export const editResume = (sendData, router) => async(dispatch) => {
+    try {
+        const res = await axios.put(`${END_POINT}/api/resume`, sendData);
+        router.push('/resumes')
+    } catch (e) {
+        alert("Что то пошло не так, сообщите об ошибке тех. спецам" )
+        console.log(e)
+    }   
+} 
 
 
 export default resumeSlice.reducer

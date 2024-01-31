@@ -53,7 +53,7 @@ export default function ResumePage() {
             <div className='container'>
                 <div className='flex flex-ai-c flex-jc-sb ptb7'>
                     <Link href={'/resumes'} className='link'> К списку резюме</Link>
-                    <Link href={'/edit-resume'} className='button button-secondary-bordered'>Редактировать</Link>
+                    <Link href={`/edit-resume/${resume.id}`} className='button button-secondary-bordered'>Редактировать</Link>
                 </div>
                 <h1>{resume.first_name} {resume.last_name}</h1>
                 <p>{resume.gender} {age} лет, родился {birthday.getDate()} {monthsInRussian[birthday.getMonth()]} {birthday.getFullYear()}</p>

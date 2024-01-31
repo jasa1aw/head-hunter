@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import Input from '@/components/input'
 
-export default function AutoCompliteSelect({label, placeholder, type, size, items, onSelect}) {
+export default function AutoCompliteSelect({label, placeholder, type, size, items, onSelect, selected}) {
     const [value, setValue] = useState({name: ""})
     const [filteredItems, setFilteredItems] = useState([])
     
@@ -15,6 +15,12 @@ export default function AutoCompliteSelect({label, placeholder, type, size, item
         setValue({name: ""})
         onSelect(null)
     }
+    useEffect(() => {
+        items.map(item => {
+            if(item.id === selected) setValue(item)
+        })
+        
+    },[selected, items])
     const onChange = (e) => {
         // console.log(e.target.value)
         if(e.target.value === "") {

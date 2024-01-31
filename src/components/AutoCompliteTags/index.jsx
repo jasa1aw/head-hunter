@@ -2,7 +2,6 @@
 import { useState, useEffect } from "react";
 import Input from '@/components/input'
 
-
 export default function AutoCompliteTags({label, placeholder, type, size, items, onSelect, selected}) {
     const [value, setValue] = useState([])
     const [filteredItems, setFilteredItems] = useState([])
@@ -17,6 +16,13 @@ export default function AutoCompliteTags({label, placeholder, type, size, items,
         setValue(v)
         setFilteredItems([...filteredItems, tag])
     }
+
+    useEffect(() => {
+        if(JSON.stringify(value) !== JSON.stringify(selected)){
+            setValue(selected)
+        }
+    }, [selected])
+
     const onChange = (e) => {
         // console.log(e.target.value)
         if(e.target.value === "") {
@@ -58,7 +64,7 @@ export default function AutoCompliteTags({label, placeholder, type, size, items,
     return (
         <div className="fieldset-lg">
             <div className="tags">
-                {value.length > 0 && value.map(tag =><div key={tag.id} className="tag">
+                {value.length > 0 && value.map((tag, index )=> <div key={index} className="tag">
                     <span>{tag.name}</span> <i onClick={() => deleteTag(tag)}>X</i>
                 </div>)}
             </div>
