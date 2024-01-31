@@ -175,7 +175,7 @@ export default function CreateResume() {
               <textarea className='textarea' placeholder="Расскажите о себе" onChange={(e) => setAbout(e.target.value)}  value={about}></textarea>
             </fieldset>
 
-            <AutoCompliteTags placeholder={''} type='text' label="Ключевые навыки" size="fieldset-md" items={allSkills} onSelect={onSkillsChange} selected={[]}/>
+            <AutoCompliteTags placeholder={''} type='text' label="Ключевые навыки" size="fieldset-md" items={allSkills} onSelect={onSkillsChange} />
 
             <h3>Образование</h3>
             <AddEducation onChange={(eds) => setEducation(eds)} education={[]}/>

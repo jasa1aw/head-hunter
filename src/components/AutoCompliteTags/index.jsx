@@ -18,9 +18,12 @@ export default function AutoCompliteTags({label, placeholder, type, size, items,
     }
 
     useEffect(() => {
-        if(JSON.stringify(value) !== JSON.stringify(selected)){
-            setValue(selected)
+        if(selected){
+            if(JSON.stringify(value) !== JSON.stringify(selected)){
+                setValue(selected)
+            }
         }
+        
     }, [selected])
 
     const onChange = (e) => {
