@@ -42,3 +42,11 @@
 .button-secondary-bordered:hover {
     opacity: 0.8;
 }
+
+.button-link{
+    background: transparent;
+    font-weight: 600;
+    width: fit-content !important;
+    height: fit-content !important;
+    padding: 0
+}

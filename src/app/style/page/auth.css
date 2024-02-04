@@ -1,0 +1,19 @@
+.bg{
+    background-image: url('/img/bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+}
+
+.auth-header{
+    padding-top: 20px;
+}
+.auth-header :where(p, a){
+    max-width: 300px;
+    color: #fff;
+}
+
+.login-page .card{
+    background-color: #fff;
+    padding-bottom: 40px;
+}

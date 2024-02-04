@@ -4,7 +4,9 @@ import {useSelector, useDispatch} from 'react-redux';
 import { logOut } from '@/app/store/slices/authSlice';
 export default function Header () {
     const isAuth = useSelector((state) => state.auth.isAuth);
+    const currentUser = useSelector((state) => state.auth.currentUser)
     const dispatch = useDispatch()
+
     return(
         <header className="header">
             <div className="container">
@@ -13,7 +15,8 @@ export default function Header () {
                         <Link href={'/'}>
                             <img src="/img/logo.svg" />
                         </Link>
-                        <Link href={'/resumes'}>Мои резюме</Link>
+                        {currentUser && currentUser.role && currentUser.role.name !== 'manager' && <Link href={'/resumes'}>Мои вакансии</Link>}
+                        {currentUser && currentUser.role && currentUser.role.name === 'manager' && <Link href={'/vacancy'}>Мои резюме</Link>}
                         <Link href={''}>Помощь</Link>
                     </div>
                     <div className="rigth-block">
@@ -21,9 +24,8 @@ export default function Header () {
                             <img src="/img/search.svg" />
                             Поиск
                         </button>
-                        <Link href={'/create-resume'} className="header-button header-button-green">
-                            Создать резюме
-                        </Link>
+                        {currentUser && currentUser.role && currentUser.role.name !== 'manager' && <Link href={'/create-resume'} className="header-button header-button-green">Создать резюме</Link>}
+                        {currentUser && currentUser.role && currentUser.role.name === 'manager' && <Link href={'/create-vacancy'} className="header-button header-button-green">Создать вакансию</Link>}
                         {!isAuth && <Link href={'/login'} className="header-button">
                             Войти
                         </Link>}
