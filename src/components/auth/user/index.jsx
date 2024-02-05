@@ -1,9 +1,8 @@
 'use client';
 import {useEffect, useState} from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, Link } from 'next/navigation';
 import { useDispatch, useSelector} from 'react-redux';
 import {authorize, sendVerificationEmail, VerifyCode} from '@/app/store/slices/authSlice';
-
 export default function UserLogin () {
     const router = useRouter()
     const isAuth = useSelector((state) => state.auth.isAuth)
@@ -55,7 +54,7 @@ export default function UserLogin () {
             {step == 1 &&<div className="card">
                 <h1>Поиск сотрудников</h1>
                 <p>Размещение вакансий и доступ к базе резюме</p>
-                <button className="button button-primary-bordered">Я ищу сотрудников</button>
+                <Link href={`/employer/signin`} className="button button-primary-bordered">Я ищу сотрудников</Link>
             </div>}
             {step == 2 && <div className="card">
                 <h1>Отправили код на {email}</h1>

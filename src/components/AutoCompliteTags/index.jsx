@@ -23,7 +23,6 @@ export default function AutoCompliteTags({label, placeholder, type, size, items,
                 setValue(selected)
             }
         }
-        
     }, [selected])
 
     const onChange = (e) => {
