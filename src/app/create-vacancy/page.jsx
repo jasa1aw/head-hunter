@@ -141,7 +141,7 @@ export default function CreateVacancy() {
                     <label>Тип занятости</label>
                     <div>
                         {empTypes.map(et => <div className="radio" key={et.id}>
-                            <input type="radio" value={et.id} name="exp" onChange={(e) => setEmploymentType(e.target.value)}/>
+                            <input type="radio" value={et.id} name="empType" onChange={(e) => setEmploymentType(e.target.value)}/>
                             <label>{et.name}</label>
                         </div>)}
                     </div>

@@ -1,11 +1,25 @@
 'use client'
-import Link from 'next/link';
+import {Link} from 'next/navigation';
 import {useSelector, useDispatch} from 'react-redux';
-import { logOut } from '@/app/store/slices/authSlice';
+import { logOut, authorize } from '@/app/store/slices/authSlice';
+import { useEffect } from 'react';
+import { jwtDecode } from 'jwt-decode';
 export default function Header () {
     const isAuth = useSelector((state) => state.auth.isAuth);
     const currentUser = useSelector((state) => state.auth.currentUser)
-    const dispatch = useDispatch()
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        const token = localStorage.getItem("token")
+        if(token){
+            let decodedToken = jwtDecode(token)
+            if(decodedToken.exp * 1000 > Date.now()){
+                dispatch(authorize({token}))
+            }else{
+              localStorage.removeItem("token")
+            }
+          }
+    }, [])
 
     return(
         <header className="header">
@@ -20,10 +34,10 @@ export default function Header () {
                         <Link href={''}>Помощь</Link>
                     </div>
                     <div className="rigth-block">
-                        <button className="header-search">
+                        <Link href={'/search/vacancy/advanced'} className="header-search">
                             <img src="/img/search.svg" />
                             Поиск
-                        </button>
+                        </Link>
                         {currentUser && currentUser.role && currentUser.role.name !== 'manager' && <Link href={'/create-resume'} className="header-button header-button-green">Создать резюме</Link>}
                         {currentUser && currentUser.role && currentUser.role.name === 'manager' && <Link href={'/create-vacancy'} className="header-button header-button-green">Создать вакансию</Link>}
                         {!isAuth && <Link href={'/login'} className="header-button">
