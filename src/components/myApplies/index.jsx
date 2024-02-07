@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import MyApply from "./apply.jsx";
 import { useSelector } from "react-redux";
 
@@ -54,21 +54,21 @@ export default function MyApplies () {
 
 
     const showApplies = sortedApplies.map(item => (<MyApply item={item} key={item.id} />));
-            
 
     return (
-    <div className="table">
-        <div className="row row-header flex">
-            <div className={`col ${sortDirection}`} onClick={() => sortBy('status')}>
-                Статус {sortKey === "status" && <img src="/img/arrow-right.svg"/>}
+        <div className="table">
+            <div className="row row-header flex">
+                <div className={`col ${sortDirection}`} onClick={() => sortBy('status')}>
+                    Статус {sortKey === "status" && <img src="/img/arrow-right.svg"/>}
+                </div>
+                <div className={`col ${sortDirection}`} onClick={() => sortBy('vacancy')}>
+                    Вакансия {sortKey === "vacancy" && <img src="/img/arrow-right.svg"/> }
+                </div>
+                <div className={`col ${sortDirection}`} onClick={() => sortBy('updatedAt')}>
+                Дата  {sortKey === "updatedAt" && <img src="/img/arrow-right.svg"/>}
+                </div>
             </div>
-            <div className={`col ${sortDirection}`} onClick={() => sortBy('vacancy')}>
-                Вакансия {sortKey === "vacancy" && <img src="/img/arrow-right.svg"/> }
-            </div>
-            <div className={`col ${sortDirection}`} onClick={() => sortBy('updatedAt')}>
-            Дата  {sortKey === "updatedAt" && <img src="/img/arrow-right.svg"/>}
-            </div>
+                {showApplies}
         </div>
-            {showApplies}
-    </div>)
+    )
 }

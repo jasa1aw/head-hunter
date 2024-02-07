@@ -29,8 +29,9 @@ export default function Header () {
                         <Link href={'/'}>
                             <img src="/img/logo.svg" />
                         </Link>
-                        {currentUser && currentUser.role && currentUser.role.name !== 'manager' && <Link href={'/resumes'}>Мои вакансии</Link>}
-                        {currentUser && currentUser.role && currentUser.role.name === 'manager' && <Link href={'/vacancy'}>Мои резюме</Link>}
+                        {currentUser && currentUser.role && currentUser.role.name !== 'manager' && <Link href={'/resumes'}>Мои резюме</Link>}
+                        {currentUser && currentUser.role && currentUser.role.name !== 'manager' && <Link href={'/applies'}>Отклики</Link>}
+                        {currentUser && currentUser.role && currentUser.role.name === 'manager' && <Link href={'/vacancy'}>Мои вакансии</Link>}
                         <Link href={''}>Помощь</Link>
                     </div>
                     <div className="rigth-block">
