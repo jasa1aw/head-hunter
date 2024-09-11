@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import { getMyResumeById } from '@/app/store/slices/resumeSlice';
 import { useParams } from 'next/navigation';
-
+import { getAgeFromBirthday, monthsInRussian, monthsInRussian2 } from '@/app/utils/format';
 
 
 export default function ResumePage() {
@@ -20,20 +20,9 @@ export default function ResumePage() {
     console.log('in page', resume);
 
     useEffect(didMount, [])
+
+    const age = getAgeFromBirthday(resume.birthday);
     const birthday = new Date(resume.birthday)
-
-    const monthsInRussian = [
-        'январь', 'февраля', 'марта', 'апреля', 'мая', 'июня',
-        'июля', 'августа', 'сентября', 'октября', 'ноября', 'декабря'
-    ];
-    const monthsInRussian2 = [
-        'январь', 'февраль', 'март', 'апрель', 'май', 'июнь',
-        'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь'
-    ];
-
-    let age = 0;
-    age = new Date().getTime() - birthday.getTime();
-    age = parseInt(age / (1000 * 60 * 60 * 24 * 365))
 
     const showPhone = (phone) =>{
         let res = '';
@@ -48,6 +37,7 @@ export default function ResumePage() {
     if(resume.skills) skills = resume.skills.split(',');
 
     return (
+
         <main>
             <Header/>
             <div className='container'>
@@ -79,7 +69,6 @@ export default function ResumePage() {
                 {resume.workingHistories && resume.workingHistories.map((job, index) => {
                     let start = new Date(job.start_date)
                     let end = new Date(job.end_date)
-
                     return(
                         <div className="flex working-history" key={index}>
                             <div className='workingHistoryDate'>

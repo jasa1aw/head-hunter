@@ -13,8 +13,8 @@ import AddLang from '@/components/AddLang';
 import SelectEmploymentTypes from '@/components/SelectEmploymentTypes';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useDispatch, useSelector } from 'react-redux';
-import { createResume } from '../store/slices/resumeSlice';
+import { useDispatch } from 'react-redux';
+import { createResume } from '@/app/store/slices/resumeSlice';
 
 export default function CreateResume() {
   const router = useRouter()
@@ -39,12 +39,16 @@ export default function CreateResume() {
   const [salary_type, setSalaryType] = useState('KZT')
   const [skills, setSelectedSkills] = useState([]);
   const [education, setEducation] = useState([])
-  const [foreignLanguages, setForeignLanguages] = useState([]);
+  const [foreignLanguages, setForeignLanguages] = useState('');
   const [employmentTypes, setSelectedEmpTypes] = useState([]);
   const [about, setAbout] = useState('')
-
   
+  const [loading, setLoading] = useState(true)
 
+  const fetchDatas = async() => {
+    const resSkills = await axios.get(`${END_POINT}/api/skills`) 
+    setSkills(resSkills.data)
+  }
   
   useEffect(() => {
     console.log("did mount");
@@ -56,9 +60,10 @@ export default function CreateResume() {
     setCountries(res.data)
   })
 
-  axios.get(`${END_POINT}/api/skills`).then(res =>{
-    setSkills(res.data)
-  })
+  // axios.get(`${END_POINT}/api/skills`).then(res =>{
+  //   setSkills(res.data)
+  // })
+  fetchDatas()
 
   axios.get(`${END_POINT}/api/employment-types`).then(res =>{
     setEmploymentTypes(res.data)
@@ -181,7 +186,7 @@ export default function CreateResume() {
             <AddEducation onChange={(eds) => setEducation(eds)} education={[]}/>
 
             <h3>Владение языками</h3>
-            <AddLang onChange={(lns) => setForeignLanguages(lns)} foreignLanguages={[]} />
+            <AddLang onChange={(lns) => setForeignLanguages(lns)} foreignLanguages={[]}/>
 
             <h3>Другая важная информация</h3>
             <SelectEmploymentTypes label="Занятость" allEmploymentTypes={allEmploymentTypes} size="fieldset-md" onChange={(tps) => setSelectedEmpTypes(tps)} employmentTypes={[]}/>

@@ -1,6 +1,6 @@
 'use client'
 import Header from '@/components/header';
-import { Link } from 'next/navigation';
+import Link from 'next/link';
 import MyVacancies from '@/components/myVacancies';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';

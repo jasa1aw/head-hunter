@@ -1,5 +1,5 @@
 import MyVacancy from "./myVacancy"
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector} from 'react-redux';
 export default function MyVacancies() {
     
     const vacancies = useSelector((state) => state.vacancy.vacancies)

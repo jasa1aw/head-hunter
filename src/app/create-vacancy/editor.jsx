@@ -1,5 +1,4 @@
 'use client'
-
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 export default function Editor({description, setDescription}){
@@ -25,7 +24,6 @@ export default function Editor({description, setDescription}){
             onFocus={ ( event, editor ) => {
                 console.log( 'Focus.', editor );
             } }
-        />
-        
+        /> 
     )
 }

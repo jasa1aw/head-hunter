@@ -1,25 +1,32 @@
 'use client'
-import {Link} from 'next/navigation';
-import {useSelector, useDispatch} from 'react-redux';
-import { logOut, authorize } from '@/app/store/slices/authSlice';
-import { useEffect } from 'react';
-import { jwtDecode } from 'jwt-decode';
-export default function Header () {
-    const isAuth = useSelector((state) => state.auth.isAuth);
-    const currentUser = useSelector((state) => state.auth.currentUser)
-    const dispatch = useDispatch();
+import { jwtDecode } from "jwt-decode";
+import {useSelector, useDispatch} from 'react-redux'
+import Link from 'next/link'
+import { logOut, authorize } from '@/app/store/slices/authSlice'
+import { useEffect } from 'react'
+import { useRouter } from 'next/navigation'
+export default function Header() {
 
+    const router = useRouter()
+    const isAuth = useSelector((state) => state.auth.isAuth)
+    const currentUser = useSelector((state) => state.auth.currentUser)
+
+    const dispatch = useDispatch()
     useEffect(() => {
+        
         const token = localStorage.getItem("token")
         if(token){
             let decodedToken = jwtDecode(token)
             if(decodedToken.exp * 1000 > Date.now()){
                 dispatch(authorize({token}))
             }else{
-              localStorage.removeItem("token")
+                localStorage.removeItem("token")
             }
-          }
-    }, [])
+
+        }
+        
+    },[])
+    
 
     return(
         <header className="header">
@@ -44,7 +51,7 @@ export default function Header () {
                         {!isAuth && <Link href={'/login'} className="header-button">
                             Войти
                         </Link>}
-                        {isAuth && <a className="header-button" onClick={() => dispatch(logOut())}>
+                        {isAuth && <a className="header-button" onClick={() => dispatch(logOut(router))}>
                             Выйти
                         </a>}
                     </div>

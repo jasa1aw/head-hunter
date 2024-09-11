@@ -33,11 +33,19 @@ export const authSlice = createSlice({
       state.isAuth = true;
       state.tokenExt = decoded.exp
     },
-    logOut: (state) => {
-        state.isAuth = false;
-        state.currentUser = null,
-        state.exp = 0,
-        localStorage.removeItem("token")
+    logOut: (state, action) => {
+      const role = {...state.currentUser.role}
+      state.isAuth = false
+
+      state.currentUser = null;
+      state.exp = 0;
+      localStorage.removeItem("token")
+
+      if(role.name === "employee") {
+        action.payload.push("/login")
+      } else {
+        action.payload.push("/employer/signin")
+      }
     },
     setError: (state, action) => {
       state.error = action.payload

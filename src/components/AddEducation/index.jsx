@@ -1,3 +1,4 @@
+'use client'
 import { useEffect, useState } from "react"
 
 export default function AddEducation({onChange,  education}){
@@ -7,15 +8,14 @@ export default function AddEducation({onChange,  education}){
         let [index, name] = e.target.name.split("-");
         // console.log(index, name);
         index = index * 1
-
         let eds = [...education]
-        eds[index][name] = e.target.value
+        eds[index][name] = e.target.valueж
         onChange(eds)
         // console.log(index, name);
     }
     const newEducation = () => {
-        onChange([...education,{
-            level:"Высшее",
+        onChange([...education, {
+            level: "Высшее",
             university_name:"",
             faculty:"",
             major:"",
@@ -23,10 +23,10 @@ export default function AddEducation({onChange,  education}){
         }])
     }
     const removeEd = (ed) =>{
-        const eds = [...education];
-        const index = education.indexOf(ed);
-        eds.splice(index,1);
-        setEducation(eds);
+        const eds = [...education]
+        const index = education.indexOf(ed)
+        eds.splice(index, 1)
+        onChange(eds)
     }
     // useEffect(() => {
     //     onChange(education);
@@ -35,7 +35,7 @@ export default function AddEducation({onChange,  education}){
     const educations = education.map((ed,index) => (
         <div className="education" key={index}>
             <span onClick={() => removeEd(ed)}>X</span>
-
+            
             <fieldset className={"fieldset fieldset-md"}>
                 <label >Уровень</label>
                 <select className="input" onChange={onChangeData} name={index + "-level"} value={ed.level} >
@@ -68,7 +68,7 @@ export default function AddEducation({onChange,  education}){
     return(
         <div className="eds">
             {educations}
-            <a onClick={newEducation}>{education.length ? "Указать еще одно место обчения" : "Указать место обучения"}</a>
+            <a onClick={newEducation}> {education.length ? "Указать еще одно место обучения" : "Указать место обучения"} </a>
         </div>
     )
 }

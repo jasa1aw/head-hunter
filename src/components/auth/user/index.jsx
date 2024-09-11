@@ -1,9 +1,11 @@
-'use client';
+'use client'
 import {useEffect, useState} from 'react';
-import { useRouter, Link } from 'next/navigation';
+import { useRouter} from 'next/navigation';
 import { useDispatch, useSelector} from 'react-redux';
 import {authorize, sendVerificationEmail, VerifyCode} from '@/app/store/slices/authSlice';
-export default function UserLogin () {
+import Link from "next/link"
+
+export default function UserLogin() {
     const router = useRouter()
     const isAuth = useSelector((state) => state.auth.isAuth)
     const dispatch = useDispatch();
