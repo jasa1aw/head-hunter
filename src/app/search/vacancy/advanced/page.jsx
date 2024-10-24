@@ -2,10 +2,12 @@
 import { useEffect, useState } from "react"
 import Header from "@/components/header"
 import { useDispatch, useSelector } from "react-redux"
-import { getSpecializations, getCities, getExperiences, getSkills, getEmpType } from "@/app/store/slices/vacancySlice"
+import { getSpecializations, getCities, getExperiences, getSkills, getEmpTypes } from "@/app/store/slices/vacancySlice"
 import ModalSelectSpec from '@/components/ModalSelectSpec'
 import AutoCompliteSelect from '@/components/AutoCompliteSelect'
 import { useRouter } from "next/navigation";
+import Footer from "@/components/footer";
+import Search from "@/components/header/search";
 
 export default function SearchVacancyAdvanced() {
     const [q, setQ] = useState("")
@@ -30,7 +32,7 @@ export default function SearchVacancyAdvanced() {
         dispatch(getCities())
         dispatch(getExperiences()),
         dispatch(getSkills())
-        dispatch(getEmpType())
+        dispatch(getEmpTypes())
     }, [])
 
     const handleOnSpecChange = (e) => {
@@ -62,9 +64,11 @@ export default function SearchVacancyAdvanced() {
         router.push(`/search/vacancy${queryString}`)
     }
     return (
-        <main>
+        <div className="wrapper">
+            <main>
             <Header />
             <div className="container p7">
+                <Search/>
                 <h1>Поиск вакансии</h1>
 
                 <fieldset className="fieldset-vertical">
@@ -115,5 +119,8 @@ export default function SearchVacancyAdvanced() {
                 <button className="button button-primary" onClick={handleSearch}>Поиск</button>
             </div>
         </main>
+        <Footer/>
+        </div>
+
     )
 }

@@ -1,0 +1,139 @@
+.search {
+    margin-top: 40px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    animation: fadeIn 0.5s forwards;
+    position: relative;
+    z-index: 999;
+}
+
+.p7 .search {
+    margin-top: 0;
+}
+.search.hide {
+    animation: fadeOut 0.5s forwards;
+}
+
+.search img {
+    width: 25px;
+}
+
+.search-left img {
+    width: 20px;
+    padding-right: 5px;
+}
+.search-left {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    width: 80%;
+    border: 1px solid #dedede;
+    border-radius: 10px;
+    padding: 10px;
+    transition: border 0.3s ease;
+    box-sizing: border-box;
+    position: relative;
+}
+
+
+.search-left input {
+    width: 100%;
+    border: none;
+    outline: none;
+    padding-left: 10px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.search-left input::placeholder {
+    font-size: 15px;
+    color: #cacaca;
+}
+
+.search-left:focus-within {
+    box-shadow: 0 0 0 1px #0070ff;
+    border-color: #007bff;
+}
+
+.search-right {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    width: 25%;
+}
+
+.search-right img {
+    cursor: pointer;
+}
+
+.clear-icon {
+    color: #cfcdcd;
+    cursor: pointer;
+    font-size: 18px;
+    transition: color .3s ease;
+}
+
+.clear-icon:hover {
+    color: black;
+}
+
+.search-right button {
+    width: 60%;
+    height: 45px;
+    border-radius: 10px;
+    font-weight: 500;
+}
+
+.suggestionCard {
+    position: absolute;
+    top: 50px;
+    left: 0;
+    min-height: 60px;
+    max-height: 250px;
+    width: 100%;
+    border-radius: 12px;
+    background-color: #fff;
+    box-shadow: 5px 3px 6px 3px rgba(141, 148, 154, 0.2);
+    overflow-y: auto;
+    z-index: 999;
+}
+
+.itemCard {
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 12px;
+    margin: 10px;
+}
+
+.itemCard:hover {
+    transition: .2s ease-in;
+    background-color: #EEF1F7;
+    cursor: pointer;
+}
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}

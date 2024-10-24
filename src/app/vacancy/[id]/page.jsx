@@ -6,6 +6,7 @@ import { getMyVacancyById } from '@/app/store/slices/vacancySlice';
 import { useParams, Link } from 'next/navigation';
 import { getMyResumes } from '@/app/store/slices/resumeSlice';
 import { createApply, getEmployeeApplies, getVacancyApplies } from '@/app/store/slices/applySlice';
+import Footer from '@/components/footer';
 
 
 export default function VacancyPage() {
@@ -54,8 +55,9 @@ export default function VacancyPage() {
     if(vacancy.skills) skills = vacancy.skills.split(',');
 
     return (
-        <main>
+        <div className='wrapper'>
             <Header/>
+            <main>
             <div className='container'>
                 {currentUser && currentUser.id === vacancy.userId && <div className='flex flex-ai-c flex-jc-sb ptb7'>
                     <Link href={`/edit-vacancy/${vacancy.id}`} className='button button-secondary-bordered'>Редактировать</Link>
@@ -87,7 +89,10 @@ export default function VacancyPage() {
 
                 <h3 className='mt7'>Ключевые навыки</h3>
                 {skills.map((skill, index) => <span key={index} className='tag mr4'>{skill}</span>)}
-            </div>               
+            </div>
         </main>
+        <Footer/>
+        </div>
+
     )
 }

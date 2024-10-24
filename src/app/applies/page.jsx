@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux';
 import { getEmployeeApplies } from '@/app/store/slices/applySlice';
 import { useEffect } from 'react';
 import MyApplies from '@/components/myApplies';
+import Footer from '@/components/footer';
+import Search from '@/components/header/search';
 
 export default function Applies() {
     const dispatch = useDispatch();
@@ -13,20 +15,18 @@ export default function Applies() {
     }, []);
 
     return (
-        <main>
+        <div className='wrapper'>
             <Header />
-            <div className="container">
-                <div className="flex flex-ai-c flex-jc-sb ptb7">
-                    <h1>Отклики и приглашения</h1>
-                    <h1>Отклики и отклонение</h1>
-                    <h1>Отклики и наша работа</h1>
-                    <h1>Отклики и pull reequest</h1>
+            <main>
+                <div className="container">
+                    <Search/>
+                    <div className="flex flex-ai-c flex-jc-sb ptb7">
+                        <h1>Отклики и приглашения</h1>
+                    </div>
+                    <MyApplies />
                 </div>
-                <div className="flex flex-ai-c flex-jc-sb ptb7">
-                    <h4>sgfsdfg</h4>
-                </div>
-                <MyApplies />
-            </div>
-        </main>
+            </main>
+            <Footer/>
+         </div>
     )
 }

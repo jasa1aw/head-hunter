@@ -15,6 +15,8 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useDispatch } from 'react-redux';
 import { createResume } from '@/app/store/slices/resumeSlice';
+import Footer from '@/components/footer';
+import Search from '@/components/header/search';
 
 export default function CreateResume() {
   const router = useRouter()
@@ -119,9 +121,11 @@ export default function CreateResume() {
 
   
   return (
+    <div className='wrapper'>
+    <Header/>
     <main>
-        <Header/>
         <div className='container p7'>
+          <Search/>
             <h1>Ваше резюме</h1>
 
             <h3>Контактные данные</h3>
@@ -194,5 +198,8 @@ export default function CreateResume() {
             <button type='button' className="button button-primary" onClick={handleSave}>Сохранить и опубликовать</button>
         </div>
     </main>
+    <Footer/>
+    </div>
+
   )
 }

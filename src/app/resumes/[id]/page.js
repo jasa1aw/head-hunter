@@ -6,6 +6,8 @@ import { useDispatch, useSelector} from 'react-redux';
 import { getMyResumeById } from '@/app/store/slices/resumeSlice';
 import { useParams } from 'next/navigation';
 import { getAgeFromBirthday, monthsInRussian, monthsInRussian2 } from '@/app/utils/format';
+import Footer from '@/components/footer';
+import Search from '@/components/header/search';
 
 
 export default function ResumePage() {
@@ -37,10 +39,12 @@ export default function ResumePage() {
     if(resume.skills) skills = resume.skills.split(',');
 
     return (
+    <div className='wrapper'>
 
+        <Header/>
         <main>
-            <Header/>
             <div className='container'>
+            <Search/>
                 <div className='flex flex-ai-c flex-jc-sb ptb7'>
                     <Link href={'/resumes'} className='link'> К списку резюме</Link>
                     <Link href={`/edit-resume/${resume.id}`} className='button button-secondary-bordered'>Редактировать</Link>
@@ -92,7 +96,7 @@ export default function ResumePage() {
                 <h3>Высшее образование</h3>
                 {resume.education && resume.education.map((ed, index) => {
                     let end = new Date(ed.end_date)
-
+                    
                     return(
                         <div className="flex working-history" key={index}>
                             <div className='workingHistoryDate'>
@@ -113,7 +117,9 @@ export default function ResumePage() {
 
                 <h3>Гражданство</h3>
                 <p>{resume.citizenshipObj && resume.citizenshipObj.name}</p>
-            </div>               
+            </div>          
         </main>
+        <Footer/>
+    </div>
     )
 }

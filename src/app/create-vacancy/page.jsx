@@ -9,6 +9,8 @@ import AutoCompliteTags from "@/components/AutoCompliteTags";
 import { useDispatch, useSelector } from 'react-redux';
 import { getSpecializations, getCities, getExperiences, getSkills, getEmpTypes, createVacancy} from "@/store/slices/vacancySlice";
 import { useRouter } from "next/navigation";
+import Footer from "@/components/footer";
+import Search from "@/components/header/search";
 
 export default function CreateVacancy() {
     const dispatch = useDispatch();
@@ -78,9 +80,11 @@ export default function CreateVacancy() {
     const Editor = dynamic(() => import("./editor"), { ssr: false });
 
     return(
+        <div className="wrapper">
+        <Header/>
         <main>
-            <Header/>
             <div className="container p7">
+                <Search/>
                 <h1>Создание вакансии</h1>
 
                 <h2>Основная информация</h2>
@@ -150,5 +154,7 @@ export default function CreateVacancy() {
                 <button className="button button-primary" onClick={handleSave}>Создать</button>
             </div>
         </main>
+        <Footer/>
+        </div>
     )
 }

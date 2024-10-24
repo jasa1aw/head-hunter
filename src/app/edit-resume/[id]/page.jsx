@@ -15,6 +15,8 @@ import { useEffect, useState } from 'react';
 import { useRouter, useParams } from 'next/navigation';
 import { useDispatch, useSelector } from 'react-redux';
 import { editResume, getMyResumeById } from '@/app/store/slices/resumeSlice';
+import Footer from '@/components/footer';
+import Search from '@/components/header/search';
 
 
 export default function EditResume() {
@@ -144,9 +146,12 @@ let eds = education.map(ed =>{
         end_date: end.getFullYear()
     }})
 return (
+    <div className='wapper'>
+
+    <Header/>
     <main>
-        <Header/>
         <div className='container p7'>
+            <Search/>
             <h1>Ваше резюме</h1>
 
             <h3>Контактные данные</h3>
@@ -220,5 +225,8 @@ return (
             <button type='button' className="button button-primary" onClick={handleSave}>Сохранить и опубликовать</button>
         </div>
     </main>
+    <Footer/>
+    </div>
+
     )
 }
