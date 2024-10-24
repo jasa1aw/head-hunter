@@ -1,13 +1,15 @@
 "use client";
 import Header from '@/components/header'
 import { useDispatch, useSelector } from 'react-redux';
-import { getSearchedVacancies, getSpecializations, getCities, getExperiences, getSkills, getEmpType } from '@/app/store/slices/vacancySlice';
+import { getSearchedVacancies, getSpecializations, getCities, getExperiences, getSkills, getEmpTypes } from '@/app/store/slices/vacancySlice';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation'
 import ModalSelectSpec from '@/components/ModalSelectSpec'
 import AutoCompliteSelect from '@/components/AutoCompliteSelect'
 import MyVacancies from '@/components/myVacancies';
 import { useRouter } from "next/navigation"
+import Footer from '@/components/footer';
+import Search from '@/components/header/search';
 
 
 export default function SearchVacancy() {
@@ -56,7 +58,7 @@ export default function SearchVacancy() {
         dispatch(getCities())
         dispatch(getExperiences()),
         dispatch(getSkills())
-        dispatch(getEmpType())
+        dispatch(getEmpTypes())
     }, [])
 
     const handleChangeExp = e => {
@@ -69,9 +71,11 @@ export default function SearchVacancy() {
     // const vacancies = useSelector(state => state.vacancy.vacancies)
     // console.log(vacancies)
     return (
-    <main>
+        <div className='wrapper'>
         <Header/>
+        <main>
         <div className="container mt7">
+            <Search/>
             <div className='flex'>
                 <fieldset className="fieldset-vertical pt7 flex" style={{width: `100%`}}>
                     <input className="input" placeholder="Название" type="text" value={q} onChange={(e)=>setQ(e.target.value)}/>
@@ -128,5 +132,7 @@ export default function SearchVacancy() {
             </div>
         </div>
     </main>
+    <Footer/>
+    </div>
     )
 }

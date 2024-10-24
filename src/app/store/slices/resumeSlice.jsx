@@ -6,8 +6,9 @@ import { END_POINT } from '@/config/end-point';
 export const resumeSlice = createSlice({
     name: 'resume',
     initialState: {
-    resumes: [],
-    resume: {}
+        resumes: [],
+        resume: {},
+        search: false
     },
     reducers: {
         setMyResumes: (state, action) =>{
@@ -23,13 +24,16 @@ export const resumeSlice = createSlice({
             let resumes = [...state.resumes]
             resumes = resumes.filter(item => item.id !== action.payload)
             state.resumes = resumes
+        },
+        setSearchResumes: (state) => {
+            state.search = !state.search
         }
         
     },
 })
 
 // Action creators are generated for each case reducer function
-export const {setMyResumes, appendResume, setResume, handleDeleteResume} = resumeSlice.actions
+export const {setMyResumes, appendResume, setResume, handleDeleteResume, setSearchResumes} = resumeSlice.actions
 
 export const getMyResumes = () => async(dispatch) => {
     try {

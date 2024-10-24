@@ -3,6 +3,8 @@ import Header from '@/components/header';
 import { useEffect } from 'react';
 import {useSelector} from 'react-redux';
 import { useRouter } from 'next/navigation';
+import Footer from '@/components/footer';
+import Search from '@/components/header/search';
 
 export default function Home() {
   const isAuth = useSelector((state) => state.auth.isAuth)
@@ -11,8 +13,12 @@ export default function Home() {
     if(isAuth) router.push("/resumes")
   },[isAuth])
   return (
-    <main>
-        <Header/>
-    </main>
+    <div className='wrapper'>
+      <Header/>
+      <main>
+        <Search/>
+      </main>
+      <Footer/>
+    </div>
   )
 }

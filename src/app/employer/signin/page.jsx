@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { signIn, setError} from '@/app/store/slices/authSlice';
 import { useRouter } from 'next/navigation';
 import Header from '@/components/header';
+import Footer from '@/components/footer';
+import Search from '@/components/header/search';
 
 export default function EmployerSignIn() {
     const dispatch = useDispatch();
@@ -27,11 +29,12 @@ export default function EmployerSignIn() {
     }, []);
 
     return (
-        <main>
+        <div className='wrapper'>
             <Header/>
+            <main>
             <div className="container">
+            <Search/>
                 <section className="login-page">
-                    {/* {isAuth ? 'True' : 'False'} */}
                     <div className="card">
                         <h1>Поиск сотрудников</h1>
                         <form>
@@ -49,5 +52,7 @@ export default function EmployerSignIn() {
                 </section>
             </div>
         </main>
+        <Footer/>
+        </div>
     )
 }

@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { logOut, authorize } from '@/app/store/slices/authSlice'
 import { useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import { setSearchResumes } from "@/app/store/slices/resumeSlice";
 export default function Header() {
 
     const router = useRouter()
@@ -42,10 +43,10 @@ export default function Header() {
                         <Link href={''}>Помощь</Link>
                     </div>
                     <div className="rigth-block">
-                        <Link href={'/search/vacancy/advanced'} className="header-search">
+                        <span onClick={() => dispatch(setSearchResumes())} className="header-search">
                             <img src="/img/search.svg" />
                             Поиск
-                        </Link>
+                        </span>
                         {currentUser && currentUser.role && currentUser.role.name !== 'manager' && <Link href={'/create-resume'} className="header-button header-button-green">Создать резюме</Link>}
                         {currentUser && currentUser.role && currentUser.role.name === 'manager' && <Link href={'/create-vacancy'} className="header-button header-button-green">Создать вакансию</Link>}
                         {!isAuth && <Link href={'/login'} className="header-button">

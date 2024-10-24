@@ -11,6 +11,11 @@
     height: 80px;
 }
 
+.left-block{
+    display: flex;
+    align-items: center;
+}
+
 .header-inner > div {
     display: flex;
     align-items: center;
@@ -54,4 +59,59 @@
 a.header-button-green {
     border: 1px solid rgba(163, 218, 165, .5);
     color: #A3DAA5;
+}
+
+footer {
+    background-color: #fff !important;
+    margin: 0 auto;
+    margin-top: 30px;
+}
+
+footer .header-inner {
+    align-items: flex-start;
+    border-top: 1px solid #d3cdcd;
+    padding-top: 20px;
+}
+
+.footer-left a {
+    color: black !important;
+    margin: 0;
+}
+
+.footer-left {
+    align-items: flex-start !important;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.help {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    font-size: 14px;
+}
+
+.footer-right {
+    display: flex;
+    align-items:start;
+    gap: 10px;
+}
+.footer-right img {
+    width: 20px;
+    height: 100%;
+}
+
+.footer-right div {
+    display: flex;
+    justify-content: center;
+    background-color: #fff;
+    transition: .2s ease-in-out;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.footer-right div:hover {
+    background-color: #f4f4f4;
 }
