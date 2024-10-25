@@ -2,14 +2,7 @@
 import { useState, useEffect } from "react"
 
 export default function SelectEmploymentTypes({allEmploymentTypes, label, size, onChange, employmentTypes}){
-    // const [eTypes, setETypes] = useState([]);
-    // console.log(eTypes, employmentTypes);
-
-    // useEffect(()=>{
-    //     setETypes(employmentTypes)
-    // }, [employmentTypes])
     const onSelect = (e) => {
-        // console.log(e.target.value, e.target.name, e.target.checked);
         
         const tps = [...employmentTypes]
         if(e.target.checked && !tps.includes(e.target.value*1)) {
@@ -20,10 +13,6 @@ export default function SelectEmploymentTypes({allEmploymentTypes, label, size, 
             onChange(tps)
         }
     } 
-    // useEffect(()=>{
-    //     onChange(eTypes)
-    // }, [eTypes])
-    // console.log(eTypes);
     return (
         <fieldset className={"fieldset " + size}>
             <label>{label}</label>

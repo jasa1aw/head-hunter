@@ -3,7 +3,7 @@ const monthsInRussian = [
     'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь'
 ];
     
-export default function WorkingHistory({workingHistory, remove}) {
+export default function WorkingHistory({workingHistory, remove, t}) {
     const startDate = new Date(workingHistory.start_date)
     const endDate = new Date(workingHistory.end_date)
     return (
@@ -12,7 +12,7 @@ export default function WorkingHistory({workingHistory, remove}) {
             <h4>{workingHistory.company_name}</h4>
             <p>{workingHistory.company_description}</p>
 
-            <span className="rmWh-btn" onClick={() => remove(workingHistory)}>удалить</span>
+            <span className="rmWh-btn" onClick={() => remove(workingHistory)}>{t('Myresumes.delete')}</span>
         </div>
     )
 }
