@@ -1,18 +1,19 @@
 body {
     margin: 0;
+    background-color: #f4f6fb;
 }
 
-body, div, input, a, li, ul, textarea, span, p, h1, h2, h3,h4 ol, aside, main, textarea {
+body, div, input, a, li, ul, textarea, span, p, h1, h2, h3,h4, ol, aside, main, textarea {
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Montserrat', sans-serif;
     text-decoration: none;
 }
 
 .container {
-    max-width: 1250px;
+    max-width: 1320px;
     width: 100%;
     padding: 0 20px;
-    display: block;
+    display: flex;
     margin: 0 auto;
 }
 
@@ -115,4 +116,23 @@ body, div, input, a, li, ul, textarea, span, p, h1, h2, h3,h4 ol, aside, main, t
 }
 .ck-powered-by {
     display: none;
+}
+
+.searchBtn{
+    width: 212px;
+    height: 48px !important;
+    background-color: #0070ff;
+    color: #fff;
+    font-weight: 600;
+    font-size: 16px;
+    transition: .3s;
+    border-radius: 12px !important;
+}
+.searchBtn:hover{
+    background-color: #2b7fff;
+}
+.containerInner{
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
