@@ -1,0 +1,45 @@
+.mainPageContainer{
+	display: flex;
+	flex-direction: column;
+	
+}
+.topHeader{
+	display: flex;
+	align-items: center;
+	gap: 20px;
+}
+.switchPageLink{
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+.switchPageLink button{
+	outline: none;
+	border: none;
+	background-color: transparent;
+	font-size: 14px;
+	font-weight: 500;
+	color: #000;
+	cursor: pointer;
+}
+.topHeaderIn{
+	display: flex;
+	gap: 20px;
+	padding: 20px;
+	font-size: 14px;
+	font-weight: 500;
+}
+.topHeaderIn span{
+	color: #468ffd;
+	text-decoration: underline;
+	text-decoration-style: dashed;
+	text-decoration-color: #468ffd;
+	font-weight: 500;
+}
+.pageInactive{
+	color: #76adfe !important;
+	transition: .3s;
+}
+.pageInactive:hover{
+	color: #fe725f;
+}

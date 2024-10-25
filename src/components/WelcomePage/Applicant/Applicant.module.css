@@ -1,0 +1,151 @@
+.applicantContainer{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+.searchContain{
+	width: 100%;
+	height: 615px;
+	background-image: url('/img/bgMain.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	padding-top: 50px;
+}
+.searchPanel{
+	padding: 0 420px;
+	margin-top: 40px;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: 24px;
+}
+.searchPanel h1{
+	font-size: 44px;
+	font-weight: 700;
+	color: #fff;
+	margin: 0;
+}
+.searchField{
+	width: 100%;
+	display: flex;
+	align-items: center;
+	gap: 70px;
+}
+.inputField{
+	width: 464px;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 12px;
+	border-radius: 12px;
+	background-color: #fff;
+}
+.inputField img{
+	filter: invert(1);
+}
+.inputField input{
+	width: 100%;
+	height: 100%;
+	outline: none;
+	border: none;
+	font-size: 16px;
+}
+.inputField:focus-within{
+	outline: 2px solid #0070ff;
+}
+.btnLink{
+	width: fit-content;
+	background-color: transparent;
+	border: none;
+	outline: none;
+	font-size: 18px;
+	font-weight: 500;
+	color: #fff;
+	text-decoration: underline;
+	transition: .3s;
+}
+.btnLink:hover{
+	color: #ff9f8f;
+}
+
+.offerJob{
+	width: 100%;
+	display: flex;
+	align-items: center;
+	margin-top: 40px;
+	border: 1px solid #eef1f7;
+	border-radius: 8px;
+}
+.offerJobLeft, .offerJobRight{
+	width: 50%;
+	padding: 40px;
+	display: flex;
+	flex-direction: column;
+	gap: 32px;
+}
+.offerJobLeft{
+	background: radial-gradient(circle at top right, #e7f2ff 0, #fff 130%);
+}
+.offerJobLeft img{
+	width: 40px;
+	height: 40px;
+}
+.offerJobLeft p{
+	padding: 16px;
+	background-color: #fff;
+	border-radius: 0 16px 16px;
+	font-size: 16px;
+	font-weight: 700;
+	color: #2a3137;
+}
+.offerJobField{
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	
+}
+.offerJobField input{
+	outline: none;
+	width: 390px;
+	height: 40px;
+	border: 1px solid #aabbca;
+	border-radius: 4px;
+	padding: 0 10px;
+	font-size: 16px;
+	font-weight: 50;
+	color: #2a3137;
+}
+.offerJobField input::placeholder{
+	font-weight: 500;
+	color:#5e6c77;
+}
+.offerJobField button{
+	border: none;
+	outline: none;
+	width: 113px;
+	height: 40px;
+	text-align: center;
+	background-color: #0070ff;
+	border-radius: 4px;
+	color: #fff;
+	font-size: 16px;
+	font-weight: 500;
+}
+.offerJobRight p{
+	font-size: 14px;
+	color: #5e6c77;
+}
+.offerJobRight p span{
+	font-size: 14px;
+	color: #468ffd;
+	
+}
+.mainCardsContain{
+	width: 100%;
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 40px;
+	margin-top: 50px;
+}

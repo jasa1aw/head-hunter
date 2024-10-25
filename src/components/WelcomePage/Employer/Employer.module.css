@@ -1,0 +1,111 @@
+.employerContainer{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+.sendVacancyContain{
+	width: 100%;
+	height: 100%;
+	background-color: #fff;
+	background-image: url('/img/bgMain2.svg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	padding: 50px 0;
+}
+.vacancyMain{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	margin-top: 50px;
+}
+.vacancyMain h1{
+	font-size: 81px;
+	color: #2a3137;
+	margin: 0;
+}
+.vacancyMain p{
+	font-size: 16px;
+	font-weight: 500;
+	color: #2a3137;
+	margin-bottom: 50px;
+}
+
+.vacancyMain button{
+	height: max-content;
+	font-size: 20px;
+	font-weight: 500;
+	color: #fff;
+	background-color: #0070ff;
+	padding: 16px 28px;
+	margin-bottom: 40px;
+}
+.vacancyMain span{
+	font-size: 14px;
+	color: #768694;
+}
+
+.staffSearch{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 70px 0;
+	text-align: center;
+}
+.staffSearch h1{
+	font-size: 64px;
+	color: #2a3137;
+	margin: 0 0 32px;
+}
+.staffSearch p{
+	font-size: 16px;
+	color: #2a3137;
+}
+.staffSearchField{
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin: 32px 0 28px;
+}
+.staffSearchField input{
+	width: 840px;
+	height: 60px;
+	padding: 0 40px;
+	font-size: 20px;
+	border: none;
+	outline: 1px solid #aabbca;
+	border-radius: 4px;
+}
+.staffSearchField input:focus-within{
+	outline-color: #0070ff;
+}
+.staffSearchField input::placeholder{
+	font-weight: 500;
+	color:#aabbca;
+}
+.staffSearchField button{
+	background-color: #0070ff;
+	width: 236px;
+	height: 60px;
+	font-size: 20px;
+	font-weight: 500;
+	color: #fff;
+}
+.oftenSearch{
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+.oftenSearch span{
+	padding: 4px;
+	border-radius: 4px;
+	font-size: 14px;
+	color: #000;
+	cursor: pointer;
+	transition: box-shadow 0.3s;
+}
+.oftenSearch span:hover{
+	box-shadow: inset 0 0 14px 10px rgba(0, 0, 0, .1);
+}

@@ -4,6 +4,9 @@ import {useSelector, useDispatch} from 'react-redux'
 import { Link, useRouter } from "@/i18n/routing";
 import { logOut, authorize } from '@/app/[locale]/store/slices/authSlice'
 import { useEffect } from 'react'
+// import { useRouter } from 'next/navigation'
+export default function Header({bgColor, textColor}) {
+
 import { setSearchResumes } from "@/app/[locale]/store/slices/resumeSlice";
 import { useTranslations } from "next-intl";
 export default function Header() {
@@ -22,12 +25,10 @@ export default function Header() {
             }else{
                 localStorage.removeItem("token")
             }
-
         }
-        
     },[])
     return(
-        <header className="header">
+        <header className="header" style={{background: `${bgColor}`, color: `${textColor}`}}>
             <div className="container">
                 <div className="header-inner">
                     <div className="left-block">
