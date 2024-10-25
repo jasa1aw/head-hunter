@@ -1,7 +1,6 @@
 .mainPageContainer{
 	display: flex;
 	flex-direction: column;
-	
 }
 .topHeader{
 	display: flex;
@@ -41,5 +40,5 @@
 	transition: .3s;
 }
 .pageInactive:hover{
-	color: #fe725f;
+	color: #fe725f !important;
 }
