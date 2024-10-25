@@ -1,19 +1,19 @@
 'use client'
-import {useEffect, useState} from 'react';
-import { useRouter} from 'next/navigation';
-import { useDispatch, useSelector} from 'react-redux';
-import {authorize, sendVerificationEmail, VerifyCode} from '@/app/store/slices/authSlice';
-import Link from "next/link"
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { authorize, sendVerificationEmail, VerifyCode } from '@/app/[locale]/store/slices/authSlice';
+import { Link, useRouter } from '@/i18n/routing';
+import { useTranslations } from 'next-intl';
 
 export default function UserLogin() {
-    const router = useRouter()
-    const isAuth = useSelector((state) => state.auth.isAuth)
+    const t = useTranslations('UserLogin');
+    const router = useRouter();
+    const isAuth = useSelector((state) => state.auth.isAuth);
     const dispatch = useDispatch();
     const [step, setStep] = useState(1);
     const [email, setEmail] = useState("");
-    const [code, setCode] = useState()
+    const [code, setCode] = useState();
     const [time, setTime] = useState(119);
-
 
     const sendVerifyEmail = () => {
         dispatch(sendVerificationEmail(email));
@@ -22,14 +22,15 @@ export default function UserLogin() {
 
     useEffect(() => {
         let interval;
-        if(step === 2){
+        if (step === 2) {
             interval = setInterval(() => {
-                if(time !== 0) setTime(time => time - 1)
+                if (time !== 0) setTime(time => time - 1);
             }, 1000);
-        }else if(interval){
-            clearInterval(interval)
+        } else if (interval) {
+            clearInterval(interval);
         }
-    }, [step])
+        return () => clearInterval(interval); // Cleanup on unmount
+    }, [step]);
 
     const min = parseInt(time / 60);
     const sec = time % 60;
@@ -39,37 +40,51 @@ export default function UserLogin() {
     }
 
     useEffect(() => {
-        if(isAuth) router.push("/resumes")
-    },[isAuth])
+        if (isAuth) router.push("/resumes");
+    }, [isAuth]);
 
-
-    return(
+    return (
         <section className="login-page">
-            {/* {isAuth ? 'True' : 'False'} */}
-            {step == 1 && <div className="card">
-                <h1>Поиск работы</h1>
-                <form>
-                    <input className="input" placeholder="Электронная почта или телефон" value={email} onChange={(e) => setEmail(e.target.value)}/>
-                    <button className="button button-primary" onClick={sendVerifyEmail}>Продолжить</button>
-                </form>
-            </div>}
-            {step == 1 &&<div className="card">
-                <h1>Поиск сотрудников</h1>
-                <p>Размещение вакансий и доступ к базе резюме</p>
-                <Link href={`/employer/signin`} className="button button-primary-bordered">Я ищу сотрудников</Link>
-            </div>}
-            {step == 2 && <div className="card">
-                <h1>Отправили код на {email}</h1>
-                <p>
-                    Напишите его, чтобы подтвердить, что это вы, а не кто-то другой входить в личный кабинет 
-                </p>
-                <form>
-                    <input className="input" placeholder="Введите код" value={code} onChange={(e) => setCode(e.target.value)}/>
-                    <p>Повторить можно через {min}:{sec}</p>
-                    <button className="button button-primary" type='button' onClick={verifyCodeFunc}>Подтвердить</button>
-                    <button className="button button-primary-bordered"  onClick={()=> setStep(1)}>Назад</button>
-                </form>
-            </div>}
+            {step === 1 && (
+                <div className="card">
+                    <h1>{t('jobSearchTitle')}</h1>
+                    <form onSubmit={(e) => { e.preventDefault(); sendVerifyEmail(); }}>
+                        <input 
+                            className="input" 
+                            placeholder={t('emailOrPhone')} 
+                            value={email} 
+                            onChange={(e) => setEmail(e.target.value)} 
+                            required
+                        />
+                        <button className="button button-primary" type="submit">{t('continue')}</button>
+                    </form>
+                </div>
+            )}
+            {step === 1 && (
+                <div className="card">
+                    <h1>{t('employerSearchTitle')}</h1>
+                    <p>{t('employerSearchDescription')}</p>
+                    <Link href={`/employer/signin`} className="button button-primary-bordered">{t('employerButton')}</Link>
+                </div>
+            )}
+            {step === 2 && (
+                <div className="card">
+                    <h1>{t('codeSentTitle', { email })}</h1>
+                    <p>{t('codeConfirmationMessage')}</p>
+                    <form onSubmit={(e) => { e.preventDefault(); verifyCodeFunc(); }}>
+                        <input 
+                            className="input" 
+                            placeholder={t('enterCode')} 
+                            value={code} 
+                            onChange={(e) => setCode(e.target.value)} 
+                            required 
+                        />
+                        <p>{t('repeatAfter')} {min}:{sec}</p>
+                        <button className="button button-primary" type='submit'>{t('confirm')}</button>
+                        <button className="button button-primary-bordered" type='button' onClick={() => setStep(1)}>{t('back')}</button>
+                    </form>
+                </div>
+            )}
         </section>
-    )
+    );
 }

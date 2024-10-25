@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-export default function ModalAddExp({close, addWorkingHistory}){
+export default function ModalAddExp({close, addWorkingHistory, t}){
     const [start_date, setStartDate] = useState(Date.now())
     const [end_date, setEndDate] = useState(Date.now())
     const [company_name, setCompany_name] = useState("");
@@ -53,57 +53,57 @@ export default function ModalAddExp({close, addWorkingHistory}){
         <div className="modal">
             <div className="modal-backdrop" onClick={close}></div>
             <div className="modal-inner">
-                <h3>Опыт работы</h3>
-                <h4>Начало работы</h4>
+                <h3>{t('experience.title')}</h3>
+                <h4>{t('experience.startDay')}</h4>
                 {/* {testdate.toLocaleDateString()} Проверка Даты*/} 
                 <div className="selectdate selectdate-noday">
-                    <select onChange={onChangeMonth} placeholder="Месяц" className="input">
-                        <option disabled>Выберите месяц</option>
-                        <option value={0}>январь</option>
-                        <option value={1}>февраль</option>
-                        <option value={2}>март</option>
-                        <option value={3}>апрель</option>
-                        <option value={4}>май</option>
-                        <option value={5}>июнь</option>
-                        <option value={6}>июль</option>
-                        <option value={7}>август</option>
-                        <option value={8}>сентябрь</option>
-                        <option value={9}>октябрь</option>
-                        <option value={10}>ноябрь</option>
-                        <option value={11}>декабрь</option>
+                    <select onChange={onChangeMonth} placeholder={t('ChooseMonth')} className="input">
+                        <option disabled>{t('ChooseMonth')}</option>
+                        <option value={0} >{t('monthNames.J')}</option>
+                        <option value={1}>{t('monthNames.F')}</option>
+                        <option value={2}>{t('monthNames.M')}</option>
+                        <option value={3}>{t('monthNames.A')}</option>
+                        <option value={4}>{t('monthNames.MY')}</option>
+                        <option value={5}>{t('monthNames.JN')}</option>
+                        <option value={6}>{t('monthNames.JL')}</option>
+                        <option value={7}>{t('monthNames.AU')}</option>
+                        <option value={8}>{t('monthNames.S')}</option>
+                        <option value={9}>{t('monthNames.O')}</option>
+                        <option value={10}>{t('monthNames.N')}</option>
+                        <option value={11}>{t('monthNames.D')}</option>
                     </select>
-                    <input className='input' type='text' placeholder="Год" onChange={onChangeYear}/>
+                    <input className='input' type='text' placeholder={t('Year')} onChange={onChangeYear}/>
                 </div>
-                <h4>Конец работы</h4>
+                <h4>{t('experience.endDay')}</h4>
                 <div className="selectdate selectdate-noday">
-                    <select onChange={onChangeMonthEnd} placeholder="Месяц" className='input'>
-                        <option disabled>Выберите месяц</option>
-                        <option value={0}>январь</option>
-                        <option value={1}>февраль</option>
-                        <option value={2}>март</option>
-                        <option value={3}>апрель</option>
-                        <option value={4}>май</option>
-                        <option value={5}>июнь</option>
-                        <option value={6}>июль</option>
-                        <option value={7}>август</option>
-                        <option value={8}>сентябрь</option>
-                        <option value={9}>октябрь</option>
-                        <option value={10}>ноябрь</option>
-                        <option value={11}>декабрь</option>
+                    <select onChange={onChangeMonthEnd} placeholder={t('ChooseMonth')} className='input'>
+                        <option disabled>{t('ChooseMonth')}</option>
+                        <option value={0} >{t('monthNames.J')}</option>
+                        <option value={1}>{t('monthNames.F')}</option>
+                        <option value={2}>{t('monthNames.M')}</option>
+                        <option value={3}>{t('monthNames.A')}</option>
+                        <option value={4}>{t('monthNames.MY')}</option>
+                        <option value={5}>{t('monthNames.JN')}</option>
+                        <option value={6}>{t('monthNames.JL')}</option>
+                        <option value={7}>{t('monthNames.AU')}</option>
+                        <option value={8}>{t('monthNames.S')}</option>
+                        <option value={9}>{t('monthNames.O')}</option>
+                        <option value={10}>{t('monthNames.N')}</option>
+                        <option value={11}>{t('monthNames.D')}</option>
                     </select>
-                    <input className='input' type='text' placeholder="Год" onChange={onChangeYearEnd}/>
+                    <input className='input' type='text' placeholder={t('Year')} onChange={onChangeYearEnd}/>
                 </div>
-                <h4>Организация</h4>
-                <input className='input' type='text' placeholder="Название компании" onChange={onChangeCompanyName} value={company_name}/>
+                <h4>{t('experience.organization')}</h4>
+                <input className='input' type='text' placeholder={t('experience.nameCompany')} onChange={onChangeCompanyName} value={company_name}/>
                 
-                <h4>Должность</h4>
-                <input className='input' type='text' placeholder="Должность" onChange={onChangeCompanyDesc} value={company_description}/>
+                <h4>{t('experience.position')}</h4>
+                <input className='input' type='text' placeholder={t('experience.position')} onChange={onChangeCompanyDesc} value={company_description}/>
                 
-                <h4>Обязанности на рабочем месте</h4>
-                <textarea className='textarea' type='text' placeholder="Опишите что вы делали на работе" onChange={onChangeResp}>{responsibilities}</textarea>
+                <h4>{t('experience.responsibilities')}</h4>
+                <textarea className='textarea' type='text' placeholder={t('experience.description')} onChange={onChangeResp}>{responsibilities}</textarea>
                 <div className="modal-actions">
-                    <button className="button button-primary-bordered" onClick={close}>Отменить</button>
-                    <button className="button button-primary" onClick={save}>Сохранить</button>
+                    <button className="button button-primary-bordered" onClick={close}>{t('experience.cancel')}</button>
+                    <button className="button button-primary" onClick={save}>{t('experience.save')}</button>
                 </div>
             </div>
         </div>

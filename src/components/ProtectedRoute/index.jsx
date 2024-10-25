@@ -1,4 +1,4 @@
-import { useRouter } from "next/navigation"
+import { useRouter } from '@/i18n/routing'
 import jwt_decode from 'jwt-decode'
 
 export default function ProtectedRoute ({children}) {
