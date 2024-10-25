@@ -48,7 +48,7 @@ export default function UserLogin() {
             {step === 1 && (
                 <div className="card">
                     <h1>{t('jobSearchTitle')}</h1>
-                    <form onSubmit={(e) => { e.preventDefault(); sendVerifyEmail(); }}>
+                    <form>
                         <input 
                             className="input" 
                             placeholder={t('emailOrPhone')} 
@@ -56,7 +56,7 @@ export default function UserLogin() {
                             onChange={(e) => setEmail(e.target.value)} 
                             required
                         />
-                        <button className="button button-primary" type="submit">{t('continue')}</button>
+                        <button className="button button-primary" onClick={() => sendVerifyEmail}>{t('continue')}</button>
                     </form>
                 </div>
             )}
@@ -71,7 +71,7 @@ export default function UserLogin() {
                 <div className="card">
                     <h1>{t('codeSentTitle', { email })}</h1>
                     <p>{t('codeConfirmationMessage')}</p>
-                    <form onSubmit={(e) => { e.preventDefault(); verifyCodeFunc(); }}>
+                    <form>
                         <input 
                             className="input" 
                             placeholder={t('enterCode')} 
@@ -80,7 +80,7 @@ export default function UserLogin() {
                             required 
                         />
                         <p>{t('repeatAfter')} {min}:{sec}</p>
-                        <button className="button button-primary" type='submit'>{t('confirm')}</button>
+                        <button className="button button-primary" type='button' onClick={verifyCodeFunc}>{t('confirm')}</button>
                         <button className="button button-primary-bordered" type='button' onClick={() => setStep(1)}>{t('back')}</button>
                     </form>
                 </div>

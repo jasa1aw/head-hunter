@@ -7,7 +7,7 @@ import { useTranslations } from 'next-intl';
 
 export default function MyVacancy({item}) {
     const dispatch = useDispatch();
-    const t = useTranslations('Myresumes')
+    const t = useTranslations('CreateResume.Myresumes')
     const currentUser = useSelector(state => state.auth.currentUser);
     return (
         <div className="card mtb-2">
