@@ -1,7 +1,7 @@
 'use client';
 import { useDispatch} from 'react-redux';
-import { deleteApply } from '@/app/store/slices/applySlice';
-export default function MyApply ({item}) {
+import { deleteApply } from '@/app/[locale]/store/slices/applySlice';
+export default function MyApply ({item, t}) {
     
     const dispatch = useDispatch();
     
@@ -13,7 +13,7 @@ export default function MyApply ({item}) {
             <div className='col'>
                 {item.vacancy.name}
                 <div className='link mt2' onClick={() => dispatch(deleteApply(item.id))}>
-                    Удалить
+                    {t('delete')}
                 </div>
             </div>
             <div className='col'>

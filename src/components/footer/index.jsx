@@ -1,5 +1,5 @@
 'use client'
-import Link from 'next/link'
+import { Link } from '@/i18n/routing';
 export default function Footer() {
     return(
         <footer className="header footer">

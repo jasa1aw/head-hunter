@@ -1,20 +1,19 @@
 'use client'
 import { jwtDecode } from "jwt-decode";
 import {useSelector, useDispatch} from 'react-redux'
-import Link from 'next/link'
-import { logOut, authorize } from '@/app/store/slices/authSlice'
+import { Link, useRouter } from "@/i18n/routing";
+import { logOut, authorize } from '@/app/[locale]/store/slices/authSlice'
 import { useEffect } from 'react'
-import { useRouter } from 'next/navigation'
-import { setSearchResumes } from "@/app/store/slices/resumeSlice";
+import { setSearchResumes } from "@/app/[locale]/store/slices/resumeSlice";
+import { useTranslations } from "next-intl";
 export default function Header() {
-
+    const t = useTranslations('Header')
     const router = useRouter()
     const isAuth = useSelector((state) => state.auth.isAuth)
     const currentUser = useSelector((state) => state.auth.currentUser)
-
+    console.log(t)
     const dispatch = useDispatch()
     useEffect(() => {
-        
         const token = localStorage.getItem("token")
         if(token){
             let decodedToken = jwtDecode(token)
@@ -27,8 +26,6 @@ export default function Header() {
         }
         
     },[])
-    
-
     return(
         <header className="header">
             <div className="container">
@@ -37,23 +34,23 @@ export default function Header() {
                         <Link href={'/'}>
                             <img src="/img/logo.svg" />
                         </Link>
-                        {currentUser && currentUser.role && currentUser.role.name !== 'manager' && <Link href={'/resumes'}>Мои резюме</Link>}
-                        {currentUser && currentUser.role && currentUser.role.name !== 'manager' && <Link href={'/applies'}>Отклики</Link>}
-                        {currentUser && currentUser.role && currentUser.role.name === 'manager' && <Link href={'/vacancy'}>Мои вакансии</Link>}
-                        <Link href={''}>Помощь</Link>
+                        {currentUser && currentUser?.role?.name !== 'manager' && <Link href={'/resumes'}>{t('resumes')}</Link>}
+                        {currentUser && currentUser?.role?.name !== 'manager' && <Link href={'/applies'}>{t('applies')}</Link>}
+                        {currentUser && currentUser?.role?.name === 'manager' && <Link href={'/vacancy'}>{t('vacancy')}</Link>}
+                        <Link href={''}>{t('help')}</Link>
                     </div>
                     <div className="rigth-block">
                         <span onClick={() => dispatch(setSearchResumes())} className="header-search">
                             <img src="/img/search.svg" />
-                            Поиск
+                            {t('search')}
                         </span>
-                        {currentUser && currentUser.role && currentUser.role.name !== 'manager' && <Link href={'/create-resume'} className="header-button header-button-green">Создать резюме</Link>}
-                        {currentUser && currentUser.role && currentUser.role.name === 'manager' && <Link href={'/create-vacancy'} className="header-button header-button-green">Создать вакансию</Link>}
+                        {currentUser && currentUser?.role?.name !== 'manager' && <Link href={'/create-resume'} className="header-button header-button-green">{t('createResume')}</Link>}
+                        {currentUser && currentUser?.role?.name === 'manager' && <Link href={'/create-vacancy'} className="header-button header-button-green">{t('createVacancy')}</Link>}
                         {!isAuth && <Link href={'/login'} className="header-button">
-                            Войти
+                            {t('login')}
                         </Link>}
                         {isAuth && <a className="header-button" onClick={() => dispatch(logOut(router))}>
-                            Выйти
+                            {t('logout')}
                         </a>}
                     </div>
                 </div>
