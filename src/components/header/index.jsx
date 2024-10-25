@@ -7,7 +7,6 @@ import { useEffect } from 'react'
 import { setSearchResumes } from "@/app/[locale]/store/slices/resumeSlice";
 import { useTranslations } from "next-intl";
 export default function Header({bgColor, textColor}) {
-
     const t = useTranslations('Header')
     const router = useRouter()
     const isAuth = useSelector((state) => state.auth.isAuth)
@@ -33,22 +32,22 @@ export default function Header({bgColor, textColor}) {
                         <Link href={'/'}>
                             <img src="/img/logo.svg" />
                         </Link>
-                        {currentUser && currentUser?.role?.name !== 'manager' && <Link href={'/resumes'}>{t('resumes')}</Link>}
-                        {currentUser && currentUser?.role?.name !== 'manager' && <Link href={'/applies'}>{t('applies')}</Link>}
-                        {currentUser && currentUser?.role?.name === 'manager' && <Link href={'/vacancy'}>{t('vacancy')}</Link>}
-                        <Link href={''}>{t('help')}</Link>
+                        {currentUser && currentUser?.role?.name !== 'manager' && <Link href={'/resumes'} style={{color: `${textColor}`}}>{t('resumes')}</Link>}
+                        {currentUser && currentUser?.role?.name !== 'manager' && <Link href={'/applies'} style={{color: `${textColor}`}}>{t('applies')}</Link>}
+                        {currentUser && currentUser?.role?.name === 'manager' && <Link href={'/vacancy'} style={{color: `${textColor}`}}>{t('vacancy')}</Link>}
+                        <Link href={''} style={{color: `${textColor}`}}>{t('help')}</Link>
                     </div>
                     <div className="rigth-block">
-                        <span onClick={() => dispatch(setSearchResumes())} className="header-search">
+                        <span onClick={() => dispatch(setSearchResumes())} className="header-search" style={{color: `${textColor}`}}>
                             <img src="/img/search.svg" />
                             {t('search')}
                         </span>
-                        {currentUser && currentUser?.role?.name !== 'manager' && <Link href={'/create-resume'} className="header-button header-button-green">{t('createResume')}</Link>}
-                        {currentUser && currentUser?.role?.name === 'manager' && <Link href={'/create-vacancy'} className="header-button header-button-green">{t('createVacancy')}</Link>}
-                        {!isAuth && <Link href={'/login'} className="header-button">
+                        {currentUser && currentUser?.role?.name !== 'manager' && <Link href={'/create-resume'} className="header-button header-button-green" >{t('createResume')}</Link>}
+                        {currentUser && currentUser?.role?.name === 'manager' && <Link href={'/create-vacancy'} className="header-button header-button-green" style={{color: `${textColor}`}}>{t('createVacancy')}</Link>}
+                        {!isAuth && <Link href={'/login'} className="header-button" style={{color: `${textColor}`}}>
                             {t('login')}
                         </Link>}
-                        {isAuth && <a className="header-button" onClick={() => dispatch(logOut(router))}>
+                        {isAuth && <a className="header-button" onClick={() => dispatch(logOut(router))} style={{color: `${textColor}`}}>
                             {t('logout')}
                         </a>}
                     </div>

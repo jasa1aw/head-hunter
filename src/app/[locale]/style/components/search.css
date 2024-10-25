@@ -9,7 +9,7 @@
     transition: opacity 0.5s ease, transform 0.5s ease;
     animation: fadeIn 0.5s forwards;
     position: relative;
-    z-index: 999;
+    z-index: 9999;
 }
 
 .p7 .search {
