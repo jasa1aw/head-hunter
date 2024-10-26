@@ -5,7 +5,7 @@ import { signIn, setError } from '@/app/[locale]/store/slices/authSlice';
 import Header from '@/components/header';
 import Footer from '@/components/footer';
 import Search from '@/components/header/search';
-import { useRouter } from '@/i18n/routing';
+import { Link, useRouter } from '@/i18n/routing';
 import { useTranslations } from 'next-intl';
 
 export default function EmployerSignIn() {
@@ -58,6 +58,9 @@ export default function EmployerSignIn() {
                                     {t('signInButton')}
                                 </button>
                             </form>
+                            <div className="flex flex-jc-sb mtb4">
+                                <Link className="link" href="/employer/signup">Регистрация для поиска сотрудников</Link>
+                            </div>
                             {error && Object.keys(error).map((key, index) => (
                                 <p key={index} className="error">{error[key]}</p>
                             ))}
@@ -65,7 +68,7 @@ export default function EmployerSignIn() {
                         <div className="card">
                             <h1>{t('jobSearchTitle')}</h1>
                             <p>{t('jobSearchDescription')}</p>
-                            <button className="button button-primary-bordered">{t('jobSearchButton')}</button>
+                            <Link href={'/login'} className="button button-primary-bordered">{t('jobSearchButton')}</Link>
                         </div>
                     </section>
                 </div>

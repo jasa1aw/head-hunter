@@ -5,6 +5,8 @@
       "vacancy": "My Vacancies",
       "help": "Help",
       "search": "Search",
+      "searchEmployee": "Find an employee",
+      "searchResume": "Search resume",
       "createResume": "Create Resume",
       "createVacancy": "Create Vacancy",
       "logout": "Logout",
@@ -148,7 +150,7 @@
     "EmployerSignUp": {
       "registerPrompt": "Register now to gain access to the resume database or publish vacancies at favorable prices — all promotions are waiting for you in the 'Special Offers' section.",
       "contactSupport": "We will answer your questions",
-      "supportPhone": "+7 727 232 13 13",
+      "supportPhone": "+7 771 274 07 07",
       "registrationTitle": "Registration for Job Search",
       "passwordEmailPrompt": "At the end, a password will be sent to your email",
       "emailOrPhonePlaceholder": "Email or Phone",
@@ -231,12 +233,61 @@
       "employerSearchTitle": "Searching for Employees",
       "employerSearchDescription": "Posting Vacancies and Access to the Resume Database",
       "employerButton": "I am looking for employees",
-      "codeSentTitle": "Code sent to {email}",
+      "codeSentTitle": "Code sent to",
       "codeConfirmationMessage": "Enter it to confirm that you are the one logging into the personal account",
       "enterCode": "Enter Code",
       "repeatAfter": "Can be repeated after",
       "confirm": "Confirm",
       "back": "Back"
+    },
+    "WelcomePage": {
+      "kazakhstan": "Kazakhstan",
+      "applicants": "For Applicants",
+      "employers": "For Employers"
+    },
+    "ApplicantMain": {
+      "findDreamJob": "Find your dream job",
+      "imLookingForEmployee": "I'm looking for an employee",
+      "emailPlaceholder": "Email",
+      "continue": "Continue",
+      "emailPrompt": "Enter your email so that employers can offer you a job",
+      "termsAgreement": "By clicking 'Continue', you confirm that you have read, fully agree and accept the terms of the Employment Assistance Services Agreement (offer)",
+      "jobOfTheDay": "Job of the Day",
+      "companyOfTheDay": "Company of the Day",
+      "workFromHome": "Work from Home",
+      "partTimeJob": "Part-time Job",
+      "courier": "Courier",
+      "driver": "Driver",
+      "seller": "Seller",
+      "cashier": "Cashier",
+      "administrator": "Administrator",
+      "operator": "Operator",
+      "programmer": "Programmer",
+      "manager": "Manager"
+    },
+    "Employer": {
+      "postJobTitle": "Post a job on hh.kz",
+      "postJobDescription": "And find employees among those who want to work for you. hh.kz is the #1 service for finding employees in Kazakhstan*",
+      "postJobButton": "Post a Job",
+      "disclaimer": "* Based on the 31-day visit count among job search and recruitment sites, according to SimilarWeb data for Kazakhstan as of 15.08.2023.",
+      "findEmployeesTitle": "What kind of employees are on hh.kz?",
+      "findEmployeesDescription": "Don't wait for responses — find the ideal employee yourself among 5,890,557 resumes from 4,234,974 job seekers.",
+      "searchPlaceholder": "Search resumes",
+      "searchButton": "Find an employee",
+      "oftenSearched": "Often searched resumes:",
+      "administrator": "Administrator",
+      "welder": "Welder",
+      "manager": "Manager"
+    },
+    "Footer": {
+      "copyright": "© 2024 RECRUV.KZ",
+      "help": "Help",
+      "documentation": "Documentation",
+      "applications": "Applications",
+      "consent": "Consent",
+      "russian": "Russian",
+      "kazakh": "Kazakh",
+      "english": "English"
     }
   }
   

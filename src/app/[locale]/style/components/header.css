@@ -71,7 +71,8 @@ footer {
 footer .header-inner {
     align-items: flex-start;
     border-top: 1px solid #d3cdcd;
-    padding-top: 20px;
+    padding: 20px 0;
+    height: 100%;
 }
 
 .footer-left a {

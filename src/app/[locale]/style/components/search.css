@@ -26,9 +26,9 @@
 .search-left img {
     width: 20px;
     padding-right: 5px;
+    filter: invert(1);
 }
 .search-left {
-    width: 100%;
     display: flex;
     align-items: center;
     width: 80%;
@@ -41,6 +41,39 @@
     background-color: #ffffff;
 }
 
+.medium {
+    justify-content: unset;
+    gap: 20px;
+}
+.medium .search-left{
+    width: 60%;
+}
+
+.medium .search-right button {
+    width: 100%;
+}
+
+.large {
+    width: 80%;
+    gap: 10px;
+	margin: 32px 0 28px;
+}
+
+.large button {
+    height: 65px !important;
+    width: 80% !important;
+    border-radius: 4px !important;
+}
+
+.large input {
+    width: 100%;
+    height: 45px;
+    padding: 0 40px;
+    font-size: 20px;
+    border: none;
+    outline: 1px solid #aabbca;
+    border-radius: 4px;
+}
 
 .search-left input {
     width: 100%;
@@ -53,7 +86,8 @@
 
 .search-left input::placeholder {
     font-size: 15px;
-    color: #cacaca;
+    font-weight: 400;
+	color:#5e6c77;
 }
 
 .search-left:focus-within {
@@ -89,6 +123,11 @@
     height: 45px;
     border-radius: 10px;
     font-weight: 500;
+	background-color: #0070ff;
+	border-radius: 4px;
+	color: #fff;
+	font-size: 16px;
+	font-weight: 500;
 }
 
 .suggestionCard {

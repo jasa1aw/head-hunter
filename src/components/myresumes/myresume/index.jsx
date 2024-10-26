@@ -18,7 +18,7 @@ export default function MyResume({item}) {
                 <a href="" className="p3">{0} {t("Myresumes.views")}</a>
                 <a href="" className="p3">{0} {t("Myresumes.inv")}</a>
             </div>
-            <span className="deleteResume" onClick={() => {dispatch(deleteResume(item.id))}}>Удалить</span>
+            <span className="deleteResume" onClick={() => {dispatch(deleteResume(item.id))}}>{t("Myresumes.delete")}</span>
         </div>
     )
 }

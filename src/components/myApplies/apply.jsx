@@ -1,6 +1,7 @@
 'use client';
 import { useDispatch} from 'react-redux';
 import { deleteApply } from '@/app/[locale]/store/slices/applySlice';
+import { formatDate } from '@/app/[locale]/utils/dateToLocale';
 export default function MyApply ({item, t}) {
     
     const dispatch = useDispatch();
@@ -17,7 +18,7 @@ export default function MyApply ({item, t}) {
                 </div>
             </div>
             <div className='col'>
-                {item.updatedAt}
+                {formatDate(item.updatedAt)}
             </div>
         </div>
     )

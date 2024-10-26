@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import Suggestions from "./suggestions";
 import { useTranslations } from "next-intl";
-export default function Search() {
+export default function Search( {disabled, size} ) {
     const t = useTranslations("Header")
     const [value, setValue] = useState("");
     const [isVisible, setIsVisible] = useState(false);
@@ -14,7 +14,7 @@ export default function Search() {
     const searchState = useSelector((state) => state.resume.search);
 
     useEffect(() => {
-        if (searchState) {
+        if (searchState || disabled) {
             setIsVisible(true);
             setIsAnimating(false);
         } else {
@@ -35,10 +35,10 @@ export default function Search() {
     }, [value])
     return (
         <>
-            {isVisible && (
-                <div className={`search ${isAnimating ? 'hide' : ''}`}>
+            {(isVisible || disabled) && (
+                <div className={`search ${isAnimating ? 'hide' : ''} ${size}`}>
                     <div className="search-left">
-                        <img src="/img/search.png" alt="" />
+                        <img src="/img/search.svg" alt="icon" />
                         <input
                             value={value}
                             onChange={(e) => setValue(e.target.value)}
@@ -49,10 +49,10 @@ export default function Search() {
                         {filteredJobs.length > 0 && <Suggestions filteredJobs={filteredJobs} setValue={setValue}/>}
                     </div>
                     <div className="search-right">
-                        <button className="button button-primary">{t('search')}</button>
-                        <Link href={'/search/vacancy/advanced'}>
+                        <button className="button searchBtn">{size === 'large' ? t('searchEmployee') : t('search')}</button>
+                        {!disabled && <Link href={'/search/vacancy/advanced'}>
                             <img src="/img/filter.png" alt="" />
-                        </Link>
+                        </Link>}
                     </div>
                 </div>
             )}

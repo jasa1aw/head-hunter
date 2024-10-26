@@ -17,3 +17,11 @@
     background-color: #fff;
     padding-bottom: 40px;
 }
+
+.codeSentTitle {
+    font-size: 32px !important;
+}
+
+.codeSentTitle span {
+    font-size: 18px;
+}

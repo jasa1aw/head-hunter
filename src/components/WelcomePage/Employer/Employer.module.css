@@ -63,36 +63,6 @@
 	font-size: 16px;
 	color: #2a3137;
 }
-.staffSearchField{
-	display: flex;
-	align-items: center;
-	gap: 10px;
-	margin: 32px 0 28px;
-}
-.staffSearchField input{
-	width: 840px;
-	height: 60px;
-	padding: 0 40px;
-	font-size: 20px;
-	border: none;
-	outline: 1px solid #aabbca;
-	border-radius: 4px;
-}
-.staffSearchField input:focus-within{
-	outline-color: #0070ff;
-}
-.staffSearchField input::placeholder{
-	font-weight: 500;
-	color:#aabbca;
-}
-.staffSearchField button{
-	background-color: #0070ff;
-	width: 236px;
-	height: 60px;
-	font-size: 20px;
-	font-weight: 500;
-	color: #fff;
-}
 .oftenSearch{
 	display: flex;
 	align-items: center;

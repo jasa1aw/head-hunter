@@ -14,7 +14,7 @@ export default function VacancyPage() {
     const t = useTranslations('VacancyPage');
     const dispatch = useDispatch();
     const { id } = useParams();
-    const vacancy = useSelector(state => state.resume.vacancy);
+    const vacancy = useSelector(state => state.vacancy.vacancy);
     const resumes = useSelector(state => state.resume.resumes);
     const currentUser = useSelector(state => state.auth.currentUser);
     const applies = useSelector(state => state.apply.applies);
@@ -22,14 +22,8 @@ export default function VacancyPage() {
     const [resumeId, setResume] = useState();
 
     useEffect(() => {
-        if (resumes[0]) {
-            setResume(resumes[0].id);
-        }
-    }, [resumes]);
-
-    const didMount = () => {
         dispatch(getMyVacancyById(id));
-    };
+    }, []); 
 
     useEffect(() => {
         if (currentUser && currentUser.role.name === "employee") {
@@ -40,6 +34,12 @@ export default function VacancyPage() {
         }
     }, [currentUser]);
 
+    useEffect(() => {
+        if (resumes[0]) {
+            setResume(resumes[0].id);
+        }
+    }, [resumes]);
+
     const handleApply = () => {
         dispatch(createApply({
             resumeId,
@@ -47,10 +47,11 @@ export default function VacancyPage() {
         }));
     };
 
-    useEffect(didMount, []);
+
 
     let isApplied = applies.some(item => item.vacancyId === Number(id));
-    let skills = vacancy.skills ? vacancy.skills.split(',') : [];
+    let skills = [];
+    if (vacancy.skills) skills = vacancy.skills.split(",");
 
     return (
         <div className='wrapper'>

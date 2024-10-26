@@ -1,37 +1,41 @@
 'use client'
+import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/routing';
+
 export default function Footer() {
-    return(
-        <footer className="header footer">
-            <div className="container">
-                <div className="header-inner">
-                    <div className="left-block footer-left">
-                        <span>© 2024 RECRUV.KZ</span>
-                        <div className='help'>
-                            <Link href={''}>Помощь</Link>
-                            <Link href={''}>Документация</Link>
-                            <Link href={''}>Приложения</Link>
-                            <Link href={''}>Согласия</Link>
-                        </div>
-                        <div className='help'>
-                            <Link href={''}>Руский</Link>
-                            <Link href={''}>Казахский</Link>
-                            <Link href={''}>Английский</Link>
-                        </div>
-                    </div>
-                    <div className="footer-right">
-                        <div>
-                            <img src="/img/facebook.png" alt="" />
-                        </div>
-                        <div>
-                            <img src="/img/instagram.png" alt="" />
-                        </div>
-                        <div>
-                            <img src="/img/vk.png" alt="" />
-                        </div>
-                    </div>
-                </div>
+  const t = useTranslations('Footer');
+
+  return (
+    <footer className="header footer">
+      <div className="container">
+        <div className="header-inner">
+          <div className="left-block footer-left">
+            <span>{t('copyright')}</span>
+            <div className='help'>
+              <Link href=''>{t('help')}</Link>
+              <Link href=''>{t('documentation')}</Link>
+              <Link href=''>{t('applications')}</Link>
+              <Link href=''>{t('consent')}</Link>
             </div>
-        </footer>
-    )
+            <div className='help'>
+              <Link href=''>{t('russian')}</Link>
+              <Link href=''>{t('kazakh')}</Link>
+              <Link href=''>{t('english')}</Link>
+            </div>
+          </div>
+          <div className="footer-right">
+            <div>
+              <img src="/img/facebook.png" alt="Facebook" />
+            </div>
+            <div>
+              <img src="/img/instagram.png" alt="Instagram" />
+            </div>
+            <div>
+              <img src="/img/vk.png" alt="VK" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
 }

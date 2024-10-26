@@ -9,8 +9,7 @@ export default function Login() {
     <div className='wrapper'>
       <Header/>
       <main>
-        <Search/>
-          <UserLogin/>
+        <UserLogin/>
       </main>
       <Footer/>
     </div>

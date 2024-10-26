@@ -56,7 +56,7 @@ export default function UserLogin() {
                             onChange={(e) => setEmail(e.target.value)} 
                             required
                         />
-                        <button className="button button-primary" onClick={() => sendVerifyEmail}>{t('continue')}</button>
+                        <button className="button button-primary" onClick={sendVerifyEmail}>{t('continue')}</button>
                     </form>
                 </div>
             )}
@@ -69,7 +69,7 @@ export default function UserLogin() {
             )}
             {step === 2 && (
                 <div className="card">
-                    <h1>{t('codeSentTitle', { email })}</h1>
+                    <h1 className='codeSentTitle'>{t('codeSentTitle')} <span>{ email }</span></h1>
                     <p>{t('codeConfirmationMessage')}</p>
                     <form>
                         <input 

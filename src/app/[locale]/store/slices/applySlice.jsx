@@ -59,7 +59,7 @@ export const getVacancyApplies = (id) => (dispatch) => {
 
 export const createApply = (data) => (dispatch) => {
     axios.post(`${END_POINT}/api/applies`, data).then(res => {
-        dispatch(setApply(res.data))
+        dispatch(appendApply(res.data))
     }).catch(e => {
         console.log(e)
         dispatch(setError(e.response.data))
