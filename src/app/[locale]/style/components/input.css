@@ -5,12 +5,26 @@
     width: 100%;
     border: 1px solid #ddd;
     outline: none;
+    box-sizing: border-box;
 }
 
 .input:focus {
     border: 1px solid #1785E5;
 }
 
+.counter {
+    width: 40px;
+    color: #c2c5c6;
+}
+
+.counterLabel {
+    width: 150px !important;
+}
+
+.counterLabel::after {
+    content: "*";
+    color: red;
+}
 
 .autocomplite {
     position: relative;

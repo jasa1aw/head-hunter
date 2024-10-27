@@ -4,9 +4,9 @@ import { Link } from '@/i18n/routing';
 import MyVacancies from '@/components/myVacancies';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { getMyVacancies } from '@/store/slices/vacancySlice';
 import Footer from '@/components/footer';
 import { useTranslations } from 'next-intl';
+import { getMyVacancies } from '../store/slices/vacancySlice';
 
 export default function Vacancy() {
     const t = useTranslations("VacancyPage")

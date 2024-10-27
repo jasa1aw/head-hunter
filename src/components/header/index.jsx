@@ -3,15 +3,17 @@ import { jwtDecode } from "jwt-decode";
 import {useSelector, useDispatch} from 'react-redux'
 import { Link, useRouter } from "@/i18n/routing";
 import { logOut, authorize } from '@/app/[locale]/store/slices/authSlice'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { setSearchResumes } from "@/app/[locale]/store/slices/resumeSlice";
 import { useTranslations } from "next-intl";
+import Help from "./help";
+
 export default function Header({bgColor, textColor}) {
     const t = useTranslations('Header')
     const router = useRouter()
     const isAuth = useSelector((state) => state.auth.isAuth)
     const currentUser = useSelector((state) => state.auth.currentUser)
-    console.log(t)
+    const [disabled, setDisable] = useState(false)
     const dispatch = useDispatch()
     useEffect(() => {
         const token = localStorage.getItem("token")
@@ -35,7 +37,7 @@ export default function Header({bgColor, textColor}) {
                         {currentUser && currentUser?.role?.name !== 'manager' && <Link href={'/resumes'} style={{color: `${textColor}`}}>{t('resumes')}</Link>}
                         {currentUser && currentUser?.role?.name !== 'manager' && <Link href={'/applies'} style={{color: `${textColor}`}}>{t('applies')}</Link>}
                         {currentUser && currentUser?.role?.name === 'manager' && <Link href={'/vacancy'} style={{color: `${textColor}`}}>{t('vacancy')}</Link>}
-                        <Link href={''} style={{color: `${textColor}`}}>{t('help')}</Link>
+                        <p className="help-p" style={{color: `${textColor}`}} onClick={() => setDisable(true)}>{t('help')}</p>
                     </div>
                     <div className="rigth-block">
                         {currentUser && <span onClick={() => dispatch(setSearchResumes())} className="header-search">
@@ -53,6 +55,7 @@ export default function Header({bgColor, textColor}) {
                     </div>
                 </div>
             </div>
+            <Help disabled={disabled} setDisable={setDisable}/>
         </header>
     )
 }

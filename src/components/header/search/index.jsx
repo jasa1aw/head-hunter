@@ -46,7 +46,7 @@ export default function Search( {disabled, size} ) {
                             placeholder={`${t('placeholder')}`}
                         />
                         <span className="clear-icon" onClick={() => setValue("")}>&#10006;</span>
-                        {filteredJobs.length > 0 && <Suggestions filteredJobs={filteredJobs} setValue={setValue}/>}
+                        <Suggestions filteredJobs={filteredJobs} setValue={setValue}/>
                     </div>
                     <div className="search-right">
                         <button className="button searchBtn">{size === 'large' ? t('searchEmployee') : t('search')}</button>

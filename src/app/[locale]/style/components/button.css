@@ -12,6 +12,18 @@
     justify-content: center;
 }
 
+.button-black {
+    background-color: #171c20;
+    color: #fff;
+    transition: .2s ease-in-out;
+    font-weight: 500;
+    font-size: 15px;
+}
+
+.button-black:hover {
+    background-color: #FAFAFA;
+}
+
 .button-primary {
     background-color: #0070ff;
     color: #fff;

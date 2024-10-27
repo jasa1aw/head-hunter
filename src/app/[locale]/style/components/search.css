@@ -9,7 +9,7 @@
     transition: opacity 0.5s ease, transform 0.5s ease;
     animation: fadeIn 0.5s forwards;
     position: relative;
-    z-index: 9999;
+    z-index: 999;
 }
 
 .p7 .search {
@@ -149,12 +149,17 @@
     padding: 10px;
     border-radius: 12px;
     margin: 10px;
+    text-align: left;
 }
 
 .itemCard:hover {
     transition: .2s ease-in;
     background-color: #EEF1F7;
     cursor: pointer;
+}
+
+footer {
+    z-index: 1 !important;
 }
 @keyframes fadeIn {
     0% {
