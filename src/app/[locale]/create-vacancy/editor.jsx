@@ -5,17 +5,16 @@ export default function Editor({description, setDescription}){
     return(
         <CKEditor
             editor={ ClassicEditor }
+            config={ {
+                toolbar: [ 'bold', 'italic','bulletedList','numberedList','redo' ]
+            } }
             data={description}
             onReady={ editor => {
                 // You can store the "editor" and use when it is needed.
                 console.log( 'Editor is ready to use!', editor );
             } }
-            config={ {
-                toolbar: [ 'bold', 'italic', 'bulletedList', 'numberedList', 'redo' ]
-            } }
-            onChange={ ( event ) => {
-                // console.log( event );
-                const data = editor.getData();
+            onChange={ ( event,editor ) => {
+                const data = editor.getData()
                 setDescription(data)
             } }
             onBlur={ ( event, editor ) => {
