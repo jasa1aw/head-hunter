@@ -13,5 +13,6 @@
 
 .role::after {
     content: "*";
-    color: red;
+    color: rgb(241, 61, 61);
+    padding-left: 5px;
 }

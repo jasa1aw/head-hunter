@@ -1,26 +1,31 @@
-import styles from './help.module.css'
-export default function Help ( {disabled, setDisable} ) {
+import { Link } from '@/i18n/routing';
+import { useTranslations } from 'next-intl';
+import styles from './help.module.css';
+
+export default function Help({ disabled, setDisable }) {
+    const t = useTranslations();
+
     return (
         <>
             {disabled && <section className={styles.helpBg}>
                 <div className={styles.help}>
-                    <h3>Need help?</h3>
-                    <span>You can ask or find the answer yourself</span>
-                    <div className={styles.itemsHelp}>
+                    <h3>{t('help.needHelp')}</h3>
+                    <span>{t('help.askOrFindAnswer')}</span>
+                    <Link href={'/ticket'} className={styles.itemsHelp} onClick={() => setDisable(false)}>
                         <img src="/img/question.svg" alt="" />
-                        <p>Find an answer</p>
-                    </div>
-                    <div className={styles.itemsHelp}>
+                        <p>{t('help.findAnswer')}</p>
+                    </Link>
+                    <Link href={'/ticket'} className={styles.itemsHelp} onClick={() => setDisable(false)}>
                         <img src="/img/at.svg" alt="" />
-                        <p>Send an email</p>
-                    </div>
+                        <p>{t('help.sendEmail')}</p>
+                    </Link>
                     <div className={styles.bottomHelp}>
-                        <h5>Call us</h5>
+                        <h5>{t('help.callUs')}</h5>
                         <span>+7 747 031 96 45</span>
                     </div>
                     <span className={styles.cancel} onClick={() => setDisable(false)}>&#10006;</span>
                 </div>
             </section>}
         </>
-    )
+    );
 }

@@ -289,6 +289,37 @@
     "russian": "Русский",
     "kazakh": "Казахский",
     "english": "Английский"
+  },
+  "help": {
+    "needHelp": "Нужна помощь?",
+    "askOrFindAnswer": "Вы можете спросить или найти ответ здесь",
+    "findAnswer": "Найти ответ",
+    "sendEmail": "Отправить письмо",
+    "callUs": "Позвоните нам"
+  },
+  "ticket": {
+    "writeLetter": "Написать письмо",
+    "contactAs": "Я обращаюсь как",
+    "selectOption": "Выберите нужную опцию",
+    "notSelected": "Не выбрано",
+    "topic": "Тема",
+    "placeholderName": "Мади Ерасылович",
+    "name": "Имя",
+    "placeholderEmail": "example@com",
+    "email": "Почта",
+    "continue": "Продолжить",
+    "message": "Сообщения :"
+  },
+  "roles": {
+    "notSelect": "Не выбрано",
+    "employer": "Работодатель",
+    "employee": "Соискатель"
+  },
+  "options": {
+    "notSelect": "Не выбрано",
+    "question": "Задать вопрос / сообщить о проблеме",
+    "support": "Подать жалобу",
+    "thanks": "Выразить благодарность"
   }
-  }
+}
   
