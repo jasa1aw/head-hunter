@@ -1,10 +1,10 @@
 'use client';
-import { suggestion } from "@/app/[locale]/data/suggestion";
 import { Link } from '@/i18n/routing';
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
-import Suggestions from "./suggestions";
 import { useTranslations } from "next-intl";
+import { suggestion } from "@/app/mocks/suggestion";
+import Suggestions from './suggestions';
 export default function Search( {disabled, size} ) {
     const t = useTranslations("Header")
     const [value, setValue] = useState("");
@@ -22,7 +22,6 @@ export default function Search( {disabled, size} ) {
             setTimeout(() => setIsVisible(false), 500); 
         }
     }, [searchState]);
-
     useEffect(() => {        
         if (value) {
             const filtered = suggestion.filter(job => 

@@ -7,7 +7,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 2;
+    z-index: 200;
 }
 
 .help {
@@ -49,6 +49,10 @@
     font-size: 15px !important;
     font-weight: 500;
     cursor: pointer;
+}
+
+.itemsHelp p {
+    color: black;
 }
 
 .help img {

@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import Footer from '@/components/footer';
 import { useTranslations } from 'next-intl';
 import { getMyVacancies } from '../store/slices/vacancySlice';
+import Search from '@/components/header/search';
 
 export default function Vacancy() {
     const t = useTranslations("VacancyPage")
@@ -21,6 +22,7 @@ export default function Vacancy() {
             <Header/>
             <main>
                 <div className='container'>
+                    <Search/>
                     <div className='flex flex-ai-c flex-jc-sb ptb7'>
                         <h1>{t("my")}</h1>
                         <Link href={'/create-vacancy'} className='button button-secondary-bordered'>Создать вакансию</Link>

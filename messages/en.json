@@ -288,6 +288,37 @@
       "russian": "Russian",
       "kazakh": "Kazakh",
       "english": "English"
+    },
+    "help": {
+      "needHelp": "Need help?",
+      "askOrFindAnswer": "You can ask or find the answer yourself",
+      "findAnswer": "Find an answer",
+      "sendEmail": "Send an email",
+      "callUs": "Call us"
+    },
+    "ticket": {
+      "writeLetter": "Write a letter",
+      "contactAs": "I am contacting as",
+      "selectOption": "Select the required option",
+      "notSelected": "Not selected",
+      "topic": "Topic",
+      "placeholderName": "Madi Erasylovich",
+      "name": "Name",
+      "placeholderEmail": "example@com",
+      "email": "Email",
+      "continue": "Continue",
+      "message": "Message :"
+    },
+    "roles": {
+      "notSelect": "Not selected",
+      "employer": "Employer",
+      "employee": "Employee"
+    },
+    "options": {
+      "notSelect": "Not selected",
+      "question": "Ask a question / report a problem",
+      "support": "Submit a complaint",
+      "thanks": "Express gratitude"
     }
   }
   
