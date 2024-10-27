@@ -95,6 +95,7 @@ export const signIn = (data, router) => (dispatch) => {
     dispatch(authorize(res.data))
     router.push('/vacancy/')
   }).catch(e => {
+    console.log(e)
     dispatch(setError(e.response.data))
   })
 }

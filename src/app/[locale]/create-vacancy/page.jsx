@@ -7,16 +7,17 @@ import ModalSelectSpec from "@/components/ModalSelectSpec";
 import AutoCompliteTags from "@/components/AutoCompliteTags";
 // import Editor from "./editor";
 import { useDispatch, useSelector } from 'react-redux';
-import { getSpecializations, getCities, getExperiences, getSkills, getEmpTypes, createVacancy} from "@/store/slices/vacancySlice";
+import { getSpecializations, getCities, getExperiences, getSkills, getEmpTypes, createVacancy} from "../store/slices/vacancySlice";
 import Footer from "@/components/footer";
 import Search from "@/components/header/search";
 import { useRouter } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
+import dynamic from "next/dynamic";
 
 export default function CreateVacancy() {
     const dispatch = useDispatch();
     const router = useRouter();
-    const t = useTranslations("EmployerSignIn")
+    const t = useTranslations("CreateVacancy")
     const cities = useSelector((state) => state.vacancy.cities);
     const experiences = useSelector((state) => state.vacancy.experiences);
     const allSkills = useSelector((state) => state.vacancy.skills);
@@ -176,7 +177,7 @@ export default function CreateVacancy() {
                     <fieldset className="fieldset-vertical fieldset-md">
                         <label>{t('vacancyDescription')}</label>
                         <div>
-                            <Editor description={description} setDescription={setDescription} placeholder={t('Editor.descriptionPlaceholder')} />
+                            <Editor description={description} setDescription={setDescription} />
                         </div>
                     </fieldset>
 

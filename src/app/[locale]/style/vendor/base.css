@@ -1,6 +1,7 @@
 body {
     margin: 0;
     background-color: #f4f6fb;
+    height: 100%;
 }
 .wrapper {
     min-height: 100vh;
@@ -11,7 +12,7 @@ body {
 main {
     flex: 1;
 }
-body, div, input, a, li, ul, textarea, span, p, h1, h2, h3,h4 ol, aside, main, textarea {
+body, div, input, button, a, li, ul, textarea, span, p, h1, h2, h3,h4 ol, aside, main, textarea, select, option {
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
     text-decoration: none;
@@ -25,6 +26,9 @@ body, div, input, a, li, ul, textarea, span, p, h1, h2, h3,h4 ol, aside, main, t
     margin: 0 auto;
 }
 
+.midContainer {
+    max-width: 720px;
+}
 .flex {
     display: flex;
 }
@@ -34,6 +38,10 @@ body, div, input, a, li, ul, textarea, span, p, h1, h2, h3,h4 ol, aside, main, t
 }
 .flex-jc-c {
     justify-content: center;
+}
+
+.flex-jc-s {
+    justify-content:flex-start;
 }
 
 .flex-jc-sb {

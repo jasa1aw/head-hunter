@@ -1,0 +1,17 @@
+.write {
+    display: block;
+    width: 1250px;
+    margin: 30px auto;
+    padding: 15px;
+    border: 1px solid #dedede; 
+    border-radius: 6px;
+}
+
+.role {
+    font-weight: 500;
+}
+
+.role::after {
+    content: "*";
+    color: red;
+}
