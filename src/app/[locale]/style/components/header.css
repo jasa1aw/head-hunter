@@ -23,7 +23,7 @@
 }
 
 .header a {
-    color: #fff;
+    /* color: #fff; */
     margin: 0 10px;
     cursor: pointer;
     text-decoration: none;
@@ -43,11 +43,11 @@
 }
 
 .header-button {
+    color: #fff;
     border-radius: 25px;
     border: 1px solid #fff;
     outline: none;
     background-color: transparent;
-    color: #fff;
     display: flex;
     align-items: center;
     gap: 10px;

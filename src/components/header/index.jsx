@@ -38,13 +38,13 @@ export default function Header({bgColor, textColor}) {
                         <Link href={''} style={{color: `${textColor}`}}>{t('help')}</Link>
                     </div>
                     <div className="rigth-block">
-                        {currentUser && <span onClick={() => dispatch(setSearchResumes())} className="header-search">
+                        {currentUser && <span onClick={() => dispatch(setSearchResumes())} className="header-search" style={{color: `${textColor}`}}>
                             <img src="/img/search.svg" />
                             {t('search')}
                         </span>}
                         {currentUser && currentUser?.role?.name !== 'manager' && <Link href={'/create-resume'} className="header-button header-button-green">{t('createResume')}</Link>}
                         {currentUser && currentUser?.role?.name === 'manager' && <Link href={'/create-vacancy'} className="header-button header-button-green">{t('createVacancy')}</Link>}
-                        {!isAuth && <Link href={'/login'} className="header-button">
+                        {!isAuth && <Link href={'/login'} className="header-button" style={{color: `${textColor}`}}>
                             {t('login')}
                         </Link>}
                         {isAuth && <a className="header-button" onClick={() => dispatch(logOut(router))} style={{color: `${textColor}`}}>

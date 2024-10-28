@@ -21,11 +21,13 @@
 	margin-top: 50px;
 }
 .vacancyMain h1{
+	width: 50%;
 	font-size: 81px;
 	color: #2a3137;
 	margin: 0;
 }
 .vacancyMain p{
+	width: 25%;
 	font-size: 16px;
 	font-weight: 500;
 	color: #2a3137;
@@ -55,6 +57,7 @@
 	text-align: center;
 }
 .staffSearch h1{
+	width: 40%;
 	font-size: 64px;
 	color: #2a3137;
 	margin: 0 0 32px;
@@ -62,6 +65,9 @@
 .staffSearch p{
 	font-size: 16px;
 	color: #2a3137;
+}
+.staffSearch p:nth-child(2){
+	width: 27%;
 }
 .oftenSearch{
 	display: flex;
