@@ -1,8 +1,10 @@
 'use client';
 import { useState, useEffect } from "react";
 import Input from '@/components/input'
+import { useTranslations } from "next-intl";
 
 export default function AutoCompliteTags({label, placeholder, type, size, items, onSelect, selected}) {
+    const t = useTranslations('CreateVacancy')
     const [value, setValue] = useState([])
     const [filteredItems, setFilteredItems] = useState([])
     
@@ -73,7 +75,7 @@ export default function AutoCompliteTags({label, placeholder, type, size, items,
             <div className={"autocomplite " + size}>
                 <Input placeholder={placeholder} type={type} onChange={onChange} label={label} size={size}/> 
                 {filteredItems.length > 0 && <div className="dropdown dropdown-tags">
-                    <h4>Рекомендуемые навыки</h4>
+                    <h4>{t('recommend')}</h4>
                     {filteredItems.map(item => (<a key={item.id} onClick={() => onClick(item)}>{item.name}</a>))}
                 </div>}
             </div>

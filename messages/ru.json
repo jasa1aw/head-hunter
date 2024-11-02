@@ -136,7 +136,10 @@
       "vacancyDescription": "Опишите вакансию",
       "skills": "Ключевые навыки",
       "employmentType": "Тип занятости",
-      "createButton": "Создать"
+      "createButton": "Создать",
+      "recommend": "Рекомендуемые навыки",
+      "titleEdit": "Редактирование вакансии",
+      "save": "Save"
     },
     "EmployerSignIn": {
       "employerTitle": "Поиск сотрудников",
@@ -308,7 +311,14 @@
     "placeholderEmail": "example@com",
     "email": "Почта",
     "continue": "Продолжить",
-    "message": "Сообщения :"
+    "message": "Сообщения :",
+    "roleRequired": "Роль обязательна к заполнению",
+    "nameRequired": "Имя обязательно к заполнению",
+    "emailRequired": "Электронная почта обязательна к заполнению",
+    "optionRequired": "Опция обязательна к заполнению",
+    "topicRequired": "Тема обязательна к заполнению",
+    "descriptionRequired": "Описание обязательно к заполнению",
+    "successMessage": "Спасибо что отклинулись на проблему"
   },
   "roles": {
     "notSelect": "Не выбрано",

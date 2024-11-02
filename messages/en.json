@@ -136,7 +136,10 @@
       "vacancyDescription": "Describe the Vacancy",
       "skills": "Key Skills",
       "employmentType": "Employment Type",
-      "createButton": "Create"
+      "createButton": "Create",
+      "recommend": "Suggestion Skills",
+      "titleEdit": "Edit Vacancy",
+      "save": "Save"
     },
     "EmployerSignIn": {
       "employerTitle": "Searching for Employees",
@@ -307,7 +310,14 @@
       "placeholderEmail": "example@com",
       "email": "Email",
       "continue": "Continue",
-      "message": "Message :"
+      "message": "Message :",
+      "roleRequired": "Role is required",
+      "nameRequired": "Name is required",
+      "emailRequired": "Email is required",
+      "optionRequired": "Option is required",
+      "topicRequired": "Topic is required",
+      "descriptionRequired": "Description is required",
+      "successMessage": "Thanks for supporting us"
     },
     "roles": {
       "notSelect": "Not selected",

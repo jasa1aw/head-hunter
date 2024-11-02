@@ -2,7 +2,7 @@ export default function Input({className, label, placeholder, type, onChange, si
 
     return(
         <fieldset className={"fieldset " + size}>
-            {counter <= 0 && <label className={`counterLabel ${className}`}>{label}</label>}
+            {counter <= 0 && <label className={`${className}`}>{label}</label>}
 
             {counter >= 0 && <div className="flex flex-jc-s flex-ai-c">
                 <label className={`counterLabel ${className}`}>{label}</label>

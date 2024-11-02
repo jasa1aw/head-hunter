@@ -91,7 +91,7 @@ export const signUp = (data, router) => (dispatch) => {
 }
 
 export const signIn = (data, router) => (dispatch) => {
-  axios.post(`${END_POINT}/api/auth/login`, data).then(res => {
+  axios.post(`${END_POINT}/api/auth/login`, {}, {params: data}).then(res => {
     dispatch(authorize(res.data))
     router.push('/vacancy/')
   }).catch(e => {

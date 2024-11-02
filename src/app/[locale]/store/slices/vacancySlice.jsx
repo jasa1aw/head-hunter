@@ -147,6 +147,16 @@ export const deleteVacancy = (id) => async(dispatch) => {
     }   
 }
 
+export const updateVacancy = (sendData, router) => async(dispatch) => {
+    try {
+        const res = await axios.put(`${END_POINT}/api/vacancy`, sendData);
+        router.push('/vacancy')
+    } catch (e) {
+        alert("Что то пошло не так, сообщите об ошибке тех. спецам" )
+        console.log(e)
+    }   
+} 
+
 export const getSearchedVacancies = (params, router) => async(dispatch) => {
     try {
         const {

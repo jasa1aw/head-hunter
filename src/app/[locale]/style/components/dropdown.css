@@ -1,6 +1,8 @@
 .dropdown {
     position: absolute;
     top: 60px;
+    height: 300px;
+    overflow: auto;
     right: 0;
     border: 1px solid #ddd;
     border-radius: 4px;
