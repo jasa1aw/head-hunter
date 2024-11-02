@@ -7,13 +7,17 @@ import CustomSelect from "../ui/select";
 import styles from './ticket.module.css';
 import Input from "@/components/input";
 import { sendContactForm } from "@/library/send";
-import Editor from "../create-vacancy/editor";
+import Editor from "../../../components/Editor";
 import { getOptions, getRoles } from "@/app/mocks/helps";
 import Search from "@/components/header/search";
 import { useTranslations } from 'next-intl';
+import SuccessMessage from "../ui/succesMessage";
+import { useRouter } from "@/i18n/routing";
 
 export default function Ticket() {
     const t = useTranslations();
+    const router = useRouter()
+    const [showSuccessMessage, setShowSuccessMessage] = useState(false)
     const [role, setRole] = useState('notSelect');
     const [option, setOption] = useState('notSelect');
     const [counter, setCounter] = useState(100);
@@ -21,8 +25,26 @@ export default function Ticket() {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [description, setDescription] = useState('<h1>Сообщения</h1> <ul><li></li><li></li></ul>');
+    const [errors, setErrors] = useState({});
 
     const handleSubmit = async () => {
+        setErrors({});
+
+        const newErrors = {};
+        if (!name) newErrors.name = t('ticket.nameRequired');
+        if (!email) newErrors.email = t('ticket.emailRequired');
+        if (role === 'notSelect') newErrors.role = t('ticket.roleRequired');
+        if (option === 'notSelect') newErrors.option = t('ticket.optionRequired');
+        if (!topic) newErrors.topic = t('ticket.topicRequired');
+        if (!description || description.trim() === '<h1>Сообщения</h1> <ul><li></li><li></li></ul>') {
+            newErrors.description = t('ticket.descriptionRequired');
+        }
+
+        if (Object.keys(newErrors).length > 0) {
+            setErrors(newErrors);
+            return;
+        }
+
         const data = {
             name,
             email,
@@ -31,11 +53,18 @@ export default function Ticket() {
             topic,
             description,
         };
-        console.log(data);
         await sendContactForm(data);
+        setShowSuccessMessage(true);
+
+        setTimeout(() => {
+            setShowSuccessMessage(false);
+            router.push('/');
+        }, 2000);
     };
 
-    useEffect(() => { setCounter(100 - topic.length) }, [topic]);
+    useEffect(() => {
+        setCounter(100 - topic.length);
+    }, [topic]);
 
     return (
         <div className="wrapper">
@@ -51,6 +80,7 @@ export default function Ticket() {
                         onChange={setRole}
                         placeholder={t('ticket.notSelected')}
                     />
+                    {errors.role && <p className="error">{errors.role}</p>} 
                     <div className="mtb4"></div>
                     <label className={styles.role} htmlFor="role">{t('ticket.selectOption')}</label>
                     <CustomSelect
@@ -59,14 +89,20 @@ export default function Ticket() {
                         onChange={setOption}
                         placeholder={t('ticket.notSelected')}
                     />
+                    {errors.option && <p className="error">{errors.option}</p>} 
                     <div className="mtb4"></div>
                     <Input type='text' counter={counter} label={t('ticket.topic')} onChange={(e) => setTopic(e.target.value)} />
+                    {errors.topic && <p className="error">{errors.topic}</p>} 
                     <Editor description={description} setDescription={setDescription} />
-                    <Input placeholder={t('ticket.placeholderName')} label={t('ticket.name')} type='text' onChange={(e) => setName(e.target.value)} />
-                    <Input placeholder={t('ticket.placeholderEmail')} label={t('ticket.email')} type='text' onChange={(e) => setEmail(e.target.value)} />
+                    {errors.description && <p className="error">{errors.description}</p>} 
+                    <Input className={styles.role} placeholder={t('ticket.placeholderName')} label={t('ticket.name')} type='text' onChange={(e) => setName(e.target.value)} />
+                    {errors.name && <p className="error">{errors.name}</p>} 
+                    <Input className={styles.role} placeholder={t('ticket.placeholderEmail')} label={t('ticket.email')} type='text' onChange={(e) => setEmail(e.target.value)} />
+                    {errors.email && <p className="error">{errors.email}</p>} 
                     <button onClick={handleSubmit} className="button button-black">{t('ticket.continue')}</button>
                 </div>
             </main>
+            <SuccessMessage message={t('ticket.successMessage')} showSuccessMessage={showSuccessMessage} className={`successMessage`}/>
             <Footer />
         </div>
     );

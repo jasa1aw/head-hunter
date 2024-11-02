@@ -5,14 +5,13 @@ import { useEffect, useState } from "react";
 import AutoCompliteSelect from "@/components/AutoCompliteSelect";
 import ModalSelectSpec from "@/components/ModalSelectSpec";
 import AutoCompliteTags from "@/components/AutoCompliteTags";
-// import Editor from "./editor";
 import { useDispatch, useSelector } from 'react-redux';
 import { getSpecializations, getCities, getExperiences, getSkills, getEmpTypes, createVacancy} from "../store/slices/vacancySlice";
 import Footer from "@/components/footer";
 import Search from "@/components/header/search";
 import { useRouter } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
-import dynamic from "next/dynamic";
+import Editor from "@/components/Editor";
 
 export default function CreateVacancy() {
     const dispatch = useDispatch();
@@ -78,8 +77,6 @@ export default function CreateVacancy() {
             about_company: ''
         }, router))
     }
-
-    const Editor = dynamic(() => import("./editor"), { ssr: false });
 
     return(
         <div className="wrapper">
