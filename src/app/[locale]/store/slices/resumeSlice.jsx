@@ -37,7 +37,7 @@ export const {setMyResumes, appendResume, setResume, handleDeleteResume, setSear
 
 export const getMyResumes = () => async(dispatch) => {
     try {
-        const res = await axios.get(`${END_POINT}/api/resume`);
+        const res = await axios.get(`${END_POINT}/api/resumes`);
         dispatch(setMyResumes({resumes: res.data}))
     } catch (e) {
         alert("Что то пошло не так, сообщите об ошибке тех. спецам" )
