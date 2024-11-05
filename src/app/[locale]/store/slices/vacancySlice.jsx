@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios';
-import { END_POINT } from '@/config/end-point';
+import { END_POINT, SEARCH_END_POINT } from '@/config/end-point';
 
 
 export const vacancySlice = createSlice({
@@ -12,7 +12,7 @@ export const vacancySlice = createSlice({
     cities: [],
     experiences: [],
     skills: [],
-    empTypes: []
+    empTypes: [],
     },
     reducers: {
         setMyVacancies: (state, action) =>{
@@ -157,34 +157,22 @@ export const updateVacancy = (sendData, router) => async(dispatch) => {
     }   
 } 
 
-export const getSearchedVacancies = (params, router) => async(dispatch) => {
+
+export const getSearchedVacancies = (params, router) => async (dispatch) => {
     try {
-        const {
-            q,
-            specializationId,
-            cityId,
-            experienceId,
-            employmentTypeId,
-            salary,
-            salary_type
-        } = params;
-
-        let queryString = "?"
-        if(q) queryString +=`q=${q}&`
-        if(specializationId) queryString +=`specializationId=${specializationId}&`
-        if(cityId) queryString +=`cityId=${cityId}&`
-        if(salary) queryString +=`salary=${salary}&`
-        if(salary_type) queryString +=`salary_type=${salary_type}&`
-        if(experienceId) queryString +=`experienceId=${experienceId}&`
-        if(employmentTypeId) queryString +=`employmentTypeId=${employmentTypeId}&`
-
-        router.push(`/search/vacancy${queryString}`)
-        const res = await axios.get(`${END_POINT}/api/vacancy/search${queryString}`);
-        dispatch(setMyVacancies({vacancies: res.data}))
-    }catch(e) {
-        alert("Что то пошло не так, сообщите о ошибке Тех спецам сайта!")
+        console.log(params);
+        const res = await axios.post(`${SEARCH_END_POINT}/api/vacancies/searchVacanciesByParams`, params );
+        dispatch(setMyVacancies({ vacancies: res.data.original }));
+        const queryString = new URLSearchParams(params).toString();
+        router.push(`/search/vacancy?${queryString}`);
+    } catch (e) {
+        alert("Что-то пошло не так, сообщите об ошибке технической поддержке сайта!");
     }
-}
+};
+
+
+
+
 
 
 

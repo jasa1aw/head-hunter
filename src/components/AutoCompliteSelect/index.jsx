@@ -22,7 +22,6 @@ export default function AutoCompliteSelect({label, placeholder, type, size, item
         
     },[selected, items])
     const onChange = (e) => {
-        // console.log(e.target.value)
         if(e.target.value === "") {
             setFilteredItems([])
         }else {

@@ -106,6 +106,9 @@ body, div, input, button, a, li, ul, textarea, span, p, h1, h2, h3,h4 ol, aside,
     margin: 40px;
 }
 
+.mb1{
+    margin-bottom: 10px !important;
+}
 
 .mtb2 {
     margin: 10px 0;
@@ -132,6 +135,10 @@ body, div, input, button, a, li, ul, textarea, span, p, h1, h2, h3,h4 ol, aside,
 }
 .ck-powered-by {
     display: none;
+}
+
+.g3 {
+    gap: 10px;
 }
 
 .searchBtn{
