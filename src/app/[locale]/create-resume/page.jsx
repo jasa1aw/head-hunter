@@ -97,25 +97,44 @@ export default function CreateResume() {
   }
 
   const handleSave = () => {
-    dispatch(createResume({
-      first_name,
-      last_name,
-      phone,
-      birthday,
-      gender,
-      about,
-      position,
-      salary,
-      salary_type,
-      main_language:"Казахский",
-      skills,
-      cityId,
-      citizenship,
-      workingHistories,
-      education,
-      foreignLanguages,
-      employmentTypes
-    }, router))
+    console.log({
+        first_name,
+        last_name,
+        phone,
+        birthday,
+        gender,
+        about,
+        position,
+        salary,
+        salary_type,
+        main_language:"Казахский",
+        skills,
+        cityId,
+        citizenship,
+        workingHistories,
+        education,
+        foreignLanguages,
+        employmentTypes
+      })
+    // dispatch(createResume({
+    //   first_name,
+    //   last_name,
+    //   phone,
+    //   birthday,
+    //   gender,
+    //   about,
+    //   position,
+    //   salary,
+    //   salary_type,
+    //   main_language:"Казахский",
+    //   skills,
+    //   cityId,
+    //   citizenship,
+    //   workingHistories,
+    //   education,
+    //   foreignLanguages,
+    //   employmentTypes
+    // }, router))
   }
 
   
@@ -189,7 +208,7 @@ export default function CreateResume() {
             <AddEducation t={t} onChange={(eds) => setEducation(eds)} education={education}/>
 
             <h3>{t("languages")}</h3>
-            <AddLang onChange={(lns) => setForeignLanguages(lns)} foreignLanguages={[]}/>
+            <AddLang onChange={(lns) => setForeignLanguages(lns)} foreignLanguages={foreignLanguages ? foreignLanguages : []}/>
 
             <h3>{t("otherInf")}</h3>
             <SelectEmploymentTypes label={`${t("employmentTypes")}`} allEmploymentTypes={allEmploymentTypes} size="fieldset-md" onChange={(tps) => setSelectedEmpTypes(tps)} employmentTypes={[]}/>
