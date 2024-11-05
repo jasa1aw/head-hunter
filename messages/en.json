@@ -212,6 +212,12 @@
         "3": "One week",
         "4": "Last 3 days",
         "5": "Last day"
+      },
+      "sort": {
+        "sortLabel": "Sort parametrs",
+        "sortByName": "By name",
+        "sortBySalaryFrom": "By salary",
+        "sortByCreatedAt": "By date"
       }
     },
     "SearchVacancy": {
@@ -226,7 +232,25 @@
       "currencyUSD": "USD",
       "currencyRUB": "RUB",
       "experienceLabel": "Work Experience",
-      "employmentTypeLabel": "Employment Type"
+      "employmentTypeLabel": "Employment Type",
+      "skills": "Key Skills",
+      "from": "From",
+      "to": "To",
+      "timeGet": "Currency of time",
+      "datatypes" : {
+        "1" : "For all time",
+        "2": "One month",
+        "3": "One week",
+        "4": "Last 3 days",
+        "5": "Last day"
+      },
+      "sort": {
+        "sortLabel": "Sort parametrs",
+        "sortByName": "By name",
+        "sortBySalaryFrom": "By salary",
+        "sortByCreatedAt": "By date"
+      },
+      "search": "Search"
     },
     "VacancyPage": {
       "my": "My Vacancies",

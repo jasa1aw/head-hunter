@@ -158,6 +158,21 @@
     cursor: pointer;
 }
 
+.sort-icon {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sort-icon img {
+    width: 30px;
+}
+
+.sort-icon span {
+    color: #589beb;
+    cursor: pointer;
+}
+
 footer {
     z-index: 1 !important;
 }

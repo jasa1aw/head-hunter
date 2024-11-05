@@ -1,96 +1,98 @@
 'use client';
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Header from "@/components/header";
 import { useDispatch, useSelector } from "react-redux";
-import { getSpecializations, getCities, getExperiences, getSkills, getEmpTypes, getdateTypes, getSearchedVacancies } from "@/app/[locale]/store/slices/vacancySlice";
+import {
+    getSpecializations,
+    getCities,
+    getExperiences,
+    getSkills,
+    getEmpTypes,
+    getSearchedVacancies
+} from "@/app/[locale]/store/slices/vacancySlice";
 import ModalSelectSpec from '@/components/ModalSelectSpec';
 import AutoCompliteSelect from '@/components/AutoCompliteSelect';
 import Footer from "@/components/footer";
 import Search from "@/components/header/search";
 import { useRouter } from "@/i18n/routing";
 import { useTranslations } from 'next-intl';
-import { dataTypes } from "@/app/mocks/dataTypes";
 import AutoCompliteTags from "@/components/AutoCompliteTags";
-import { Slider } from "@mui/material";
+import { FormControlLabel, Modal, Slider, Switch } from "@mui/material";
+import { dataTypes } from "@/app/mocks/dataTypes";
 
 export default function SearchVacancyAdvanced() {
     const t = useTranslations('SearchVacancyAdvanced');
-    const [name, setName] = useState();
-    const [specializationId, setSpecialization] = useState();
-    const [specializationName, setSpecializationName] = useState();
-    const [isSpecModalOpen, setSpecModalOpen] = useState(false);
-    const [dateRange, setDateRange] = useState(null)
-    const [skills, setSelectedSkills] = useState('');
-    const [cityId, setCity] = useState();
-    const [salary_type, setSalaryType] = useState("KZT");
-    const [salaryRange, setSalaryRange] = useState([0, 1000]);
-    const [experienceId, setExperienceId] = useState();
-    const [employmentTypeId, setEmploymentType] = useState();
-
-    const router = useRouter();
     const dispatch = useDispatch();
-    const closeSpecModal = () => {
-        setSpecModalOpen(false);
-    };
+    const router = useRouter();
+    
+    const [name, setName] = useState(null);
+    const [specializationId, setSpecialization] = useState(null);
+    const [specializationName, setSpecializationName] = useState('');
+    const [isSpecModalOpen, setSpecModalOpen] = useState(false);
+    const [dateRange, setDateRange] = useState(null);
+    const [skills, setSelectedSkills] = useState([]);
+    const [cityId, setCity] = useState(null);
+    const [salaryType, setSalaryType] = useState("KZT");
+    const [salaryRange, setSalaryRange] = useState([0, 1000]);
+    const [experienceId, setExperienceId] = useState(null);
+    const [employmentTypeId, setEmploymentType] = useState(null);
+    const [sortOptions, setSortOptions] = useState({
+        byName: false,
+        bySalaryFrom: false,
+        byCreatedAt: false,
+    });
 
-    useEffect(() => {
+    const fetchData = useCallback(() => {
         dispatch(getSpecializations());
         dispatch(getCities());
         dispatch(getExperiences());
         dispatch(getSkills());
         dispatch(getEmpTypes());
-    }, []);
+    }, [dispatch]);
 
-    const handleOnSpecChange = (e) => {
-        setSpecializationName(e.target.dataset.name);
-        setSpecialization(e.target.value * 1);
-        closeSpecModal();
-    };
+    useEffect(() => {
+        fetchData();
+    }, []);
 
     const cities = useSelector(state => state.vacancy.cities);
     const experiences = useSelector(state => state.vacancy.experiences);
     const empTypes = useSelector(state => state.vacancy.empTypes);
     const allSkills = useSelector(state => state.vacancy.skills);
 
-    const handleChangeExp = (e) => {
-        setExperienceId(e.target.value);
+    const handleOnSpecChange = (e) => {
+        setSpecialization(Number(e.target.value));
+        setSpecializationName(e.target.dataset.name);
+        setSpecModalOpen(false);
     };
 
-    const onSkillsChange = (data) =>{
-        const arr = data.map(item => item.name)
-        setSelectedSkills(arr.join(','))
-    }
-    
-    const handleSalaryRangeChange = (event, newValue) => {
-        setSalaryRange(newValue)
-    }
+    const onSkillsChange = (data) => {
+        setSelectedSkills(data.map(item => item.name));
+    };
 
     const handleSearch = () => {
         const requestBody = {
             name,
             salary_from: salaryRange[0],
             salary_to: salaryRange[1],
-            salary_type,
+            salary_type: salaryType,
             skills,
             cityId,
             specializationId,
             employmentTypeId,
             experienceId,
             dateRange,
-            sortByName: 1,
-            sortBySalaryFrom: 1,
-            sortByCreatedAt: 1,
-            sortByUpdatedAt: 1
+            sortByName: !sortOptions.byName ? '0' : '1',
+            sortBySalaryFrom: !sortOptions.bySalaryFrom ? '0' : '1',
+            sortByCreatedAt: !sortOptions.byCreatedAt ? '0' : '1',
         };
-    
-        dispatch(getSearchedVacancies(requestBody))
+
+        dispatch(getSearchedVacancies(requestBody, router));
     };
-    
 
     return (
         <div className="wrapper">
             <main>
-                <Header />
+                <Header />+
                 <div className="container p7">
                     <Search />
                     <h1>{t('searchVacancy')}</h1>
@@ -106,18 +108,27 @@ export default function SearchVacancyAdvanced() {
                         />
                     </fieldset>
 
-                    <AutoCompliteTags placeholder={''} type='text' label={`${t("skills")}`} size="fieldset-md" items={allSkills} onSelect={onSkillsChange} selected={skills.split(',').map(item => ({name: item}))}/>
+                    <AutoCompliteTags
+                        placeholder={''}
+                        type='text'
+                        label={`${t("skills")}`}
+                        size="fieldset-md"
+                        items={allSkills}
+                        onSelect={onSkillsChange}
+                        selected={skills.map(name => ({ name }))}
+                    />
 
                     <fieldset className="fieldset-vertical">
                         <label>{t('specialization')}</label>
                         {specializationName && <p>{specializationName}</p>}
                         <p className="link" onClick={() => setSpecModalOpen(true)}>{t('setSpecialization')}</p>
                     </fieldset>
+
                     {isSpecModalOpen && (
                         <ModalSelectSpec
-                            close={closeSpecModal}
+                            close={() => setSpecModalOpen(false)}
                             onChange={handleOnSpecChange}
-                            value={specializationId * 1}
+                            value={specializationId}
                         />
                     )}
 
@@ -129,12 +140,34 @@ export default function SearchVacancyAdvanced() {
                         items={cities}
                         onSelect={(data) => setCity(data.id)}
                     />
+
+                    <div className="sort-icon" onClick={() => setSortOptions((prev) => ({ ...prev, open: !prev.open }))}>
+                        <img src="/img/filter.png" alt="" />
+                        <span>{t('sort.sortLabel')}</span>
+                    </div>
+
+                    {sortOptions.open && (
+                        <Modal className="modal-center" open={sortOptions.open} onClose={() => setSortOptions((prev) => ({ ...prev, open: false }))}>
+                            <div className="modal-content">
+                                <h2>{t('sort.sortLabel')}</h2>
+                                {Object.entries(sortOptions).filter(([key]) => key !== 'open').map(([key, value]) => (
+                                    <FormControlLabel
+                                        key={key}
+                                        control={<Switch color="info" checked={value} onChange={() => setSortOptions(prev => ({ ...prev, [key]: !value }))} />}
+                                        label={t(`sort.${key.replace('by', 'sortBy')}`)} 
+                                    />
+                                ))}
+                                <button className="button button-primary close" onClick={() => setSortOptions((prev) => ({ ...prev, open: false }))}>&#10005;</button>
+                            </div>
+                        </Modal>
+                    )}
+
                     <fieldset className="fieldset fieldset-sm flex-cl">
                         <div>
                             <label>{t('salary')}</label>
                             <Slider
                                 value={salaryRange}
-                                onChange={handleSalaryRangeChange}
+                                onChange={(event, newValue) => setSalaryRange(newValue)}
                                 valueLabelDisplay="auto"
                                 min={0}
                                 max={1000000}
@@ -149,12 +182,12 @@ export default function SearchVacancyAdvanced() {
                             <select
                                 className="input small-select"
                                 name="salary_type"
-                                value={salary_type}
+                                value={salaryType}
                                 onChange={(e) => setSalaryType(e.target.value)}
-                                >
-                                <option value={"KZT"}>KZT</option>
-                                <option value={"USD"}>USD</option>
-                                <option value={"RUB"}>RUB</option>
+                            >
+                                <option value="KZT">KZT</option>
+                                <option value="USD">USD</option>
+                                <option value="RUB">RUB</option>
                             </select>
                         </div>
                     </fieldset>
@@ -168,7 +201,7 @@ export default function SearchVacancyAdvanced() {
                                         type="radio"
                                         value={exp.id}
                                         name="exp"
-                                        onChange={handleChangeExp}
+                                        onChange={() => setExperienceId(exp.id)}
                                     />
                                     <label>{exp.duration}</label>
                                 </div>
@@ -185,14 +218,13 @@ export default function SearchVacancyAdvanced() {
                                         type="radio"
                                         value={dtp.id}
                                         name="dtp"
-                                        onChange={(e) => setDateRange(dtp.range.gte)}
+                                        onChange={() => setDateRange(dtp.range.gte)}
                                     />
                                     <label>{dtp.value}</label>
                                 </div>
                             ))}
                         </div>
                     </fieldset>
-
 
                     <fieldset className="fieldset-vertical fieldset-md">
                         <label>{t('employmentType')}</label>
@@ -203,13 +235,14 @@ export default function SearchVacancyAdvanced() {
                                         type="radio"
                                         value={et.id}
                                         name="empType"
-                                        onChange={(e) => setEmploymentType(e.target.value)}
+                                        onChange={() => setEmploymentType(et.id)}
                                     />
                                     <label>{et.name}</label>
                                 </div>
                             ))}
                         </div>
                     </fieldset>
+
                     <button className="button button-primary" onClick={handleSearch}>{t('search')}</button>
                 </div>
             </main>

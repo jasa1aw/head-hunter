@@ -212,6 +212,12 @@
         "3": "За неделю",
         "4": "За последние три дня",
         "5": "За сутки"
+      },
+      "sort": {
+        "sortLabel": "Сортировка",
+        "sortByName": "По имени",
+        "sortBySalaryFrom": "По зарплате",
+        "sortByCreatedAt": "По дате"
       }
     },
     "SearchVacancy": {
@@ -227,7 +233,24 @@
       "currencyRUB": "RUB",
       "experienceLabel": "Опыт работы",
       "employmentTypeLabel": "Тип занятости",
-      "searchButton": "Поиск"
+      "searchButton": "Поиск",
+      "skills": "Ключевые навыки",
+      "from": "От",
+      "to": "До",
+      "timeGet": "Выводить по времени",
+      "datatypes" : {
+        "1" : "За всё время",
+        "2": "За месяц",
+        "3": "За неделю",
+        "4": "За последние три дня",
+        "5": "За сутки"
+      },
+      "sort": {
+        "sortLabel": "Сортировка",
+        "sortByName": "По имени",
+        "sortBySalaryFrom": "По зарплате",
+        "sortByCreatedAt": "По дате"
+      }
     },
     "VacancyPage": {
     "my": "Мои вакансии",
