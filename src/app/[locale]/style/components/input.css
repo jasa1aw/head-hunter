@@ -92,9 +92,16 @@
     border-color: #ddd;
 }
 
-/* .autocomplite{
-    position: relative;
-} */
+.salary-labels {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.small-select {
+    width: 90px;
+}
 
 .input-group .input:first-child {
     border-left: 1px solid #ddd;

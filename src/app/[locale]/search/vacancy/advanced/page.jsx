@@ -2,23 +2,28 @@
 import { useEffect, useState } from "react";
 import Header from "@/components/header";
 import { useDispatch, useSelector } from "react-redux";
-import { getSpecializations, getCities, getExperiences, getSkills, getEmpTypes } from "@/app/[locale]/store/slices/vacancySlice";
+import { getSpecializations, getCities, getExperiences, getSkills, getEmpTypes, getdateTypes, getSearchedVacancies } from "@/app/[locale]/store/slices/vacancySlice";
 import ModalSelectSpec from '@/components/ModalSelectSpec';
 import AutoCompliteSelect from '@/components/AutoCompliteSelect';
 import Footer from "@/components/footer";
 import Search from "@/components/header/search";
 import { useRouter } from "@/i18n/routing";
 import { useTranslations } from 'next-intl';
+import { dataTypes } from "@/app/mocks/dataTypes";
+import AutoCompliteTags from "@/components/AutoCompliteTags";
+import { Slider } from "@mui/material";
 
 export default function SearchVacancyAdvanced() {
     const t = useTranslations('SearchVacancyAdvanced');
-    const [q, setQ] = useState("");
+    const [name, setName] = useState();
     const [specializationId, setSpecialization] = useState();
     const [specializationName, setSpecializationName] = useState();
     const [isSpecModalOpen, setSpecModalOpen] = useState(false);
+    const [dateRange, setDateRange] = useState(null)
+    const [skills, setSelectedSkills] = useState('');
     const [cityId, setCity] = useState();
-    const [salary, setSalary] = useState("");
     const [salary_type, setSalaryType] = useState("KZT");
+    const [salaryRange, setSalaryRange] = useState([0, 1000]);
     const [experienceId, setExperienceId] = useState();
     const [employmentTypeId, setEmploymentType] = useState();
 
@@ -45,24 +50,42 @@ export default function SearchVacancyAdvanced() {
     const cities = useSelector(state => state.vacancy.cities);
     const experiences = useSelector(state => state.vacancy.experiences);
     const empTypes = useSelector(state => state.vacancy.empTypes);
+    const allSkills = useSelector(state => state.vacancy.skills);
 
     const handleChangeExp = (e) => {
         setExperienceId(e.target.value);
     };
 
+    const onSkillsChange = (data) =>{
+        const arr = data.map(item => item.name)
+        setSelectedSkills(arr.join(','))
+    }
+    
+    const handleSalaryRangeChange = (event, newValue) => {
+        setSalaryRange(newValue)
+    }
+
     const handleSearch = () => {
-        let queryString = "?";
-
-        if (q) queryString += `q=${q}&`;
-        if (specializationId) queryString += `specializationId=${specializationId}&`;
-        if (cityId) queryString += `cityId=${cityId}&`;
-        if (salary) queryString += `salary=${salary}&`;
-        if (salary_type) queryString += `salary_type=${salary_type}&`;
-        if (experienceId) queryString += `experienceId=${experienceId}&`;
-        if (employmentTypeId) queryString += `employmentTypeId=${employmentTypeId}&`;
-
-        router.push(`/search/vacancy${queryString}`);
+        const requestBody = {
+            name,
+            salary_from: salaryRange[0],
+            salary_to: salaryRange[1],
+            salary_type,
+            skills,
+            cityId,
+            specializationId,
+            employmentTypeId,
+            experienceId,
+            dateRange,
+            sortByName: 1,
+            sortBySalaryFrom: 1,
+            sortByCreatedAt: 1,
+            sortByUpdatedAt: 1
+        };
+    
+        dispatch(getSearchedVacancies(requestBody))
     };
+    
 
     return (
         <div className="wrapper">
@@ -78,10 +101,12 @@ export default function SearchVacancyAdvanced() {
                             className="input"
                             placeholder={t('placeholderTitle')}
                             type="text"
-                            value={q}
-                            onChange={(e) => setQ(e.target.value)}
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
                         />
                     </fieldset>
+
+                    <AutoCompliteTags placeholder={''} type='text' label={`${t("skills")}`} size="fieldset-md" items={allSkills} onSelect={onSkillsChange} selected={skills.split(',').map(item => ({name: item}))}/>
 
                     <fieldset className="fieldset-vertical">
                         <label>{t('specialization')}</label>
@@ -100,27 +125,33 @@ export default function SearchVacancyAdvanced() {
                         placeholder=""
                         type="text"
                         label={t('city')}
-                        size="fieldset-md fieldset-vertical"
+                        size="fieldset-md fieldset-vertical mb1"
                         items={cities}
                         onSelect={(data) => setCity(data.id)}
                     />
-
-                    <fieldset className="fieldset-vertical fieldset-md">
-                        <label>{t('salary')}</label>
-                        <div className="input-group">
-                            <input
-                                className="input"
-                                placeholder={t('from')}
-                                type="text"
-                                value={salary}
-                                onChange={(e) => setSalary(e.target.value)}
+                    <fieldset className="fieldset fieldset-sm flex-cl">
+                        <div>
+                            <label>{t('salary')}</label>
+                            <Slider
+                                value={salaryRange}
+                                onChange={handleSalaryRangeChange}
+                                valueLabelDisplay="auto"
+                                min={0}
+                                max={1000000}
+                                size="small"
                             />
+                        </div>
+                        <div>
+                            <div className="salary-labels">
+                                <span>{t('from')}: {salaryRange[0]}</span>
+                                <span>{t('to')}: {salaryRange[1]}</span>
+                            </div>
                             <select
-                                className="input"
+                                className="input small-select"
                                 name="salary_type"
                                 value={salary_type}
                                 onChange={(e) => setSalaryType(e.target.value)}
-                            >
+                                >
                                 <option value={"KZT"}>KZT</option>
                                 <option value={"USD"}>USD</option>
                                 <option value={"RUB"}>RUB</option>
@@ -144,6 +175,24 @@ export default function SearchVacancyAdvanced() {
                             ))}
                         </div>
                     </fieldset>
+
+                    <fieldset className="fieldset-vertical fieldset-md">
+                        <label>{t('timeGet')}</label>
+                        <div>
+                            {dataTypes(t).map(dtp => (
+                                <div className="radio" key={dtp.id}>
+                                    <input
+                                        type="radio"
+                                        value={dtp.id}
+                                        name="dtp"
+                                        onChange={(e) => setDateRange(dtp.range.gte)}
+                                    />
+                                    <label>{dtp.value}</label>
+                                </div>
+                            ))}
+                        </div>
+                    </fieldset>
+
 
                     <fieldset className="fieldset-vertical fieldset-md">
                         <label>{t('employmentType')}</label>

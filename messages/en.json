@@ -192,16 +192,27 @@
     },
     "SearchVacancyAdvanced": {
       "searchVacancy": "Search Vacancy",
+      "skills": "Key Skills",
       "keywords": "Keywords",
       "placeholderTitle": "Title",
       "specialization": "Specify Specialization",
       "setSpecialization": "Specify Specialization",
       "city": "City of Residence",
       "salary": "Expected Monthly Income Level",
+      "become": "Monthly become level",
       "from": "From",
+      "to": "To",
       "experience": "Work Experience",
       "employmentType": "Employment Type",
-      "search": "Search"
+      "search": "Search",
+      "timeGet": "Currency of time",
+      "datatypes" : {
+        "1" : "For all time",
+        "2": "One month",
+        "3": "One week",
+        "4": "Last 3 days",
+        "5": "Last day"
+      }
     },
     "SearchVacancy": {
       "titlePlaceholder": "Title",

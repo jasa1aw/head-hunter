@@ -192,16 +192,27 @@
     },
     "SearchVacancyAdvanced": {
       "searchVacancy": "Поиск вакансии",
+      "skills": "Ключевые навыки",
       "keywords": "Ключевые слова",
       "placeholderTitle": "Название",
       "specialization": "Укажите специализацию",
       "setSpecialization": "Укажите специализацию",
       "city": "Город проживания",
       "salary": "Уровень ожидаемого ежемесячного дохода",
+      "become": "Желаемый порог дохода",
       "from": "От",
+      "to": "До",
       "experience": "Опыт работы",
       "employmentType": "Тип занятости",
-      "search": "Поиск"
+      "search": "Поиск",
+      "timeGet": "Выводить по времени",
+      "datatypes" : {
+        "1" : "За всё время",
+        "2": "За месяц",
+        "3": "За неделю",
+        "4": "За последние три дня",
+        "5": "За сутки"
+      }
     },
     "SearchVacancy": {
       "titlePlaceholder": "Название",
