@@ -364,6 +364,9 @@
       "question": "Ask a question / report a problem",
       "support": "Submit a complaint",
       "thanks": "Express gratitude"
+    },
+    "messages": {
+      "authError" : "Please Login if you want to continue"
     }
   }
   

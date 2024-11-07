@@ -163,9 +163,11 @@ export const getSearchedVacancies = (params, router) => async (dispatch) => {
         console.log(params);
         const res = await axios.post(`${SEARCH_END_POINT}/api/vacancies/searchVacanciesByParams`, params );
         dispatch(setMyVacancies({ vacancies: res.data.original }));
-        const queryString = new URLSearchParams(params).toString();
+        const queryString = new URLSearchParams(params).toString()
+        console.log(queryString)
         router.push(`/search/vacancy?${queryString}`);
     } catch (e) {
+        console.log(e);
         alert("Что-то пошло не так, сообщите об ошибке технической поддержке сайта!");
     }
 };

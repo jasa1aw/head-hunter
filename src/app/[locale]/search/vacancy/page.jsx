@@ -26,7 +26,7 @@ export default function SearchVacancy() {
         specializationId: Number(params.get('specializationId')) || undefined,
         specializationName: '',
         dateRange: params.get('dateRange') || undefined,
-        skills: params.get('skills'),
+        skills: params.get('skills') || '',
         cityId: Number(params.get('cityId')) || undefined,
         salaryType: params.get('salary_type') || 'KZT',
         salaryRange: [

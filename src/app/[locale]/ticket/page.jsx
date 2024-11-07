@@ -1,7 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useState, useMemo, useCallback } from 'react';
 import CustomSelect from "../ui/select";
 import styles from './ticket.module.css';
 import Input from "@/components/input";
@@ -15,7 +15,6 @@ const Header = dynamic(() => import('@/components/header'), { ssr: false });
 const Footer = dynamic(() => import('@/components/footer'), { ssr: false });
 const Search = dynamic(() => import('@/components/header/search'), { ssr: false });
 const Editor = dynamic(() => import('../../../components/Editor'), { ssr: false });
-
 
 export default function Ticket() {
     const t = useTranslations();
@@ -32,6 +31,10 @@ export default function Ticket() {
 
     const rolesOptions = useMemo(() => getRoles(t), [t]);
     const optionValues = useMemo(() => getOptions(t), [t]);
+
+    const handleTopicChange = useCallback((e) => {
+        setTopic(e.target.value);
+    }, []);
 
     const handleSubmit = async () => {
         setErrors({});
@@ -102,7 +105,7 @@ export default function Ticket() {
                         type='text'
                         counter={counter}
                         label={t('ticket.topic')}
-                        onChange={(e) => setTopic(e.target.value)}
+                        onChange={handleTopicChange}
                     />
                     {errors.topic && <p className="error">{errors.topic}</p>}
                     <Editor description={description} setDescription={setDescription} />

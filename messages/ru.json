@@ -364,6 +364,9 @@
     "question": "Задать вопрос / сообщить о проблеме",
     "support": "Подать жалобу",
     "thanks": "Выразить благодарность"
+  },
+  "messages": {
+    "AuthError" : "Please Login if you want to continue"
   }
 }
   
