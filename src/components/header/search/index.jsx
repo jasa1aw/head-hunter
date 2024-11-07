@@ -1,17 +1,26 @@
 'use client';
-import { Link } from '@/i18n/routing';
+import { Link, useRouter } from '@/i18n/routing';
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useTranslations } from "next-intl";
 import { suggestion } from "@/app/mocks/suggestion";
 import Suggestions from './suggestions';
+import { getSearchedVacancies } from '@/app/[locale]/store/slices/vacancySlice';
+import SuccessMessage from '@/app/[locale]/ui/succesMessage';
+
 export default function Search( {disabled, size} ) {
-    const t = useTranslations("Header")
+    const dispatch = useDispatch()
+    const router = useRouter()
+    const t = useTranslations("")
+
+    const isAuth = useSelector((state) => state.auth.isAuth)
+    const searchState = useSelector((state) => state.resume.search);
+    const [showSuccessMessage, setShowSuccessMessage] = useState(false)
     const [value, setValue] = useState("");
     const [isVisible, setIsVisible] = useState(false);
     const [isAnimating, setIsAnimating] = useState(false);
     const [filteredJobs, setFilteredJobs] = useState([]);
-    const searchState = useSelector((state) => state.resume.search);
+    const [disableValue, setDisableValue] = useState(true);
 
     useEffect(() => {
         if (searchState || disabled) {
@@ -19,9 +28,10 @@ export default function Search( {disabled, size} ) {
             setIsAnimating(false);
         } else {
             setIsAnimating(true);
-            setTimeout(() => setIsVisible(false), 500); 
+            setTimeout(() => setIsVisible(false), 1000); 
         }
     }, [searchState]);
+
     useEffect(() => {        
         if (value) {
             const filtered = suggestion.filter(job => 
@@ -31,7 +41,25 @@ export default function Search( {disabled, size} ) {
         } else {
             setFilteredJobs([])
         }
-    }, [value])
+    }, [value]);
+
+    useEffect(() => {
+        if (value && !disableValue) {
+            setDisableValue(true);
+        }
+    }, [value]);
+
+    const handleClick = async () => {
+        if (isAuth) {
+          dispatch(getSearchedVacancies({ name: value }, router));
+        } else {
+          setShowSuccessMessage(true);
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+          setShowSuccessMessage(false);
+          router.push('/login');
+        }
+      };
+
     return (
         <>
             {(isVisible || disabled) && (
@@ -42,19 +70,27 @@ export default function Search( {disabled, size} ) {
                             value={value}
                             onChange={(e) => setValue(e.target.value)}
                             type="text"
-                            placeholder={`${t('placeholder')}`}
+                            placeholder={`${t('Header.placeholder')}`}
                         />
                         <span className="clear-icon" onClick={() => setValue("")}>&#10006;</span>
-                        <Suggestions filteredJobs={filteredJobs} setValue={setValue}/>
+                        <Suggestions 
+                            filteredJobs={filteredJobs} 
+                            setValue={setValue} 
+                            setDisableValue={setDisableValue} 
+                            disableValue={disableValue} 
+                        />
                     </div>
                     <div className="search-right">
-                        <button className="button searchBtn">{size === 'large' ? t('searchEmployee') : t('search')}</button>
+                        <button onClick={handleClick} className="button searchBtn">
+                            {size === 'large' ? t('Header.searchEmployee') : t('Header.search')}
+                        </button>
                         {!disabled && <Link href={'/search/vacancy/advanced'}>
                             <img src="/img/filter.png" alt="" />
                         </Link>}
                     </div>
                 </div>
             )}
+            <SuccessMessage message={t('messages.authError')} showSuccessMessage={showSuccessMessage} className={'successMessage errorMessage'}/>
         </>
     );
 }

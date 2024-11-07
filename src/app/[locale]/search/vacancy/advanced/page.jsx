@@ -30,7 +30,7 @@ export default function SearchVacancyAdvanced() {
     const [specializationName, setSpecializationName] = useState('');
     const [isSpecModalOpen, setSpecModalOpen] = useState(false);
     const [dateRange, setDateRange] = useState(null);
-    const [skills, setSelectedSkills] = useState([]);
+    const [skills, setSelectedSkills] = useState('');
     const [cityId, setCity] = useState(null);
     const [salaryType, setSalaryType] = useState("KZT");
     const [salaryRange, setSalaryRange] = useState([0, 1000]);
@@ -66,7 +66,7 @@ export default function SearchVacancyAdvanced() {
     };
 
     const onSkillsChange = (data) => {
-        setSelectedSkills(data.map(item => item.name));
+        setSelectedSkills(data.map(item => item.name).join(','));
     };
 
     const handleSearch = () => {
@@ -86,7 +86,11 @@ export default function SearchVacancyAdvanced() {
             sortByCreatedAt: !sortOptions.byCreatedAt ? '0' : '1',
         };
 
-        dispatch(getSearchedVacancies(requestBody, router));
+        const filteredRequestBody = Object.fromEntries(
+            Object.entries(requestBody).filter(([_, value]) => value !== null && value !== undefined)
+        );
+
+        dispatch(getSearchedVacancies(filteredRequestBody, router));
     };
 
     return (
@@ -115,7 +119,6 @@ export default function SearchVacancyAdvanced() {
                         size="fieldset-md"
                         items={allSkills}
                         onSelect={onSkillsChange}
-                        selected={skills.map(name => ({ name }))}
                     />
 
                     <fieldset className="fieldset-vertical">

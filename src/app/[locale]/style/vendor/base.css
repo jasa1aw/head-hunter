@@ -193,4 +193,7 @@ body, div, input, button, a, li, ul, textarea, span, p, h1, h2, h3,h4 ol, aside,
     left: 80px;
 }
 
-
+.errorMessage {
+    border: 1px solid #e13636; 
+    color: #d20606;
+}
