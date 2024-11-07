@@ -192,16 +192,33 @@
     },
     "SearchVacancyAdvanced": {
       "searchVacancy": "Search Vacancy",
+      "skills": "Key Skills",
       "keywords": "Keywords",
       "placeholderTitle": "Title",
       "specialization": "Specify Specialization",
       "setSpecialization": "Specify Specialization",
       "city": "City of Residence",
       "salary": "Expected Monthly Income Level",
+      "become": "Monthly become level",
       "from": "From",
+      "to": "To",
       "experience": "Work Experience",
       "employmentType": "Employment Type",
-      "search": "Search"
+      "search": "Search",
+      "timeGet": "Currency of time",
+      "datatypes" : {
+        "1" : "For all time",
+        "2": "One month",
+        "3": "One week",
+        "4": "Last 3 days",
+        "5": "Last day"
+      },
+      "sort": {
+        "sortLabel": "Sort parametrs",
+        "sortByName": "By name",
+        "sortBySalaryFrom": "By salary",
+        "sortByCreatedAt": "By date"
+      }
     },
     "SearchVacancy": {
       "titlePlaceholder": "Title",
@@ -215,7 +232,25 @@
       "currencyUSD": "USD",
       "currencyRUB": "RUB",
       "experienceLabel": "Work Experience",
-      "employmentTypeLabel": "Employment Type"
+      "employmentTypeLabel": "Employment Type",
+      "skills": "Key Skills",
+      "from": "From",
+      "to": "To",
+      "timeGet": "Currency of time",
+      "datatypes" : {
+        "1" : "For all time",
+        "2": "One month",
+        "3": "One week",
+        "4": "Last 3 days",
+        "5": "Last day"
+      },
+      "sort": {
+        "sortLabel": "Sort parametrs",
+        "sortByName": "By name",
+        "sortBySalaryFrom": "By salary",
+        "sortByCreatedAt": "By date"
+      },
+      "search": "Search"
     },
     "VacancyPage": {
       "my": "My Vacancies",
@@ -329,6 +364,9 @@
       "question": "Ask a question / report a problem",
       "support": "Submit a complaint",
       "thanks": "Express gratitude"
+    },
+    "messages": {
+      "authError" : "Please Login if you want to continue"
     }
   }
   

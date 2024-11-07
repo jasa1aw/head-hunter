@@ -192,16 +192,33 @@
     },
     "SearchVacancyAdvanced": {
       "searchVacancy": "Поиск вакансии",
+      "skills": "Ключевые навыки",
       "keywords": "Ключевые слова",
       "placeholderTitle": "Название",
       "specialization": "Укажите специализацию",
       "setSpecialization": "Укажите специализацию",
       "city": "Город проживания",
       "salary": "Уровень ожидаемого ежемесячного дохода",
+      "become": "Желаемый порог дохода",
       "from": "От",
+      "to": "До",
       "experience": "Опыт работы",
       "employmentType": "Тип занятости",
-      "search": "Поиск"
+      "search": "Поиск",
+      "timeGet": "Выводить по времени",
+      "datatypes" : {
+        "1" : "За всё время",
+        "2": "За месяц",
+        "3": "За неделю",
+        "4": "За последние три дня",
+        "5": "За сутки"
+      },
+      "sort": {
+        "sortLabel": "Сортировка",
+        "sortByName": "По имени",
+        "sortBySalaryFrom": "По зарплате",
+        "sortByCreatedAt": "По дате"
+      }
     },
     "SearchVacancy": {
       "titlePlaceholder": "Название",
@@ -216,7 +233,24 @@
       "currencyRUB": "RUB",
       "experienceLabel": "Опыт работы",
       "employmentTypeLabel": "Тип занятости",
-      "searchButton": "Поиск"
+      "searchButton": "Поиск",
+      "skills": "Ключевые навыки",
+      "from": "От",
+      "to": "До",
+      "timeGet": "Выводить по времени",
+      "datatypes" : {
+        "1" : "За всё время",
+        "2": "За месяц",
+        "3": "За неделю",
+        "4": "За последние три дня",
+        "5": "За сутки"
+      },
+      "sort": {
+        "sortLabel": "Сортировка",
+        "sortByName": "По имени",
+        "sortBySalaryFrom": "По зарплате",
+        "sortByCreatedAt": "По дате"
+      }
     },
     "VacancyPage": {
     "my": "Мои вакансии",
@@ -330,6 +364,9 @@
     "question": "Задать вопрос / сообщить о проблеме",
     "support": "Подать жалобу",
     "thanks": "Выразить благодарность"
+  },
+  "messages": {
+    "AuthError" : "Please Login if you want to continue"
   }
 }
   
