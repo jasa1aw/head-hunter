@@ -98,10 +98,10 @@
         "level": "Level",
         "high": "Higher",
         "notHigh": "Secondary Specialized",
-        "name": "Educational Institution Name",
+        "university_name": "Educational Institution Name",
         "faculty": "Faculty",
         "specialization": "Specialization",
-        "graduatedYear": "Year of Graduation",
+        "end_date": "Year of Graduation",
         "add1": "Add Educational Institution",
         "add": "Add Educational Institutions"
       },

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getSearchedVacancies, getSpecializations, getCities, getExperiences, getSkills, getEmpTypes } from '@/app/[locale]/store/slices/vacancySlice';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation'
-import ModalSelectSpec from '@/components/ModalSelectSpec'
+import ModalSelectSpec from '@/components/Spec/ModalSpec'
 import AutoCompliteSelect from '@/components/AutoCompliteSelect'
 import MyVacancies from '@/components/myVacancies';
 import Footer from '@/components/footer';

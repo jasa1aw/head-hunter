@@ -10,3 +10,14 @@
     cursor: pointer;
     color: red;
 }
+.resumeBottom{
+    width: 100%;
+}
+.resumeTop{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 212px);
+    overflow-y: auto;
+}
