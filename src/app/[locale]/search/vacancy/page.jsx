@@ -3,14 +3,9 @@ import Header from '@/components/header';
 import { useDispatch, useSelector } from 'react-redux';
 import { getSearchedVacancies, getSpecializations, getCities, getExperiences, getSkills, getEmpTypes } from '@/app/[locale]/store/slices/vacancySlice';
 import { useEffect, useState } from 'react';
-<<<<<<< HEAD
 import { useSearchParams } from 'next/navigation'
 import ModalSelectSpec from '@/components/Spec/ModalSpec'
 import AutoCompliteSelect from '@/components/AutoCompliteSelect'
-=======
-import ModalSelectSpec from '@/components/ModalSelectSpec';
-import AutoCompliteSelect from '@/components/AutoCompliteSelect';
->>>>>>> 8d1e8b94aaf16fef9de6622adde566e81a8784a5
 import MyVacancies from '@/components/myVacancies';
 import Footer from '@/components/footer';
 import Search from '@/components/header/search';
@@ -19,7 +14,6 @@ import { useTranslations } from 'next-intl';
 import AutoCompliteTags from '@/components/AutoCompliteTags';
 import { FormControlLabel, Slider, Switch } from '@mui/material';
 import { dataTypes } from '@/app/mocks/dataTypes';
-import { useSearchParams } from 'next/navigation';
 
 export default function SearchVacancy() {
     const t = useTranslations('SearchVacancy');
