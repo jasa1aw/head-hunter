@@ -15,7 +15,7 @@ export default function ResumePage() {
     const dispatch = useDispatch();
     const { id } = useParams();
     const resume = useSelector(state => state.resume.resume);
-    console.log(resume)
+    console.log(resume.user && resume.user.birthday)
 
     const didMount = () => {
         dispatch(getMyResumeById(id));
@@ -23,8 +23,8 @@ export default function ResumePage() {
 
     useEffect(didMount, []);
 
-    const age = getAgeFromBirthday(resume.birthday);
-    const birthday = new Date(resume.birthday);
+    const age = getAgeFromBirthday(resume.user && resume.user.birthday);
+    const birthday = new Date(resume.user && resume.user.birthday);
 
     const showPhone = (phone) => {
         if (phone[0] === "8") {
@@ -46,11 +46,11 @@ export default function ResumePage() {
                         <Link href={'/resumes'} className='link'>{t('backToList')}</Link>
                         <Link href={`/edit-resume/${resume.id}`} className='button button-secondary-bordered'>{t('edit')}</Link>
                     </div>
-                    <h1>{resume.first_name} {resume.last_name}</h1>
+                    <h1>{resume.user && resume.user.first_name} {resume.user && resume.user.last_name}</h1>
                     <p>{resume.gender} {age} {t('yearsOld')}, {t('born')} {birthday.getDate()} {monthsInRussian[birthday.getMonth()]} {birthday.getFullYear()}</p>
 
                     <p className="secondary">{t('contacts')}</p>
-                    <p>{resume.phone && showPhone(resume.phone)}</p>
+                    <p>{resume.user && resume.user.phone && showPhone(resume.user.phone)}</p>
                     <p>{t('location')}: {resume.city && resume.city.name}</p>
 
                     <div className="flex flex-jc-sb">
