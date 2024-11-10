@@ -9,6 +9,8 @@ import { getMyResumes } from '@/app/[locale]/store/slices/resumeSlice';
 import { createApply, getEmployeeApplies, getVacancyApplies } from '@/app/[locale]/store/slices/applySlice';
 import Footer from '@/components/footer';
 import { useTranslations } from 'next-intl';
+import { buttonBaseClasses } from '@mui/material';
+import { formatDate } from '../../utils/dateToLocale';
 
 export default function VacancyPage() {
     const t = useTranslations('VacancyPage');
@@ -48,21 +50,21 @@ export default function VacancyPage() {
     };
 
     const handleDelete = () => {
-        // Добавьте обработчик для удаления вакансии
         console.log("Delete vacancy:", id);
     };
 
     let isApplied = applies.some(item => item.vacancyId === Number(id));
     let skills = [];
     if (vacancy.skills) skills = vacancy.skills.split(",");
-    
+
+    console.log(vacancy)
     return (
         <div className='wrapper'>
             <Header />
             <main>
                 <div className='container'>
                     {currentUser && currentUser.id === vacancy.userId && (
-                        <div className='flex flex-ai-c flex-jc-sb ptb7'>
+                        <div className='flex flex-ai-c flex-jc-sb ptb4'>
                             <Link href={`/edit-vacancy/${vacancy.id}`} className='button button-secondary-bordered'>
                                 {t('editButton')}
                             </Link>
@@ -71,7 +73,7 @@ export default function VacancyPage() {
                             </button>
                         </div>
                     )}
-                    <div className="card mt7">
+                    <div className="card mt4">
                         <Link href={`/vacancy/${id}/applies`} className='link'>
                             {applies.length} {t('applicants')}
                         </Link>
@@ -83,7 +85,8 @@ export default function VacancyPage() {
                         <p>{t('salaryType')}: {vacancy.salary_type}</p>
                         <p>{vacancy.city?.name && `${t('location')}: ${vacancy.city.name}`}</p>
                         {vacancy.experience && <p>{t('experienceRequired')} {vacancy.experience.duration}</p>}
-                        {vacancy.employmentType && <p>{t('employmentType')}: {vacancy.employmentType.name}</p>}
+                        {vacancy.specialization && <p>{t('experienceRequired')} {vacancy.specialization.name}</p>}
+                        {vacancy.employmentType && <p>{t('specialization')}: {vacancy.employmentType.name}</p>}
                         {vacancy.about_company && <p>{t('aboutCompany')}: {vacancy.about_company}</p>}
                         {vacancy.description && <p className="secondary" dangerouslySetInnerHTML={{ __html: vacancy.description }}></p>}
 
@@ -106,6 +109,10 @@ export default function VacancyPage() {
                             <Link className="button button-primary mt7" href={'/applies'} style={{ maxWidth: '200px' }}>
                                 {t('viewApplication')}
                             </Link>
+                        )}
+                        
+                        {vacancy.createdAt && (
+                            <p className='link'>{t('createdAt')}: {formatDate(vacancy.createdAt)}</p>
                         )}
                     </div>
 

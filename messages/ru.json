@@ -11,7 +11,9 @@
       "createVacancy": "Создать вакансию",
       "logout": "Выйти",
       "login": "Войти",
-      "placeholder": "Профессия, должность или компания"
+      "placeholder": "Профессия, должность или компания",
+      "sendResume": "Отправить Pdf",
+      "chooseFile": "Файл"
     },
     "MyApplies": {
       "title": "Отклики и приглашения",
@@ -271,19 +273,21 @@
       
     },
     "VacancyPage": {
-    "my": "Мои вакансии",
-    "editButton": "Редактировать",
-    "applicants": "соискатели",
-    "salaryFrom": "от",
-    "salaryTo": "до",
-    "experienceRequired": "Требуемый опыт работы:",
-    "employmentType": "Тип занятости",
-    "location": "Местоположение",
-    "applyButton": "Подать заявку",
-    "viewApplication": "Просмотреть заявку",
-    "keySkills": "Ключевые навыки",
-    "salaryType": "Тип валюты",
-    "deleteButton": "Удалить вакансию"
+      "my": "Мои вакансии",
+      "editButton": "Редактировать",
+      "applicants": "соискатели",
+      "salaryFrom": "от",
+      "salaryTo": "до",
+      "experienceRequired": "Требуемый опыт работы:",
+      "employmentType": "Тип занятости",
+      "location": "Местоположение",
+      "applyButton": "Подать заявку",
+      "viewApplication": "Просмотреть заявку",
+      "keySkills": "Ключевые навыки",
+      "salaryType": "Тип валюты",
+      "deleteButton": "Удалить вакансию",
+      "createdAt": "Дата создание",
+      "specialization": "Специализация"
   },
   "UserLogin": {
     "jobSearchTitle": "Поиск работы",

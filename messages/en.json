@@ -11,7 +11,9 @@
       "createVacancy": "Create Vacancy",
       "logout": "Logout",
       "login": "Login",
-      "placeholder": "Profession, position, or company"
+      "placeholder": "Profession, position, or company",
+      "sendResume": "Send pdf",
+      "chooseFile": "Choose File"
     },
     "MyApplies": {
       "title": "Applications and Invitations",
@@ -285,7 +287,9 @@
       "viewApplication": "View Application",
       "keySkills": "Key Skills",
       "salaryType": "Salary Type",
-      "deleteButton": "Delete vacancy"
+      "deleteButton": "Delete vacancy",
+      "createdAt": "Created date",
+      "specialization": "Specialization"
     },
     "UserLogin": {
       "jobSearchTitle": "Job Search",

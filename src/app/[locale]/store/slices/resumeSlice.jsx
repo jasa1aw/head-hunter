@@ -66,6 +66,7 @@ export const createResume = (sendData, router) => async(dispatch) => {
         console.log(e)
     }   
 } 
+
 export const editResume = (sendData, router) => async(dispatch) => {
     try {
         const res = await axios.put(`${END_POINT}/api/resume`, sendData);

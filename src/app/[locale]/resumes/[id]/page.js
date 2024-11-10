@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getMyResumeById } from '@/app/[locale]/store/slices/resumeSlice';
 import { useParams } from 'next/navigation';
-import { getAgeFromBirthday, monthsInRussian, monthsInRussian2 } from '@/app/[locale]/utils/format';
+import { monthsInRussian2 } from '@/app/[locale]/utils/format';
 import Footer from '@/components/footer';
 import Search from '@/components/header/search';
 import { useTranslations } from 'next-intl';
@@ -23,9 +23,6 @@ export default function ResumePage() {
 
     useEffect(didMount, []);
 
-    const age = getAgeFromBirthday(resume.birthday);
-    const birthday = new Date(resume.birthday);
-
     const showPhone = (phone) => {
         if (phone[0] === "8") {
             phone = '+7' + phone.slice(1);
@@ -35,7 +32,6 @@ export default function ResumePage() {
 
     let skills = [];
     if (resume.skills) skills = resume.skills.split(',');
-
     return (
         <div className='wrapper'>
             <Header />
@@ -47,10 +43,20 @@ export default function ResumePage() {
                         <Link href={`/edit-resume/${resume.id}`} className='button button-secondary-bordered'>{t('edit')}</Link>
                     </div>
                     <h1>{resume.first_name} {resume.last_name}</h1>
-                    <p>{resume.gender} {age} {t('yearsOld')}, {t('born')} {birthday.getDate()} {monthsInRussian[birthday.getMonth()]} {birthday.getFullYear()}</p>
+                    <p>{resume.gender} 18 {t('yearsOld')}, {t('born')} 2006 january</p>
 
                     <p className="secondary">{t('contacts')}</p>
-                    <p>{resume.phone && showPhone(resume.phone)}</p>
+                    <p>
+                        {resume.phone ? (
+                            <Link className='link' href={`tel:${resume.phone}`}>
+                                {showPhone(resume.phone)}
+                            </Link>
+                        ) : (
+                            <Link className='link' href={`https://t.me/${resume.contact}`} target="_blank">
+                                t.me/{resume.contact}
+                            </Link>
+                        )}
+                    </p>
                     <p>{t('location')}: {resume.city && resume.city.name}</p>
 
                     <div className="flex flex-jc-sb">

@@ -91,6 +91,9 @@ body, div, input, button, a, li, ul, textarea, span, p, h1, h2, h3,h4 ol, aside,
     padding: 40px 0;
 }
 
+.ptb4 {
+     padding: 20px 0;
+}
 .m1 {
     margin: 5px;
 }
@@ -135,6 +138,9 @@ body, div, input, button, a, li, ul, textarea, span, p, h1, h2, h3,h4 ol, aside,
     margin-top: 40px;
 }
 
+.mt4 {
+    margin-top: 20px;
+}
 .mr4 {
     margin-right: 20px;
 }
@@ -214,4 +220,45 @@ body, div, input, button, a, li, ul, textarea, span, p, h1, h2, h3,h4 ol, aside,
 
 .button-danger:hover {
     background-color: #c9302c;
+}
+
+.file-upload-container {
+  position: relative;
+  display: inline-block;
+}
+
+.file-input {
+  display: none; /* Hide the native file input */
+}
+
+.file-upload-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+
+.file-upload-button:hover {
+  background-color: #0056b3;
+}
+
+.file-upload-button:focus {
+  outline: none;
+}
+
+/* Optional: Style the send resume button */
+.button-primary {
+  margin-left: 10px;
+  background-color: #28a745;
+  color: white;
+}
+
+.button-primary:hover {
+  background-color: #218838;
 }
