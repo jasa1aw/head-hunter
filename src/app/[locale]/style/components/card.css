@@ -6,3 +6,13 @@
     box-shadow: 0px 3px 8px 0px rgba(34,60,80,.2);
     position: relative;
 }
+.cardTop{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.cardTop .action{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
