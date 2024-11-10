@@ -2,20 +2,8 @@
 import { useEffect, useState, useCallback } from "react";
 import Header from "@/components/header";
 import { useDispatch, useSelector } from "react-redux";
-<<<<<<< HEAD
 import { getSpecializations, getCities, getExperiences, getSkills, getEmpTypes } from "@/app/[locale]/store/slices/vacancySlice";
 import ModalSelectSpec from '@/components/Spec/ModalSpec';
-=======
-import {
-    getSpecializations,
-    getCities,
-    getExperiences,
-    getSkills,
-    getEmpTypes,
-    getSearchedVacancies
-} from "@/app/[locale]/store/slices/vacancySlice";
-import ModalSelectSpec from '@/components/ModalSelectSpec';
->>>>>>> 8d1e8b94aaf16fef9de6622adde566e81a8784a5
 import AutoCompliteSelect from '@/components/AutoCompliteSelect';
 import Footer from "@/components/footer";
 import Search from "@/components/header/search";

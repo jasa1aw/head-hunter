@@ -304,11 +304,11 @@
       "manager": "Manager"
     },
     "Employer": {
-      "postJobTitle": "Post a job on hh.kz",
-      "postJobDescription": "And find employees among those who want to work for you. hh.kz is the #1 service for finding employees in Kazakhstan*",
+      "postJobTitle": "Post a job on recruv.kz",
+      "postJobDescription": "And find employees among those who want to work for you. recruv.kz is the #1 service for finding employees in Kazakhstan*",
       "postJobButton": "Post a Job",
       "disclaimer": "* Based on the 31-day visit count among job search and recruitment sites, according to SimilarWeb data for Kazakhstan as of 15.08.2023.",
-      "findEmployeesTitle": "What kind of employees are on hh.kz?",
+      "findEmployeesTitle": "What kind of employees are on recruv.kz?",
       "findEmployeesDescription": "Don't wait for responses — find the ideal employee yourself among 5,890,557 resumes from 4,234,974 job seekers.",
       "searchPlaceholder": "Search resumes",
       "searchButton": "Find an employee",

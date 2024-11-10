@@ -15,6 +15,7 @@ export default function ResumePage() {
     const dispatch = useDispatch();
     const { id } = useParams();
     const resume = useSelector(state => state.resume.resume);
+    console.log(resume)
 
     const didMount = () => {
         dispatch(getMyResumeById(id));

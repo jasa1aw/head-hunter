@@ -6,7 +6,7 @@
 .searchContain{
 	width: 100%;
 	height: 615px;
-	background-image: url('/img/bgMain.jpg');
+	background-image: url('/img/bgMain.svg');
 	background-repeat: no-repeat;
 	background-size: cover;
 	padding-top: 50px;
@@ -61,7 +61,7 @@
 	outline: none;
 	font-size: 18px;
 	font-weight: 500;
-	color: #fff;
+	color: #D8E9A8;
 	text-decoration: underline;
 	transition: .3s;
 	/* cursor: pointer; */
@@ -126,7 +126,7 @@
 	width: 113px;
 	height: 40px;
 	text-align: center;
-	background-color: #0070ff;
+	background-color: #4E9F3D;
 	border-radius: 4px;
 	color: #fff;
 	font-size: 16px;
