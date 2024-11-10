@@ -17,8 +17,9 @@ import { useRouter } from "@/i18n/routing";
 import { useTranslations } from 'next-intl';
 import AutoCompliteTags from "@/components/AutoCompliteTags";
 import { FormControlLabel, Modal, Slider, Switch } from "@mui/material";
-import { dataTypes } from "@/app/mocks/dataTypes";
+import { dataTypes, experienceOptions } from "@/app/mocks/dataTypes";
 import SelectSpec from "@/components/Spec/SelectSpec";
+import { getSearchedResumes } from "../../store/slices/resumeSlice";
 
 export default function SearchVacancyAdvanced() {
     const t = useTranslations('SearchVacancyAdvanced');
@@ -27,19 +28,16 @@ export default function SearchVacancyAdvanced() {
     
     const [name, setName] = useState(null);
     const [specializationId, setSpecialization] = useState(null);
-    const [specializationName, setSpecializationName] = useState('');
-    const [isSpecModalOpen, setSpecModalOpen] = useState(false);
     const [dateRange, setDateRange] = useState(null);
-    const [skills, setSelectedSkills] = useState('');
+    const [skills, setSelectedSkills] = useState(null);
     const [cityId, setCity] = useState(null);
     const [salaryType, setSalaryType] = useState("KZT");
     const [salaryRange, setSalaryRange] = useState([0, 1000]);
     const [experienceId, setExperienceId] = useState(null);
     const [employmentTypeId, setEmploymentType] = useState(null);
     const [sortOptions, setSortOptions] = useState({
-        byName: false,
-        bySalaryFrom: false,
-        byCreatedAt: false,
+        sortBySalary: false,
+        sortByCreatedAt: false,
     });
 
     const fetchData = useCallback(() => {
@@ -55,21 +53,21 @@ export default function SearchVacancyAdvanced() {
     }, []);
 
     const cities = useSelector(state => state.vacancy.cities);
-    const experiences = useSelector(state => state.vacancy.experiences);
     const empTypes = useSelector(state => state.vacancy.empTypes);
     const allSkills = useSelector(state => state.vacancy.skills);
-
-    const handleOnSpecChange = (spec) => {
-        setSpecialization(spec.specializationId);
-        setSpecializationName(spec.specializationName);
-    };
 
     const onSkillsChange = (data) => {
         setSelectedSkills(data.map(item => item.name).join(','));
     };
 
+    const handleSpecializationChange = (spec) => {
+        setSpecialization(spec.specializationId);
+        setSpecializationName(spec.specializationName);
+    };
+      
     const handleSearch = () => {
         const requestBody = {
+            name,
             salary_from: salaryRange[0],
             salary_to: salaryRange[1],
             salary_type: salaryType,
@@ -77,27 +75,26 @@ export default function SearchVacancyAdvanced() {
             cityId,
             specializationId,
             employmentTypeId,
-            experienceId,
+            experience: experienceId,
             dateRange,
-            sortByName: !sortOptions.byName ? '0' : '1',
-            sortBySalaryFrom: !sortOptions.bySalaryFrom ? '0' : '1',
-            sortByCreatedAt: !sortOptions.byCreatedAt ? '0' : '1',
+            sortBySalary: !sortOptions.bySalaryFrom ? null : '0',
+            sortByCreatedAt: !sortOptions.byCreatedAt ? null : '0',
         };
 
         const filteredRequestBody = Object.fromEntries(
             Object.entries(requestBody).filter(([_, value]) => value !== null && value !== undefined)
         );
 
-        dispatch(getSearchedVacancies(filteredRequestBody, router));
+        dispatch(getSearchedResumes(filteredRequestBody, router));
     };
 
     return (
         <div className="wrapper">
             <main>
-                <Header />+
+                <Header />
                 <div className="container p7">
                     <Search />
-                    <h1>{t('searchVacancy')}</h1>
+                    <h1>{t('searchResume')}</h1>
 
                     <fieldset className="fieldset-vertical">
                         <label>{t('keywords')}</label>
@@ -120,15 +117,11 @@ export default function SearchVacancyAdvanced() {
                     />
 
                     <fieldset className="fieldset-vertical">
-                        <label>{t('specialization')}</label>
-                        {specializationName && <p>{specializationName}</p>}
                         <p className="link" onClick={() => setSpecModalOpen(true)}>{t('setSpecialization')}</p>
                     </fieldset>
 
-                    <SelectSpec
-                        onChange={handleOnSpecChange}
-                        value={specializationId}
-                    />
+                    <SelectSpec onChange={handleSpecializationChange} value={specializationId * 1} />
+
 
                     <AutoCompliteSelect
                         placeholder=""
@@ -139,26 +132,21 @@ export default function SearchVacancyAdvanced() {
                         onSelect={(data) => setCity(data.id)}
                     />
 
-                    <div className="sort-icon" onClick={() => setSortOptions((prev) => ({ ...prev, open: !prev.open }))}>
+                    <div className="sort-icon">
                         <img src="/img/filter.png" alt="" />
                         <span>{t('sort.sortLabel')}</span>
                     </div>
 
-                    {sortOptions.open && (
-                        <Modal className="modal-center" open={sortOptions.open} onClose={() => setSortOptions((prev) => ({ ...prev, open: false }))}>
-                            <div className="modal-content">
-                                <h2>{t('sort.sortLabel')}</h2>
-                                {Object.entries(sortOptions).filter(([key]) => key !== 'open').map(([key, value]) => (
-                                    <FormControlLabel
-                                        key={key}
-                                        control={<Switch color="info" checked={value} onChange={() => setSortOptions(prev => ({ ...prev, [key]: !value }))} />}
-                                        label={t(`sort.${key.replace('by', 'sortBy')}`)} 
-                                    />
-                                ))}
-                                <button className="button button-primary close" onClick={() => setSortOptions((prev) => ({ ...prev, open: false }))}>&#10005;</button>
-                            </div>
-                        </Modal>
-                    )}
+                    {Object.entries(sortOptions).map(([key, value]) => (
+                        <FormControlLabel
+                            key={key}
+                            control={<Switch checked={value} color="info" onChange={(e) => setSearchCriteria(prev => ({
+                                ...prev,
+                                sortBy: { ...prev.sortBy, [key]: e.target.checked }
+                            }))} />}
+                            label={t(`sort.${key.charAt(0).toUpperCase() + key.slice(1)}`)}
+                        />
+                    ))}
 
                     <fieldset className="fieldset fieldset-sm flex-cl">
                         <div>
@@ -190,21 +178,20 @@ export default function SearchVacancyAdvanced() {
                         </div>
                     </fieldset>
 
-                    <fieldset className="fieldset-vertical fieldset-md">
-                        <label>{t('experience')}</label>
-                        <div>
-                            {experiences.map(exp => (
-                                <div className="radio" key={exp.id}>
+                    <fieldset className="fieldset-vertical">
+                        <label>{t('experienceArray.title')}</label>
+                        {experienceOptions(t).map(({ id, label, value }) => (
+                            <div key={id} className="radio">
                                     <input
                                         type="radio"
-                                        value={exp.id}
-                                        name="exp"
-                                        onChange={() => setExperienceId(exp.id)}
+                                        name="experience"
+                                        value={value}
+                                        checked={experienceId == value}
+                                        onChange={(e) => setExperienceId(e.target.value)}
                                     />
-                                    <label>{exp.duration}</label>
-                                </div>
-                            ))}
-                        </div>
+                                    <label>{label}</label>
+                            </div>
+                        ))}
                     </fieldset>
 
                     <fieldset className="fieldset-vertical fieldset-md">

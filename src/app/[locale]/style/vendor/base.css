@@ -197,3 +197,16 @@ body, div, input, button, a, li, ul, textarea, span, p, h1, h2, h3,h4 ol, aside,
     border: 1px solid #e13636; 
     color: #d20606;
 }
+
+.button-danger {
+    background-color: #fa4232;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 10px !important;
+    cursor: pointer;
+}
+
+.button-danger:hover {
+    background-color: #c9302c;
+}

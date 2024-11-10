@@ -46,6 +46,13 @@
     margin-left: auto;
 }
 
+.tag2 {
+    background-color: #e0e0e0;
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 14px;
+}
+
 .textarea {
     height: 150px;
     border-radius: 4px;

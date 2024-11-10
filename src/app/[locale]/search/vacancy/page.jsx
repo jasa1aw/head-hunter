@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getSearchedVacancies, getSpecializations, getCities, getExperiences, getSkills, getEmpTypes } from '@/app/[locale]/store/slices/vacancySlice';
 import { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation'
-import ModalSelectSpec from '@/components/Spec/ModalSpec'
 import AutoCompliteSelect from '@/components/AutoCompliteSelect'
 import MyVacancies from '@/components/myVacancies';
 import Footer from '@/components/footer';
@@ -14,6 +13,7 @@ import { useTranslations } from 'next-intl';
 import AutoCompliteTags from '@/components/AutoCompliteTags';
 import { FormControlLabel, Slider, Switch } from '@mui/material';
 import { dataTypes } from '@/app/mocks/dataTypes';
+import SelectSpec from '@/components/Spec/SelectSpec';
 
 export default function SearchVacancy() {
     const t = useTranslations('SearchVacancy');
@@ -41,9 +41,6 @@ export default function SearchVacancy() {
             createdAt: params.get('sortByCreatedAt') === '1',
         }
     });
-    const [isSpecModalOpen, setSpecModalOpen] = useState(false);
-
-    const closeSpecModal = () => setSpecModalOpen(false);
 
     const handleOnSpecChange = (e) => {
         setSearchCriteria(prev => ({
@@ -51,7 +48,6 @@ export default function SearchVacancy() {
             specializationId: Number(e.target.value),
             specializationName: e.target.dataset.name
         }));
-        closeSpecModal();
     };
 
     const handleSearch = () => {
@@ -134,7 +130,7 @@ export default function SearchVacancy() {
                                 {searchCriteria.specializationName && <p>{searchCriteria.specializationName}</p>}
                                 <p className="link" onClick={() => setSpecModalOpen(true)}>{t('specSelectLink')}</p>
                             </fieldset>
-                            {isSpecModalOpen && <ModalSelectSpec close={closeSpecModal} onChange={handleOnSpecChange} value={searchCriteria.specializationId} />}
+                            <SelectSpec onChange={handleOnSpecChange} value={searchCriteria.specializationId} />
 
                             <AutoCompliteTags
                                 placeholder={''}

@@ -1,4 +1,5 @@
 'use client'
+import { formatDate } from '@/app/[locale]/utils/dateToLocale';
 import React from 'react';
 
 function AddEducation({ onChange, education = [], t }) {
@@ -41,7 +42,7 @@ function AddEducation({ onChange, education = [], t }) {
                                 className="input" 
                                 type="text" 
                                 name={`${index}-${field}`} 
-                                value={ed[field]} 
+                                value={ed[field] === 'end_date' ? formatDate(ed[field]) : ed[field]} 
                                 onChange={onChangeData} 
                                 aria-label={t(`educationExperience.${field}`)}
                             />

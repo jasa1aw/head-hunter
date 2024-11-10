@@ -217,8 +217,18 @@
         "sortLabel": "Сортировка",
         "sortByName": "По имени",
         "sortBySalaryFrom": "По зарплате",
-        "sortByCreatedAt": "По дате"
+        "sortByCreatedAt": "По дате",
+        "SortByCreatedAt": "By date",
+        "SortBySalary": "By salary"
+      },
+      "experienceArray": {
+        "title": "Опыт",
+        "noExperience": "Без опыта",
+        "oneToThree": "1-3 года",
+        "threeToSix": "3-6 лет",
+        "sixToEight": "6-8 лет"
       }
+      
     },
     "SearchVacancy": {
       "titlePlaceholder": "Название",
@@ -250,7 +260,15 @@
         "sortByName": "По имени",
         "sortBySalaryFrom": "По зарплате",
         "sortByCreatedAt": "По дате"
+      },
+      "experienceArray": {
+        "title": "Опыт",
+        "noExperience": "Без опыта",
+        "oneToThree": "1-3 года",
+        "threeToSix": "3-6 лет",
+        "sixToEight": "6-8 лет"
       }
+      
     },
     "VacancyPage": {
     "my": "Мои вакансии",
@@ -260,9 +278,12 @@
     "salaryTo": "до",
     "experienceRequired": "Требуемый опыт работы:",
     "employmentType": "Тип занятости",
+    "location": "Местоположение",
     "applyButton": "Подать заявку",
     "viewApplication": "Просмотреть заявку",
-    "keySkills": "Ключевые навыки"
+    "keySkills": "Ключевые навыки",
+    "salaryType": "Тип валюты",
+    "deleteButton": "Удалить вакансию"
   },
   "UserLogin": {
     "jobSearchTitle": "Поиск работы",

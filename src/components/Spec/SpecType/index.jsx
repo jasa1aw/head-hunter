@@ -8,7 +8,7 @@ export default function SpecType({specType, onChange, value}) {
     }, [])
     return (
         <div>
-            <div className={`specTypes${active ?" active":""}`} onClick={() => setActive(!active)}>
+            <div className={`mtb2 specTypes${active ?" active":""}`} onClick={() => setActive(!active)}>
                     <img src="/img/arrow-right.svg"/>
                     {specType.name}
             </div>

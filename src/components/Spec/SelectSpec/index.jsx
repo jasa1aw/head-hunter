@@ -17,7 +17,6 @@ export default function SelectSpec({ onChange, value }) {
         setSpecializationName(name);
         setSpecialization(id);
 
-        // Pass both id and name to parent
         onChange({ specializationId: id, specializationName: name });
     };
 

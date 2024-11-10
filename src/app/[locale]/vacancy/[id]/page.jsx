@@ -23,7 +23,7 @@ export default function VacancyPage() {
 
     useEffect(() => {
         dispatch(getMyVacancyById(id));
-    }, []); 
+    }, []);
 
     useEffect(() => {
         if (currentUser && currentUser.role.name === "employee") {
@@ -47,12 +47,15 @@ export default function VacancyPage() {
         }));
     };
 
-
+    const handleDelete = () => {
+        // Добавьте обработчик для удаления вакансии
+        console.log("Delete vacancy:", id);
+    };
 
     let isApplied = applies.some(item => item.vacancyId === Number(id));
     let skills = [];
     if (vacancy.skills) skills = vacancy.skills.split(",");
-
+    
     return (
         <div className='wrapper'>
             <Header />
@@ -63,6 +66,9 @@ export default function VacancyPage() {
                             <Link href={`/edit-vacancy/${vacancy.id}`} className='button button-secondary-bordered'>
                                 {t('editButton')}
                             </Link>
+                            <button className='button button-danger' onClick={handleDelete}>
+                                {t('deleteButton')}
+                            </button>
                         </div>
                     )}
                     <div className="card mt7">
@@ -70,13 +76,17 @@ export default function VacancyPage() {
                             {applies.length} {t('applicants')}
                         </Link>
                         <h1>{vacancy.name}</h1>
-                        <p>
-                            {vacancy.salary_from && `${t('salaryFrom')} ${vacancy.salary_from}`} 
-                            {vacancy.salary_to && `${t('salaryTo')} ${vacancy.salary_to}`} 
-                            {vacancy.salary_type}
+                        <p> Salary:
+                            {vacancy.salary_from && ` ${t('salaryFrom')} ${vacancy.salary_from}`} 
+                            {vacancy.salary_to && ` ${t('salaryTo')} ${vacancy.salary_to}`} 
                         </p>
+                        <p>{t('salaryType')}: {vacancy.salary_type}</p>
+                        <p>{vacancy.city?.name && `${t('location')}: ${vacancy.city.name}`}</p>
                         {vacancy.experience && <p>{t('experienceRequired')} {vacancy.experience.duration}</p>}
                         {vacancy.employmentType && <p>{t('employmentType')}: {vacancy.employmentType.name}</p>}
+                        {vacancy.about_company && <p>{t('aboutCompany')}: {vacancy.about_company}</p>}
+                        {vacancy.description && <p className="secondary" dangerouslySetInnerHTML={{ __html: vacancy.description }}></p>}
+
                         {
                             currentUser && currentUser.role.name === "employee" && (
                                 <select className='input mtb4' value={resumeId} onChange={(e) => setResume(e.target.value)} style={{ maxWidth: '200px' }}>
@@ -88,24 +98,29 @@ export default function VacancyPage() {
                         }
 
                         {currentUser && currentUser.id !== vacancy.userId && !isApplied && (
-                            <button className="button button-primary" onClick={handleApply}>
+                            <button className="button button-primary mt7" onClick={handleApply}>
                                 {t('applyButton')}
                             </button>
                         )}
                         {currentUser && currentUser.id !== vacancy.userId && isApplied && (
-                            <Link className="button button-primary" href={'/applies'} style={{ maxWidth: '200px' }}>
+                            <Link className="button button-primary mt7" href={'/applies'} style={{ maxWidth: '200px' }}>
                                 {t('viewApplication')}
                             </Link>
                         )}
                     </div>
 
-                    {vacancy.company && <p className="secondary mt7"><b>{vacancy.company.name}</b></p>}
-                    {vacancy.company && <p className="secondary">{vacancy.company.description}</p>}
-                    {vacancy.description && <p className="secondary" dangerouslySetInnerHTML={{ __html: vacancy.description }}></p>}
-                    {vacancy.company && <p className="secondary">{vacancy.company.address}</p>}
+                    {vacancy.company && (
+                        <div className="company-info mt7">
+                            <p><b>{vacancy.company.name}</b></p>
+                            <p>{vacancy.company.description}</p>
+                            <p>{vacancy.company.address}</p>
+                        </div>
+                    )}
 
                     <h3 className='mt7'>{t('keySkills')}</h3>
-                    {skills.map((skill, index) => <span key={index} className='tag mr4'>{skill}</span>)}
+                    <div className="skills-container">
+                        {skills.map((skill, index) => <span key={index} className='tag tag2 mr4'>{skill}</span>)}
+                    </div>
                 </div>
             </main>
             <Footer />
