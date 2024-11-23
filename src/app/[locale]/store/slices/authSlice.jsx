@@ -74,7 +74,8 @@ export const VerifyCode = (email, code) => (dispatch) => {
 
 export const signUp = (data, router) => (dispatch) => {
   const fd = new FormData();
-  fd.append('full_name', data.full_name)
+  fd.append('first_name', data.first_name)
+  fd.append('last_name', data.last_name)
   fd.append('email', data.email)
   fd.append('password', data.password)
   fd.append('password2', data.password2)

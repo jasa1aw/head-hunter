@@ -31,3 +31,10 @@ export const dataTypes = (t) => {
         }
     ];
 };
+
+export const experienceOptions = (t) => [
+    { id: 'noExp', label: t('experienceArray.noExperience'), value: 'not' },
+    { id: '1-3', label: t('experienceArray.oneToThree'), value: '1-3' },
+    { id: '3-6', label: t('experienceArray.threeToSix'), value: '3-6' },
+    { id: '6-8', label: t('experienceArray.sixToEight'), value: '6-8' }
+];

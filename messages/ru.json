@@ -3,6 +3,7 @@
       "resumes": "Мои резюме",
       "applies": "Отклики",
       "vacancy": "Мои вакансии",
+      "favorite": "Избранные",
       "help": "Помощь",
       "search": "Поиск",
       "searchEmployee": "Найти сотрудника",
@@ -11,7 +12,9 @@
       "createVacancy": "Создать вакансию",
       "logout": "Выйти",
       "login": "Войти",
-      "placeholder": "Профессия, должность или компания"
+      "placeholder": "Профессия, должность или компания",
+      "sendResume": "Отправить Pdf",
+      "chooseFile": "Файл"
     },
     "MyApplies": {
       "title": "Отклики и приглашения",
@@ -98,10 +101,10 @@
         "level": "Уровень",
         "high": "Высшее",
         "notHigh": "Среднее специальное",
-        "name": "Название учебного заведения",
+        "university_name": "Название учебного заведения",
         "faculty": "Факультет",
-        "specialization": "Специализация",
-        "graduatedYear": "Год окончания",
+        "major": "Специализация",
+        "end_date": "Год окончания",
         "add1": "Добавить учебное заведение",
         "add": "Добавить учебные заведения"
       },
@@ -217,8 +220,18 @@
         "sortLabel": "Сортировка",
         "sortByName": "По имени",
         "sortBySalaryFrom": "По зарплате",
-        "sortByCreatedAt": "По дате"
+        "sortByCreatedAt": "По дате",
+        "SortByCreatedAt": "By date",
+        "SortBySalary": "By salary"
+      },
+      "experienceArray": {
+        "title": "Опыт",
+        "noExperience": "Без опыта",
+        "oneToThree": "1-3 года",
+        "threeToSix": "3-6 лет",
+        "sixToEight": "6-8 лет"
       }
+      
     },
     "SearchVacancy": {
       "titlePlaceholder": "Название",
@@ -250,19 +263,32 @@
         "sortByName": "По имени",
         "sortBySalaryFrom": "По зарплате",
         "sortByCreatedAt": "По дате"
+      },
+      "experienceArray": {
+        "title": "Опыт",
+        "noExperience": "Без опыта",
+        "oneToThree": "1-3 года",
+        "threeToSix": "3-6 лет",
+        "sixToEight": "6-8 лет"
       }
+      
     },
     "VacancyPage": {
-    "my": "Мои вакансии",
-    "editButton": "Редактировать",
-    "applicants": "соискатели",
-    "salaryFrom": "от",
-    "salaryTo": "до",
-    "experienceRequired": "Требуемый опыт работы:",
-    "employmentType": "Тип занятости",
-    "applyButton": "Подать заявку",
-    "viewApplication": "Просмотреть заявку",
-    "keySkills": "Ключевые навыки"
+      "my": "Мои вакансии",
+      "editButton": "Редактировать",
+      "applicants": "соискатели",
+      "salaryFrom": "от",
+      "salaryTo": "до",
+      "experienceRequired": "Требуемый опыт работы:",
+      "employmentType": "Тип занятости",
+      "location": "Местоположение",
+      "applyButton": "Подать заявку",
+      "viewApplication": "Просмотреть заявку",
+      "keySkills": "Ключевые навыки",
+      "salaryType": "Тип валюты",
+      "deleteButton": "Удалить вакансию",
+      "createdAt": "Дата создание",
+      "specialization": "Специализация"
   },
   "UserLogin": {
     "jobSearchTitle": "Поиск работы",
@@ -304,11 +330,11 @@
     "manager": "Менеджер"
   },
   "Employer": {
-    "postJobTitle": "Разместите вакансию на hh.kz",
-    "postJobDescription": "И найдите сотрудников среди тех, кто хочет работать на вас. hh.kz — это #1 сервис для поиска сотрудников в Казахстане*",
+    "postJobTitle": "Разместите вакансию на recruv.kz",
+    "postJobDescription": "И найдите сотрудников среди тех, кто хочет работать на вас. recruv.kz — это #1 сервис для поиска сотрудников в Казахстане*",
     "postJobButton": "Разместить вакансию",
     "disclaimer": "* По данным SimilarWeb на 15.08.2023, на основании числа посещений в течение 31 дня среди сайтов по поиску работы и подбору персонала.",
-    "findEmployeesTitle": "Какие сотрудники есть на hh.kz?",
+    "findEmployeesTitle": "Какие сотрудники есть на recruv.kz?",
     "findEmployeesDescription": "Не ждите откликов — найдите идеального сотрудника сами среди 5,890,557 резюме от 4,234,974 соискателей.",
     "searchPlaceholder": "Поиск резюме",
     "searchButton": "Найти сотрудника",

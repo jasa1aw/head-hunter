@@ -47,6 +47,7 @@ export default function ModalAddExp({close, addWorkingHistory, t}){
             company_description
         }
         addWorkingHistory(workingHistory);
+        close()
     }
     // let testdate = new Date(endDate)
     return(

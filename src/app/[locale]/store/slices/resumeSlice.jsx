@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import axios from 'axios';
-import { END_POINT } from '@/config/end-point';
+import { END_POINT, SEARCH_END_POINT } from '@/config/end-point';
 
 
 export const resumeSlice = createSlice({
@@ -13,6 +13,7 @@ export const resumeSlice = createSlice({
     reducers: {
         setMyResumes: (state, action) =>{
             state.resumes = action.payload.resumes
+            console.log(state.resumes)
         },
         appendResume: (state, action) => {
             state.resumes = [...state.resumes, action.payload.newresume]
@@ -32,12 +33,11 @@ export const resumeSlice = createSlice({
     },
 })
 
-// Action creators are generated for each case reducer function
 export const {setMyResumes, appendResume, setResume, handleDeleteResume, setSearchResumes} = resumeSlice.actions
 
 export const getMyResumes = () => async(dispatch) => {
     try {
-        const res = await axios.get(`${END_POINT}/api/resumes`);
+        const res = await axios.get(`${END_POINT}/api/resume`);
         dispatch(setMyResumes({resumes: res.data}))
     } catch (e) {
         alert("Что то пошло не так, сообщите об ошибке тех. спецам" )
@@ -66,6 +66,7 @@ export const createResume = (sendData, router) => async(dispatch) => {
         console.log(e)
     }   
 } 
+
 export const editResume = (sendData, router) => async(dispatch) => {
     try {
         const res = await axios.put(`${END_POINT}/api/resume`, sendData);
@@ -86,6 +87,18 @@ export const deleteResume = (id) => async(dispatch) => {
     }   
 }
 
+export const getSearchedResumes = (params, router) => async (dispatch) => {
+    try {
+        console.log(params);
+        const res = await axios.post(`${SEARCH_END_POINT}/api/resumes/searchResumesByParams`, params );
+        dispatch(setMyResumes({ resumes: res.data.original }));
+        const queryString = new URLSearchParams(params).toString()
+        router.push(`/search-resume?${queryString}`);
+    } catch (e) {
+        console.log(e);
+        alert("Что-то пошло не так, сообщите об ошибке технической поддержке сайта!");
+    }
+};
 
 
 export default resumeSlice.reducer

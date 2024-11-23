@@ -29,14 +29,14 @@
 	font-weight: 500;
 }
 .topHeaderIn span{
-	color: #468ffd;
+	color: #1E5128;
 	text-decoration: underline;
 	text-decoration-style: dashed;
-	text-decoration-color: #468ffd;
+	text-decoration-color: #1E5128;
 	font-weight: 500;
 }
 .pageInactive{
-	color: #76adfe !important;
+	color: #1E5128 !important;
 	transition: .3s;
 }
 .pageInactive:hover{

@@ -7,6 +7,7 @@ import { suggestion } from "@/app/mocks/suggestion";
 import Suggestions from './suggestions';
 import { getSearchedVacancies } from '@/app/[locale]/store/slices/vacancySlice';
 import SuccessMessage from '@/app/[locale]/ui/succesMessage';
+import { getSearchedResumes } from '@/app/[locale]/store/slices/resumeSlice';
 
 export default function Search( {disabled, size} ) {
     const dispatch = useDispatch()
@@ -14,6 +15,7 @@ export default function Search( {disabled, size} ) {
     const t = useTranslations("")
 
     const isAuth = useSelector((state) => state.auth.isAuth)
+    const currentUser = useSelector((state) => state.auth.currentUser)
     const searchState = useSelector((state) => state.resume.search);
     const [showSuccessMessage, setShowSuccessMessage] = useState(false)
     const [value, setValue] = useState("");
@@ -50,9 +52,14 @@ export default function Search( {disabled, size} ) {
     }, [value]);
 
     const handleClick = async () => {
-        if (isAuth) {
-          dispatch(getSearchedVacancies({ name: value }, router));
-        } else {
+        console.log(currentUser);
+        if (currentUser?.role?.name !== 'manager') {
+            dispatch(getSearchedVacancies({ name: value }, router));
+        } 
+        else if (currentUser?.role?.name === 'manager') {
+            dispatch(getSearchedResumes({ skills: value }, router));
+        }
+         else {
           setShowSuccessMessage(true);
           await new Promise((resolve) => setTimeout(resolve, 1000));
           setShowSuccessMessage(false);
@@ -84,7 +91,7 @@ export default function Search( {disabled, size} ) {
                         <button onClick={handleClick} className="button searchBtn">
                             {size === 'large' ? t('Header.searchEmployee') : t('Header.search')}
                         </button>
-                        {!disabled && <Link href={'/search/vacancy/advanced'}>
+                        {!disabled && <Link href={currentUser?.role?.name !== 'manager' ? '/search/vacancy/advanced' : 'search-resume/advanced'}>
                             <img src="/img/filter.png" alt="" />
                         </Link>}
                     </div>

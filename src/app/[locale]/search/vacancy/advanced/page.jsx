@@ -10,7 +10,6 @@ import {
     getEmpTypes,
     getSearchedVacancies
 } from "@/app/[locale]/store/slices/vacancySlice";
-import ModalSelectSpec from '@/components/ModalSelectSpec';
 import AutoCompliteSelect from '@/components/AutoCompliteSelect';
 import Footer from "@/components/footer";
 import Search from "@/components/header/search";
@@ -19,6 +18,7 @@ import { useTranslations } from 'next-intl';
 import AutoCompliteTags from "@/components/AutoCompliteTags";
 import { FormControlLabel, Modal, Slider, Switch } from "@mui/material";
 import { dataTypes } from "@/app/mocks/dataTypes";
+import SelectSpec from "@/components/Spec/SelectSpec";
 
 export default function SearchVacancyAdvanced() {
     const t = useTranslations('SearchVacancyAdvanced');
@@ -59,10 +59,9 @@ export default function SearchVacancyAdvanced() {
     const empTypes = useSelector(state => state.vacancy.empTypes);
     const allSkills = useSelector(state => state.vacancy.skills);
 
-    const handleOnSpecChange = (e) => {
-        setSpecialization(Number(e.target.value));
-        setSpecializationName(e.target.dataset.name);
-        setSpecModalOpen(false);
+    const handleOnSpecChange = (spec) => {
+        setSpecialization(spec.specializationId);
+        setSpecializationName(spec.specializationName);
     };
 
     const onSkillsChange = (data) => {
@@ -71,7 +70,6 @@ export default function SearchVacancyAdvanced() {
 
     const handleSearch = () => {
         const requestBody = {
-            name,
             salary_from: salaryRange[0],
             salary_to: salaryRange[1],
             salary_type: salaryType,
@@ -127,13 +125,10 @@ export default function SearchVacancyAdvanced() {
                         <p className="link" onClick={() => setSpecModalOpen(true)}>{t('setSpecialization')}</p>
                     </fieldset>
 
-                    {isSpecModalOpen && (
-                        <ModalSelectSpec
-                            close={() => setSpecModalOpen(false)}
-                            onChange={handleOnSpecChange}
-                            value={specializationId}
-                        />
-                    )}
+                    <SelectSpec
+                        onChange={handleOnSpecChange}
+                        value={specializationId}
+                    />
 
                     <AutoCompliteSelect
                         placeholder=""

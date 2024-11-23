@@ -37,6 +37,7 @@ export default function Header({bgColor, textColor}) {
                         {currentUser && currentUser?.role?.name !== 'manager' && <Link href={'/resumes'} style={{color: `${textColor}`}}>{t('resumes')}</Link>}
                         {currentUser && currentUser?.role?.name !== 'manager' && <Link href={'/applies'} style={{color: `${textColor}`}}>{t('applies')}</Link>}
                         {currentUser && currentUser?.role?.name === 'manager' && <Link href={'/vacancy'} style={{color: `${textColor}`}}>{t('vacancy')}</Link>}
+                        <Link href={'/favorites'}>{t('favorite')}</Link>
                         <p className="help-p" style={{color: `${textColor}`}} onClick={() => setDisable(true)}>{t('help')}</p>
                     </div>
                     <div className="rigth-block">

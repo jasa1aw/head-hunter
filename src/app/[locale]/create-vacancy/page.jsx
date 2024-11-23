@@ -1,9 +1,10 @@
 'use client'
-
 import Header from "@/components/header"
 import { useEffect, useState } from "react";
 import AutoCompliteSelect from "@/components/AutoCompliteSelect";
-import ModalSelectSpec from "@/components/ModalSelectSpec";
+// import ModalSelectSpec from "@/components/ModalSelectSpec";
+// import ModalSelectSpec from '@/components/Spec/ModalSelectSpec'
+import ModalSelectSpec from '@/components/Spec/ModalSpec';
 import AutoCompliteTags from "@/components/AutoCompliteTags";
 import { useDispatch, useSelector } from 'react-redux';
 import { getSpecializations, getCities, getExperiences, getSkills, getEmpTypes, createVacancy} from "../store/slices/vacancySlice";
@@ -12,7 +13,8 @@ import Search from "@/components/header/search";
 import { useRouter } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import Editor from "@/components/Editor";
-
+import SelectSpec from "@/components/Spec/SelectSpec";
+{/* <button type='button' className="button button-primary" onClick={handleSave}>{t('save')}</button> */}
 export default function CreateVacancy() {
     const dispatch = useDispatch();
     const router = useRouter();
@@ -23,7 +25,7 @@ export default function CreateVacancy() {
     const empTypes = useSelector((state) => state.vacancy.empTypes);
 
     const [name, setName] = useState('');
-    const [specializationId, setSpecialization] = useState();
+    const [specializationId, setSpecializationId] = useState(null);
     const [specializationName, setSpecializationName] = useState('');
     const [cityId, setCity] = useState();
     const [salary_from, setSalaryFrom] = useState('');
@@ -34,11 +36,6 @@ export default function CreateVacancy() {
     const [description, setDescription] = useState("<h2>Обязаности</h2> <ul><li></li><li></li></ul><h2>Требования</h2> <ul><li></li><li></li></ul><h2>Условия</h2> <ul><li></li><li></li></ul>");
     const [skills, setSelectedSkills] = useState([]);
     const [employmentTypeId ,setEmploymentType] = useState();
-    
-    const [isSpecModalOpen, setSpecModalOpen] = useState(false);
-    const closeSpecModal = () =>{
-        setSpecModalOpen(false)
-    }
 
     useEffect(() =>{
         dispatch(getSpecializations());
@@ -48,12 +45,6 @@ export default function CreateVacancy() {
         dispatch(getEmpTypes())
     }, [])
 
-
-    const handleOnSpecChange = (e) =>{
-        setSpecializationName(e.target.dataset.name)
-        setSpecialization(e.target.value * 1)
-        closeSpecModal()
-    }
     const handleChangeExp = (e) =>{
         setExperienceId(e.target.value)
     }
@@ -77,6 +68,11 @@ export default function CreateVacancy() {
             about_company: ''
         }, router))
     }
+
+    const handleSpecializationChange = (spec) => {
+        setSpecializationId(spec.specializationId);
+        setSpecializationName(spec.specializationName);
+      };
 
     return(
         <div className="wrapper">
@@ -103,7 +99,8 @@ export default function CreateVacancy() {
                         {specializationName && <p>{specializationName}</p>}
                         <p className="link" onClick={() => setSpecModalOpen(true)}>{t('specPlaceholder')}</p>
                     </fieldset>
-                    {isSpecModalOpen && <ModalSelectSpec close={closeSpecModal} onChange={handleOnSpecChange} value={specializationId * 1} />}
+                    <SelectSpec onChange={handleSpecializationChange} value={specializationId * 1} />
+                    {/* {isSpecModalOpen && <ModalSelectSpec close={closeSpecModal} onChange={handleOnSpecChange} value={specializationId * 1} />} */}
 
                     <AutoCompliteSelect 
                         placeholder="" 
