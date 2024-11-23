@@ -2,9 +2,6 @@
 import Header from "@/components/header"
 import { useEffect, useState } from "react";
 import AutoCompliteSelect from "@/components/AutoCompliteSelect";
-// import ModalSelectSpec from "@/components/ModalSelectSpec";
-// import ModalSelectSpec from '@/components/Spec/ModalSelectSpec'
-import ModalSelectSpec from '@/components/Spec/ModalSpec';
 import AutoCompliteTags from "@/components/AutoCompliteTags";
 import { useDispatch, useSelector } from 'react-redux';
 import { getSpecializations, getCities, getExperiences, getSkills, getEmpTypes, createVacancy} from "../store/slices/vacancySlice";
@@ -14,7 +11,6 @@ import { useRouter } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import Editor from "@/components/Editor";
 import SelectSpec from "@/components/Spec/SelectSpec";
-{/* <button type='button' className="button button-primary" onClick={handleSave}>{t('save')}</button> */}
 export default function CreateVacancy() {
     const dispatch = useDispatch();
     const router = useRouter();

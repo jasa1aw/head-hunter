@@ -3,7 +3,6 @@
 import Header from "@/components/header"
 import { useEffect, useState } from "react";
 import AutoCompliteSelect from "@/components/AutoCompliteSelect";
-// import ModalSelectSpec from "@/components/ModalSelectSpec";
 import AutoCompliteTags from "@/components/AutoCompliteTags";
 import { useDispatch, useSelector } from 'react-redux';
 import { getSpecializations, getCities, getExperiences, getSkills, getEmpTypes, getMyVacancyById, updateVacancy } from "@/app/[locale]/store/slices/vacancySlice";
@@ -13,7 +12,7 @@ import { useRouter } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import Editor from "@/components/Editor";
 import { useParams } from "next/navigation";
-import SelectEmploymentTypes from "@/components/SelectEmploymentTypes";
+import ModalSelectSpec from "@/components/Spec/ModalSpec";
 
 export default function EditVacancy() {
     const dispatch = useDispatch();
