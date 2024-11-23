@@ -9,20 +9,20 @@ export default function Favorites(){
 	const t = useTranslations("CreateResume");
 
     useEffect(() => {
-        // Fetch liked items from localStorage
         const items = JSON.parse(localStorage.getItem('likedItems')) || [];
         setLikedItems(items);
     }, []);
 	return(
-		<div className='wrapper'>
+		<div className='wrapper '>
 			<Header />
 			<main>
-				<div className="container">
+				<div className="container mt7">
+					<h1>Favorites</h1>
 					{likedItems.length > 0 ? (
 						likedItems.map((item) => (
 							<div className="card mtb-2">
 								<div className="cardTop">
-									<Link href={`/resumes/${item.id}`} className="h3 link">{item.contact}</Link>
+									<Link href={`/resumes/${item.id}`} className="h3 link">{item.id}</Link>
 									<div className="like" style={{ width: "36px" }}>
 										<img
 											src={"/img/liked.svg"}

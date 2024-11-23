@@ -70,14 +70,12 @@ export default function ResumePage() {
             <div className="flex">
               <Link href={'/create-resume'} className='button button-secondary-bordered'>{t('createResume')}</Link>
               <div className="file-upload-container">
-                {/* Hidden file input */}
                 <input
                   type="file"
                   accept=".pdf"
                   onChange={handleFileChange}
                   className="file-input"
                 />
-                {/* Custom button that triggers the file input */}
                 <button
                   className="file-upload-button"
                   onClick={() => document.querySelector('.file-input').click()}

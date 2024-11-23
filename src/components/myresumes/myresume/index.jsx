@@ -34,11 +34,11 @@ export default function MyResume({ item }) {
             setLiked(true);
         }
     };
-
+    console.log(item);
     return (
         <div className="card mtb-2">
             <div className="cardTop">
-                <Link href={`/resumes/${item.id}`} className="h3 link">{item.contact}</Link>
+                <Link href={`/resumes/${item.id}`} className="h3 link">{item.id}</Link>
                 <div className="like" style={{ width: "36px" }}>
                     <img
                         src={liked ? "/img/liked.svg" : "/img/like.svg"}

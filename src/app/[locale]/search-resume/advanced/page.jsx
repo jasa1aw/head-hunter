@@ -137,14 +137,11 @@ export default function SearchVacancyAdvanced() {
                         <span>{t('sort.sortLabel')}</span>
                     </div>
 
-                    {Object.entries(sortOptions).map(([key, value]) => (
+                    {Object.entries(sortOptions).filter(([key]) => key !== 'open').map(([key, value]) => (
                         <FormControlLabel
                             key={key}
-                            control={<Switch checked={value} color="info" onChange={(e) => setSearchCriteria(prev => ({
-                                ...prev,
-                                sortBy: { ...prev.sortBy, [key]: e.target.checked }
-                            }))} />}
-                            label={t(`sort.${key.charAt(0).toUpperCase() + key.slice(1)}`)}
+                            control={<Switch color="info" checked={value} onChange={() => setSortOptions(prev => ({ ...prev, [key]: !value }))} />}
+                            label={t(`sort.${key.replace('by', 'sortBy')}`)} 
                         />
                     ))}
 

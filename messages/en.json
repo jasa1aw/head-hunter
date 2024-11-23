@@ -223,7 +223,8 @@
         "sortBySalaryFrom": "By salary",
         "sortByCreatedAt": "By date",
         "SortByCreatedAt": "By date",
-        "SortBySalary": "By salary"
+        "SortBySalary": "By salary",
+        "sortBySalary": "By salary"
       },
       "experienceArray": {
         "title": "Experience",

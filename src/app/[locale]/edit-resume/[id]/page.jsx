@@ -37,7 +37,6 @@ export default function EditResume() {
     const [allEmploymentTypes, setEmploymentTypes] = useState([]);
     const [modalExpIsOpen, setModalExpIsOpen] = useState(false);
 
-    // Form state variables
     const [formData, setFormData] = useState({
         first_name: '',
         last_name: '',

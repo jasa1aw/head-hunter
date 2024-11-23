@@ -254,7 +254,6 @@ body, div, input, button, a, li, ul, textarea, span, p, h1, h2, h3,h4 ol, aside,
 
 /* Optional: Style the send resume button */
 .button-primary {
-  margin-left: 10px;
   background-color: #28a745;
   color: white;
 }

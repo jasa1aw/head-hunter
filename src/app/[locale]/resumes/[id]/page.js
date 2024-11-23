@@ -42,7 +42,6 @@ export default function ResumePage() {
                         <Link href={'/resumes'} className='link'>{t('backToList')}</Link>
                         <Link href={`/edit-resume/${resume.id}`} className='button button-secondary-bordered'>{t('edit')}</Link>
                     </div>
-<<<<<<< HEAD
                     <h1>{resume.first_name} {resume.last_name}</h1>
                     <p>{resume.gender} 18 {t('yearsOld')}, {t('born')} 2006 january</p>
 
@@ -58,13 +57,6 @@ export default function ResumePage() {
                             </Link>
                         )}
                     </p>
-=======
-                    <h1>{resume.user && resume.user.first_name} {resume.user && resume.user.last_name}</h1>
-                    <p>{resume.gender} {age} {t('yearsOld')}, {t('born')} {birthday.getDate()} {monthsInRussian[birthday.getMonth()]} {birthday.getFullYear()}</p>
-
-                    <p className="secondary">{t('contacts')}</p>
-                    <p>{resume.user && resume.user.phone && showPhone(resume.user.phone)}</p>
->>>>>>> bc4787d5955bde8615adea70b38223d47c78b12d
                     <p>{t('location')}: {resume.city && resume.city.name}</p>
 
                     <div className="flex flex-jc-sb">

@@ -92,7 +92,6 @@ export default function SearchVacancy() {
     const resumes = useSelector(state => state.resume.resumes)
     const cities = useSelector((state) => state.vacancy.cities);
     const countries = useSelector((state) => state.vacancy.countries);
-    const experiences = useSelector((state) => state.vacancy.experiences);
     const allSkills = useSelector((state) => state.vacancy.skills);
     const allEmploymentTypes = useSelector((state) => state.vacancy.empTypes);
 
