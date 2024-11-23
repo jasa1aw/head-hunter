@@ -11,7 +11,7 @@ import SelectDate from '@/components/SelectDate'
 import SelectEmploymentTypes from '@/components/SelectEmploymentTypes'
 import SelectSpec from '@/components/Spec/SelectSpec'
 import Stepper from '@/components/Stepper'
-import WorkingHistory from '@/components/WorkingHistory'
+import WorkingHistory from '@/components/workingHistory';
 import { END_POINT } from '@/config/end-point'
 
 import { getSpecializations } from '@/app/[locale]/store/slices/vacancySlice'
